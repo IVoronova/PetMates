@@ -18,6 +18,8 @@ public class Login extends AppCompatActivity {
     private Button login;
     private int counter = 3;
 
+    //Testing
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
