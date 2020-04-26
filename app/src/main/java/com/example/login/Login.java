@@ -38,6 +38,8 @@ public class Login extends AppCompatActivity {
                 String emailValue = email.getText().toString();
                 String passwordValue = password.getText().toString();
 
+                validate(emailValue, passwordValue);
+
                 if(databaseHelper.isLoginVaild(emailValue,passwordValue)) {
                     Intent intent = new Intent(Login.this, MainMenu.class);
                     startActivity(intent);
@@ -45,7 +47,7 @@ public class Login extends AppCompatActivity {
 
                 }
 
-                validate(emailValue, passwordValue);
+
             }
         });
 
