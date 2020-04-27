@@ -1,6 +1,7 @@
 package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,8 +14,8 @@ import android.widget.Toast;
 public class Login extends AppCompatActivity {
 
     private EditText email,password;
-    private TextView info;
-    private Button login,register;
+    public TextView info;
+    public Button login;
     private int counter = 3;
     DatabaseHelper databaseHelper;
 
@@ -28,7 +29,6 @@ public class Login extends AppCompatActivity {
         password = (EditText)findViewById(R.id.etPassword);
         info = (TextView)findViewById(R.id.tvInfo);
         login = (Button) findViewById(R.id.btnLogin);
-        register = (Button) findViewById(R.id.btnRegister);
 
 
 
@@ -41,28 +41,23 @@ public class Login extends AppCompatActivity {
                 validate(emailValue, passwordValue);
 
                 if(databaseHelper.isLoginVaild(emailValue,passwordValue)) {
-                    Intent intent = new Intent(Login.this, MainMenu.class);
+                    Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(Login.this,"Login Successful!", Toast.LENGTH_SHORT).show();
 
                 }
 
 
+
+
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Register.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void validate(String userName, String userPassword){
         if((userName.equals("Admin")) && (userPassword.equals("1234"))) {
-            Intent intent = new Intent(Login.this, MainMenu.class);
+            Intent intent = new Intent(Login.this, MainActivity.class);
             startActivity(intent);
         }else{
             counter--;

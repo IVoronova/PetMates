@@ -2,6 +2,7 @@ package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -13,11 +14,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+
+
+@SuppressLint("Registered")
 public class Register extends AppCompatActivity {
     SQLiteOpenHelper openHelper;
     SQLiteDatabase db;
     Button _Register;
-    EditText _Email,_Password,_FirstName,_LastName,_Phone;
+    EditText _Email,_Password,_Phone;
     DatabaseHelper databaseHelper;
 
 
@@ -29,8 +33,6 @@ public class Register extends AppCompatActivity {
         _Register = (Button)findViewById(R.id.btnRegister);
         _Email = (EditText)findViewById(R.id.etEmail);
         _Password = (EditText)findViewById(R.id.etPassword);
-        _FirstName = (EditText)findViewById(R.id.etFirst_Name);
-        _LastName = (EditText)findViewById(R.id.etLast_Name);
         _Phone = (EditText)findViewById(R.id.etPhone);
 
         databaseHelper = new DatabaseHelper(this);
@@ -41,16 +43,12 @@ public class Register extends AppCompatActivity {
                 db = openHelper.getWritableDatabase();
                 String EmailValue = _Email.getText().toString();
                 String PasswordValue = _Password.getText().toString();
-                String FNameValue = _FirstName.getText().toString();
-                String LNameValue = _LastName.getText().toString();
                 String PhoneValue = _Phone.getText().toString();
 
-                if(EmailValue.length()>1) {
+                if(EmailValue.length()!=0) {
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("Email", EmailValue);
                     contentValues.put("Password", PasswordValue);
-                    contentValues.put("First_Name", FNameValue);
-                    contentValues.put("Last_name", LNameValue);
                     contentValues.put("Phone", PhoneValue);
 
                     databaseHelper.insertUser(contentValues);
@@ -61,8 +59,8 @@ public class Register extends AppCompatActivity {
 
 
 
-                        }
-                    };
+                }
+            };
 
 
         });
@@ -70,6 +68,6 @@ public class Register extends AppCompatActivity {
 
 
 
-    }
+}
 
 

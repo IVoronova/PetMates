@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
-
+    tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/image2"
+        android:id="@+id/image1"
         android:layout_width="450dp"
         android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,62 +17,54 @@
         tools:layout_editor_absoluteY="0bp"
         tools:ignore="MissingConstraints"
         />
-    <EditText
-        android:id="@+id/etName"
+
+    <TextView
+        android:id="@+id/welcometext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autofillHints="Enter your username or email"
-        android:ems="10"
-        android:hint="username"
-        android:inputType="textPersonName"
-        android:textColorHint="#9C7DA5"
+        android:text="Welcome to Pet Mate!"
+        android:textSize="30sp"
+        android:textColor="#9C7DA5"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.479" />
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="password"
-        android:textColorHint="#9C7DA5"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etName"
-        app:layout_constraintVertical_bias="0.05"
-        tools:ignore="TextFields"
-        android:autofillHints="password" />
-
+        app:layout_constraintTop_toTopOf="@id/image1"
+        app:layout_constraintVertical_bias="0.481" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/startlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#ADC1FC"
         android:ems="10"
-        android:text="log in"
+        android:text="Login"
+        android:textColor="#9C7DA5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/welcometext"
+        app:layout_constraintVertical_bias="0.328" />
+
+    <Button
+        android:id="@+id/startsignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ADC1FC"
+        android:ems="10"
+        android:text="Sign Up"
         android:textColor="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintTop_toBottomOf="@+id/startlogin"
+        app:layout_constraintVertical_bias="0.19" />
 
-    <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="numbers of incorrect attempts"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        app:layout_constraintVertical_bias="0.686" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

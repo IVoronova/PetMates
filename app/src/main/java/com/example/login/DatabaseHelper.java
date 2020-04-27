@@ -9,23 +9,19 @@ import android.database.sqlite.SQLiteStatement;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    static String name = "database";
-    static int version = 1;
-
-    String User =
-            "CREATE TABLE IF NOT EXISTS \"user\" (\n" +
-            "\t\"Email\"\tINTEGER,\n" +
-            "\t\"Password\"\tTEXT,\n" +
-            "\t\"First_Name\"\tTEXT,\n" +
-            "\t\"Last_name\"\tTEXT,\n" +
-            "\t\"Phone\"\tINTEGER,\n" +
-            "\tPRIMARY KEY(\"Email\")\n" +
-            ")";
+    private static String name = "database";
+    private static int version = 1;
 
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, name, null, version);
-        getWritableDatabase().execSQL(User);
+        String user = "CREATE TABLE IF NOT EXISTS \"user\" (\n" +
+                "\t\"Email\"\tINTEGER,\n" +
+                "\t\"Password\"\tTEXT,\n" +
+                "\t\"Phone\"\tINTEGER,\n" +
+                "\tPRIMARY KEY(\"Email\")\n" +
+                ")";
+        getWritableDatabase().execSQL(user);
     }
 
     public void insertUser(ContentValues contentValues){
