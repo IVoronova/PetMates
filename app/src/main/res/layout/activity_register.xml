@@ -7,16 +7,16 @@
     tools:context=".Register">
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="450dp"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/pet"
-        tools:layout_editor_absoluteY="0bp"
-        tools:ignore="MissingConstraints"
-        />
+    android:id="@+id/imageView1"
+    android:layout_width="450dp"
+    android:layout_height="300dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.444"
+    app:layout_constraintStart_toStartOf="parent"
+    app:srcCompat="@drawable/pet"
+    tools:layout_editor_absoluteY="0bp"
+    tools:ignore="MissingConstraints"
+    />
 
     <EditText
         android:id="@+id/etEmail"
