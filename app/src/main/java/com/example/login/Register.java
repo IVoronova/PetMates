@@ -2,9 +2,11 @@ package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 
 public class Register extends AppCompatActivity {
     SQLiteOpenHelper openHelper;
-    Button _Register, _Back;
+    Button _Register;
     EditText _Email,_Password,_Repassword,_Phone;
     DatabaseHelper databaseHelper;
     DatabaseHelper db;
@@ -31,17 +33,6 @@ public class Register extends AppCompatActivity {
         _Password = (EditText)findViewById(R.id.etPassword);
         _Repassword = (EditText)findViewById(R.id.etrePassword);
         _Phone = (EditText)findViewById(R.id.etPhone);
-        _Back = (Button)findViewById(R.id.btnback);
-
-        //goes back to main activity
-        _Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Register.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         _Register.setOnClickListener(new View.OnClickListener() {
             @Override

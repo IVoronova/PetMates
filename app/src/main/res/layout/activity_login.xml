@@ -18,6 +18,19 @@
         tools:layout_editor_absoluteY="0bp"
         tools:ignore="MissingConstraints"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
+        android:text="Login account"
+        android:textColor="#9C7DA5"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/etName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="wrap_content"
