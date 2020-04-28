@@ -14,12 +14,11 @@ public class Login extends AppCompatActivity {
 
     private EditText email,password;
     public TextView info;
-    public Button login;
+    public Button login, back;
     private int counter = 3;
     DatabaseHelper db;
 
     //Testing
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +27,18 @@ public class Login extends AppCompatActivity {
         email = (EditText)findViewById(R.id.etName);
         password = (EditText)findViewById(R.id.etPassword);
         login = (Button) findViewById(R.id.btnLogin);
+        back = (Button)findViewById(R.id.btnback);
+
+        //goes back to main activity
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //check user login
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
