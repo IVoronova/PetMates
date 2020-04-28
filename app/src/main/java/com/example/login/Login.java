@@ -3,7 +3,6 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +16,7 @@ public class Login extends AppCompatActivity {
     public TextView info;
     public Button login;
     private int counter = 3;
-    DatabaseHelper databaseHelper;
+    DatabaseHelper db;
 
     //Testing
 
@@ -25,31 +24,24 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        db = new DatabaseHelper(this);
         email = (EditText)findViewById(R.id.etName);
         password = (EditText)findViewById(R.id.etPassword);
         info = (TextView)findViewById(R.id.tvInfo);
         login = (Button) findViewById(R.id.btnLogin);
-
-
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailValue = email.getText().toString();
                 String passwordValue = password.getText().toString();
-
-                validate(emailValue, passwordValue);
-
-                if(databaseHelper.isLoginVaild(emailValue,passwordValue)) {
-                    Intent intent = new Intent(Login.this, MainActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(Login.this,"Login Successful!", Toast.LENGTH_SHORT).show();
-
+                Boolean Chkemailpassword = db.emailpassword(emailValue,passwordValue);
+                if(Chkemailpassword==true){
+                    Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Worng email or password",Toast.LENGTH_SHORT).show();
                 }
 
-
-
-
+               validate(emailValue, passwordValue);
             }
         });
 
