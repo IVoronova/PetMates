@@ -116,14 +116,14 @@
 
             <Button
                 android:id="@+id/btnaccount"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Edit Account Information" />
 
             <Button
                 android:id="@+id/btnlogout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Log out" />
