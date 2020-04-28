@@ -60,6 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="#FFFFFF"
+                android:ems="14"
                 android:text="Preferences" />
 
             <EditText
@@ -112,6 +114,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
                 android:text="Save" />
 
             <Button
@@ -119,6 +123,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
                 android:text="Edit Account Information" />
 
             <Button
@@ -126,6 +132,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
                 android:text="Log out" />
 
 
