@@ -37,27 +37,26 @@ public class Login extends AppCompatActivity {
                 Boolean Chkemailpassword = db.emailpassword(emailValue,passwordValue);
                 if(Chkemailpassword==true){
                     Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Worng email or password",Toast.LENGTH_SHORT).show();
+                    validate(emailValue, passwordValue);
                 }
 
-               validate(emailValue, passwordValue);
+
             }
         });
 
     }
 
     private void validate(String userName, String userPassword){
-        if((userName.equals("Admin")) && (userPassword.equals("1234"))) {
-            Intent intent = new Intent(Login.this, MainActivity.class);
-            startActivity(intent);
-        }else{
+
             counter--;
-            info.setText("Number of attempts remaining:" + String.valueOf(counter));
+            Toast.makeText(getApplicationContext(),"Number of attempts remaining:" + String.valueOf(counter),Toast.LENGTH_SHORT).show();
             if(counter == 0){
                 login.setEnabled(false); //disable log button after three times
             }
         }
     }
 
-}
