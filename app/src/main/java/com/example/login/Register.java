@@ -3,6 +3,7 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -52,6 +53,8 @@ public class Register extends AppCompatActivity {
                             Boolean insert = db.insert(EmailValue,PasswordValue,PhoneValue);
                             if(insert == true){
                                 Toast.makeText(getApplicationContext(),"Registered Successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Register.this, Login.class);
+                                startActivity(intent);
                             }
                         }
                         else{
