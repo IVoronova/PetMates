@@ -17,6 +17,7 @@ public class Login extends AppCompatActivity {
     public Button login, back;
     private int counter = 3;
     DatabaseHelper db;
+    String emailValue,passwordValue;
 
     //Testing
     @Override
@@ -42,16 +43,17 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailValue = email.getText().toString();
-                String passwordValue = password.getText().toString();
+                emailValue = email.getText().toString();
+                passwordValue = password.getText().toString();
                 Boolean Chkemailpassword = db.emailpassword(emailValue,passwordValue);
                 if(Chkemailpassword==true){
                     Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this, Main_menu.class);
+                    Intent intent = new Intent(Login.this,Main_menu.class);
+                    intent.putExtra("email",emailValue);
                     startActivity(intent);
                 }else {
                     counter--;
-                    Toast.makeText(getApplicationContext(), "Worng email or password!\nNumber of attempts remaining:" + String.valueOf(counter), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Wrong email or password!\nNumber of attempts remaining:" + String.valueOf(counter), Toast.LENGTH_SHORT).show();
                     if (counter == 0) {
                         login.setEnabled(false); //disable log button after three times
                     }
