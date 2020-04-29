@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/pet"
+        app:srcCompat="@drawable/pet2"
         tools:layout_editor_absoluteY="0bp"
         tools:ignore="MissingConstraints"
         />
@@ -22,10 +22,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="140dp"
         android:text="Pairing"
         android:textColor="#9C7DA5"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnPair_Preferences"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,9 @@
 
     <Button
         android:id="@+id/btnPair_Preferences"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_text"
         android:layout_marginTop="60dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
@@ -47,8 +48,9 @@
 
     <Button
         android:id="@+id/btnPair_Location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_text"
         android:layout_marginTop="48dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
@@ -57,6 +59,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnPair_Preferences" />
+
+    <TextView
+        android:id="@+id/btnBackP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:clickable="true"
+        android:ems="3"
+        android:focusable="true"
+        android:text="Back"
+        android:textColor="#A8A8A8"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPair_Location" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

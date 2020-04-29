@@ -19,39 +19,32 @@
         />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
-        android:text="Main menu"
-        android:textColor="#9C7DA5"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btnProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/btnProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_text"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
         android:text="Profile"
+        android:textSize="18dp"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView1" />
 
     <Button
         android:id="@+id/btnFriends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_text"
         android:layout_marginTop="20dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
         android:text="Friends"
+        android:textSize="18sp"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -60,12 +53,14 @@
 
     <Button
         android:id="@+id/btnPairing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_text"
         android:layout_marginTop="16dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
         android:text="Pairing"
+        android:textSize="18dp"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -74,12 +69,14 @@
 
     <Button
         android:id="@+id/btnForum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_text"
         android:layout_marginTop="16dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
         android:text="Forum"
+        android:textSize="18dp"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -88,12 +85,14 @@
 
     <Button
         android:id="@+id/btnApplication_support"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_text"
         android:layout_marginTop="20dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
         android:text="Application Support"
+        android:textSize="18dp"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

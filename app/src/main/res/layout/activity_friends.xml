@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/pet"
+        app:srcCompat="@drawable/pet2"
         tools:layout_editor_absoluteY="0bp"
         tools:ignore="MissingConstraints"
         />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Friends"
         android:textColor="#9C7DA5"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

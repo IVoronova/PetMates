@@ -6,15 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Main_menu extends AppCompatActivity {
     Button _Profile,_Friends,_Pairing,_Forum,_Support;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
+        db = new DatabaseHelper(this);
+        //get email value from last activity login
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
 
@@ -28,6 +31,7 @@ public class Main_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Main_menu.this,Profile.class);
+                //save email value to next activity
                 intent.putExtra("email",email);
                 startActivity(intent);
             }
@@ -35,15 +39,24 @@ public class Main_menu extends AppCompatActivity {
         _Friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main_menu.this,Friends.class);
-                startActivity(intent);
+                if (db.chkprofile_exist(email) == true) {
+                    Toast.makeText(getApplicationContext(), "Please create user profile access Friends feature", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Main_menu.this, Friends.class);
+                    startActivity(intent);
+                }
             }
         });
         _Pairing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main_menu.this,Pairing.class);
-                startActivity(intent);
+                if(db.chkprofile_exist(email) == true){
+                    Toast.makeText(getApplicationContext(),"Please create user profile access Pairing feature",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(Main_menu.this, Pairing.class);
+                    startActivity(intent);
+                }
             }
         });
         _Forum.setOnClickListener(new View.OnClickListener() {

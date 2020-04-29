@@ -23,7 +23,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         db = new DatabaseHelper(this);
-
+        //get email value from last activity
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
 
@@ -38,11 +38,10 @@ public class Profile extends AppCompatActivity {
         Save = (Button) findViewById(R.id.btnProfile_save);
         Edit_information = (Button) findViewById(R.id.btnedit_account);
         Logout = (Button) findViewById(R.id.btnProfile_logout);
-
+        //once check save, save the data to database
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 String NameValue = Name.getText().toString();
                 String BioValue = Bio.getText().toString();
@@ -51,12 +50,14 @@ public class Profile extends AppCompatActivity {
                 String PetBreedValue = PetBreed.getText().toString();
                 String PetGenderValue = PetGender.getText().toString();
                 String ZipValue = Zip.getText().toString();
-
+                //if one of user inputs are empty, give alert
                 if (NameValue.equals("") || BioValue.equals("") || PreferencesValue.equals("") || PetTypeValue.equals("") || PetBreedValue.equals("") || PetGenderValue.equals("") || ZipValue.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
                 } else {
+                    //else connect to database and insert data
                     boolean insert = db.insert_user_info(email, NameValue, BioValue, PreferencesValue, PetTypeValue, PetBreedValue, PetGenderValue, ZipValue);
                     if(insert == true){
+                        //if insert successfully, message and jump to main menu
                         Toast.makeText(getApplicationContext(),"Update profile Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Profile.this, Main_menu.class);
                         startActivity(intent);
@@ -66,11 +67,11 @@ public class Profile extends AppCompatActivity {
                 }
             }
         });
-
+        //while user check log out, jump to login page
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this,MainActivity.class);
+                Intent intent = new Intent(Profile.this,Login.class);
                 Toast.makeText(getApplicationContext(),"Logout successfully",Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
