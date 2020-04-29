@@ -21,6 +21,10 @@ public class Pairing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pairing);
+
+        Intent intent = getIntent();
+        final String email = intent.getStringExtra("email");
+
         db = new DatabaseHelper(this);
         back = findViewById(R.id.btnBackP);
 
@@ -42,6 +46,7 @@ public class Pairing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Pairing.this,Main_menu.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
 
             }

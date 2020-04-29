@@ -43,6 +43,7 @@ public class Main_menu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please create user profile access Friends feature", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(Main_menu.this, Friends.class);
+                    intent.putExtra("email",email);
                     startActivity(intent);
                 }
             }
@@ -55,6 +56,7 @@ public class Main_menu extends AppCompatActivity {
                 }
                 else {
                     Intent intent = new Intent(Main_menu.this, Pairing.class);
+                    intent.putExtra("email",email);
                     startActivity(intent);
                 }
             }
@@ -63,6 +65,7 @@ public class Main_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Main_menu.this,Forum.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -70,6 +73,7 @@ public class Main_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Main_menu.this,Application_Support.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
