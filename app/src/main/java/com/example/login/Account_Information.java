@@ -7,13 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Account_Information extends AppCompatActivity {
     EditText NewEmail, NewPassword, Comfirm_NewPassword, NewPhone_Number;
-    Button Save, Back;
+    Button Save;
     DatabaseHelper db;
     String NewEmailValue;
+    TextView Back;
 
 
     @Override
@@ -31,7 +33,7 @@ public class Account_Information extends AppCompatActivity {
         NewPhone_Number = (EditText)findViewById(R.id.etAccount_phone);
 
         Save = (Button)findViewById(R.id.btnAccount_save);
-        Back = (Button)findViewById(R.id.btnAccount_back);
+        Back = findViewById(R.id.btnAccount_back);
 
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
