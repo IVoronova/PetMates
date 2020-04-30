@@ -47,13 +47,13 @@ public class Account_Information extends AppCompatActivity {
                     if (NewPasswordValue.equals(NewComfirm_PasswordValue)) {
                         if(db.email_Unique(NewEmailValue) == true) {
                             db.update_user(NewEmailValue, NewPasswordValue, NewPhoneValue, email);
-                            if (db.chkprofile_exist(email) == true) db.update_info_email(NewEmailValue, email);
-                            //if (db.chkPreferences_exist(email) == true) db.update_preferences_email(NewEmailValue,email);
+                            db.update_info_email(NewEmailValue, email);
+                            //db.update_preferences_email(NewEmailValue,email);
                                 Toast.makeText(getApplicationContext(), "Account information edit successful!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Account_Information.this, Main_menu.class);
                                 intent.putExtra("email", NewEmailValue);
                                 startActivity(intent);
-                        }
+                        }else Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
                     }else Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -94,17 +94,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(Table1,user,"Email=?",new String[]{String.valueOf(OldEmail)});
     }
     //after update primary key email,we have to update other table's data
-    public void update_info_email(String Email,String OldEmail ){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues user = new ContentValues();
-        user.put("Email",Email);
-        db.update(Table2,user,"Email=?",new String[]{String.valueOf(OldEmail)});
+    public void update_info_email(String Email,String OldEmail ) {
+        if (chkprofile_exist(Email) == true) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues user = new ContentValues();
+            user.put("Email", Email);
+            db.update(Table2, user, "Email=?", new String[]{String.valueOf(OldEmail)});
+        }
     }
     public void update_preferences_email(String Email,String OldEmail ){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues user = new ContentValues();
-        user.put("Email",Email);
-        db.update(Table3,user,"Email=?",new String[]{String.valueOf(OldEmail)});
+        if(chkPreferences_exist(Email) == true) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues user = new ContentValues();
+            user.put("Email", Email);
+            db.update(Table3, user, "Email=?", new String[]{String.valueOf(OldEmail)});
+        }
     }
 
     //check the user profile exist or not
