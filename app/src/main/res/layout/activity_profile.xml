@@ -4,192 +4,132 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".Profile">
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="450dp"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/pet2"
-        tools:layout_editor_absoluteY="0bp"
-        tools:ignore="MissingConstraints"
-        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/display_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="User profile"
-        android:textColor="#9C7DA5"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/etName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="15dp"
-        android:hint="Enter Name"
-        android:inputType="textPersonName"
-        android:textColorHint="#9C7DA5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView1"
-        app:layout_constraintVertical_bias="0.400" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/pet" />
 
-    <EditText
-        android:id="@+id/etBio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:textSize="15dp"
-        android:hint="Enter Bio"
-        android:textColorHint="#9C7DA5"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etName"
-        app:layout_constraintVertical_bias="0.00" />
+            <TextView
+                android:id="@+id/tvtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Profile"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    <EditText
-        android:id="@+id/etPrefrences"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:textSize="15dp"
-        android:hint="Enter Prefrences"
-        android:textColorHint="#9C7DA5"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etBio"
-        app:layout_constraintVertical_bias="0.00" />
+            <ImageView
+                android:id="@+id/proImage"
+                android:layout_width="215dp"
+                android:layout_height="168dp"
+                android:layout_gravity="center"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
 
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Name"
+                android:layout_gravity="center"
+                android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/etPet_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:textSize="15dp"
-        android:hint="Enter Pet type"
-        android:textColorHint="#9C7DA5"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPrefrences"
-        app:layout_constraintVertical_bias="0.00"
-        tools:ignore="TextFields" />
+            <EditText
+                android:id="@+id/etBio"
+                android:layout_width="wrap_content"
+                android:layout_height="79dp"
+                android:ems="10"
+                android:hint="Bio"
+                android:layout_gravity="center"
+                android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/etPet_breed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:textSize="15dp"
-        android:hint="Enter Pet breed"
-        android:textColorHint="#9C7DA5"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPet_type"
-        app:layout_constraintVertical_bias="0.00"
-        tools:ignore="TextFields" />
-    <EditText
-        android:id="@+id/etPet_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:textSize="15dp"
-        android:hint="Enter Pet Gender"
-        android:textColorHint="#9C7DA5"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPet_breed"
-        app:layout_constraintVertical_bias="0.00"
-        tools:ignore="TextFields" />
-    <EditText
-        android:id="@+id/etzip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:textSize="15dp"
-        android:hint="Enter zip code"
-        android:textColorHint="#9C7DA5"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPet_gender"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="TextFields" />
+            <EditText
+                android:id="@+id/etPet_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Pet type:"
+                android:layout_gravity="center"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etPet_breed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Pet breed: "
+                android:layout_gravity="center"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etPet_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Pet gender:"
+                android:layout_gravity="center"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etzip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Zip code: "
+                android:layout_gravity="center"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btnProfile_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
+                android:text="Save" />
+
+            <Button
+                android:id="@+id/btnProfile_preferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
+                android:text="Edit Preferences" />
+
+            <Button
+                android:id="@+id/btnedit_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
+                android:text="Edit Account Information" />
+
+            <Button
+                android:id="@+id/btnProfile_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
+                android:text="Log out" />
 
 
-    <Button
-        android:id="@+id/btnedit_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:backgroundTint="#ADC1FC"
-        android:ems="15"
-        android:text="Edit account information"
-        android:textColor="#9C7DA5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPet_type" />
-
-    <Button
-        android:id="@+id/btnProfile_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        android:backgroundTint="#ADC1FC"
-        android:ems="7"
-        android:text="Save"
-        android:textColor="#9C7DA5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.261"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPet_type" />
-
-    <Button
-        android:id="@+id/btnProfile_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        android:backgroundTint="#ADC1FC"
-        android:ems="7"
-        android:text="Log out"
-        android:textColor="#9C7DA5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPet_type" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

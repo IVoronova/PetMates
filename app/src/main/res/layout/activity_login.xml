@@ -39,7 +39,7 @@
 
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etAccount_Password"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:autofillHints="password"

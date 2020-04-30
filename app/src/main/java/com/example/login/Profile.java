@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
 
-    Button Save,Edit_information,Logout;
+    Button Save,Edit_Preferences,Edit_information,Logout;
     EditText Name,Bio,Preferences,PetType,PetBreed,PetGender,Zip;
     DatabaseHelper db;
 
@@ -29,13 +29,13 @@ public class Profile extends AppCompatActivity {
 
         Name = (EditText)findViewById(R.id.etName);
         Bio = (EditText)findViewById(R.id.etBio);
-        Preferences = (EditText)findViewById(R.id.etPrefrences);
         PetType = (EditText)findViewById(R.id.etPet_type);
         PetBreed = (EditText)findViewById(R.id.etPet_breed);
         PetGender = (EditText)findViewById(R.id.etPet_gender);
         Zip = (EditText)findViewById(R.id.etzip);
 
         Save = (Button) findViewById(R.id.btnProfile_save);
+        Edit_Preferences = (Button)findViewById(R.id.btnProfile_preferences);
         Edit_information = (Button) findViewById(R.id.btnedit_account);
         Logout = (Button) findViewById(R.id.btnProfile_logout);
         //once check save, save the data to database
@@ -52,7 +52,7 @@ public class Profile extends AppCompatActivity {
                 String ZipValue = Zip.getText().toString();
                 //if one of user inputs are empty, give alert
                 if (NameValue.equals("") || BioValue.equals("") || PreferencesValue.equals("") || PetTypeValue.equals("") || PetBreedValue.equals("") || PetGenderValue.equals("") || ZipValue.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Some fields are empty, please answer all the questions", Toast.LENGTH_SHORT).show();
                 } else {
                     //else connect to database and insert data
                     boolean insert = db.insert_user_info(email, NameValue, BioValue, PreferencesValue, PetTypeValue, PetBreedValue, PetGenderValue, ZipValue);
@@ -67,6 +67,23 @@ public class Profile extends AppCompatActivity {
                 }
             }
         });
+
+        Edit_Preferences.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, Preferences.class);
+                startActivity(intent);
+            }
+        });
+
+        Edit_information.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, Account_Information.class);
+                startActivity(intent);
+            }
+        });
+
         //while user check log out, jump to login page
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
