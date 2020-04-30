@@ -48,15 +48,15 @@
         app:layout_constraintVertical_bias="0.448" />
 
     <EditText
-        android:id="@+id/etAccount_Password"
+        android:id="@+id/etPassword"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:background="@drawable/round_text"
+        android:textColorHint="#9C7DA5"
+        android:paddingLeft="15dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:paddingLeft="15dp"
-        android:textColorHint="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

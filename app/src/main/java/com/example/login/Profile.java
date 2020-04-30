@@ -16,8 +16,6 @@ public class Profile extends AppCompatActivity {
     EditText Name,Bio,Preferences,PetType,PetBreed,PetGender,Zip;
     DatabaseHelper db;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +25,7 @@ public class Profile extends AppCompatActivity {
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
 
-        //Initialize all variables
+
         Name = (EditText)findViewById(R.id.etName);
         Bio = (EditText)findViewById(R.id.etBio);
         PetType = (EditText)findViewById(R.id.etPet_type);
@@ -36,10 +34,9 @@ public class Profile extends AppCompatActivity {
         Zip = (EditText)findViewById(R.id.etzip);
 
         Save = (Button) findViewById(R.id.btnProfile_save);
-        Edit_Preferences = (Button)findViewById(R.id.btnProfile_preferences);
+        Edit_Preferences = (Button)findViewById(R.id.btnEdit_preferences);
         Edit_information = (Button) findViewById(R.id.btnedit_account);
         Logout = (Button) findViewById(R.id.btnProfile_logout);
-
         //once check save, save the data to database
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,40 +44,39 @@ public class Profile extends AppCompatActivity {
 
                 String NameValue = Name.getText().toString();
                 String BioValue = Bio.getText().toString();
+                String PreferencesValue = Preferences.getText().toString();
                 String PetTypeValue = PetType.getText().toString();
                 String PetBreedValue = PetBreed.getText().toString();
                 String PetGenderValue = PetGender.getText().toString();
                 String ZipValue = Zip.getText().toString();
                 //if one of user inputs are empty, give alert
-                if (NameValue.equals("") || BioValue.equals("") || PetTypeValue.equals("") || PetBreedValue.equals("") || PetGenderValue.equals("") || ZipValue.equals("")) {
+                if (NameValue.equals("") || BioValue.equals("") || PreferencesValue.equals("") || PetTypeValue.equals("") || PetBreedValue.equals("") || PetGenderValue.equals("") || ZipValue.equals("")) {
                     Toast.makeText(getApplicationContext(), "Some fields are empty, please answer all the questions", Toast.LENGTH_SHORT).show();
                 } else {
                     //else connect to database and insert data
-                    boolean insert = db.insert_user_info(email, NameValue, BioValue, PetTypeValue, PetBreedValue, PetGenderValue, ZipValue);
+                    boolean insert = db.insert_user_info(email, NameValue, BioValue,PetTypeValue, PetBreedValue, PetGenderValue, ZipValue);
                     if(insert == true){
                         //if insert successfully, message and jump to main menu
                         Toast.makeText(getApplicationContext(),"Update profile Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Profile.this, Main_menu.class);
+                        intent.putExtra("email",email);
                         startActivity(intent);
                     } else{
-                    Toast.makeText(getApplicationContext(),"Something is wrong, please try again",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Something wrong, please try again",Toast.LENGTH_SHORT).show();
                 }
                 }
             }
         });
 
-        //Goes to edit preferences interface
         Edit_Preferences.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, Preferences.class);
-                //save email value to next activity
                 intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
 
-        //Goes to Edit information interface
         Edit_information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

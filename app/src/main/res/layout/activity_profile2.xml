@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="228dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/pet2" />
+
+            <TextView
+                android:id="@+id/protext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="User Profile"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <ImageView
+                android:id="@+id/proImage"
+                android:layout_width="215dp"
+                android:layout_height="168dp"
+                android:layout_gravity="center"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+            <EditText
+                android:id="@+id/proname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/probio"
+                android:layout_width="wrap_content"
+                android:layout_height="79dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Bio"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFFFFF"
+                android:ems="14"
+                android:text="Preferences" />
+
+            <EditText
+                android:id="@+id/protype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Pet type:"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/probreed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Pet breed: "
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/progender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Pet gender:"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/prozip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Zip code: "
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/proother"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Other: "
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btnsave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:text="Save"
+                android:textColor="#9C7DA5" />
+
+            <Button
+                android:id="@+id/btnaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:text="Edit Account Information"
+                android:textColor="#9C7DA5" />
+
+            <Button
+                android:id="@+id/btnlogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:text="Log out"
+                android:textColor="#9C7DA5" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

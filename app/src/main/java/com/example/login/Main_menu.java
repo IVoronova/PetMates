@@ -12,14 +12,18 @@ public class Main_menu extends AppCompatActivity {
     Button _Profile,_Friends,_Pairing,_Forum,_Support;
     DatabaseHelper db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         db = new DatabaseHelper(this);
-        //get email value from last activity login
+
+        //get email value from last activity
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
+
+
 
         _Profile = (Button)findViewById(R.id.btnProfile);
         _Friends = (Button)findViewById(R.id.btnFriends);

@@ -47,24 +47,19 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
                 } else {//check the email is unique
                     if (PasswordValue.equals(RepasswordValue)) {
-                        Boolean chkemail = db.chkemail(EmailValue);
+                        Boolean chkemail = db.email_Unique(EmailValue);
                         if (chkemail == true) {//if email is unique, save data to database
                             boolean insert = db.insert_user(EmailValue, PasswordValue, PhoneValue);
-                            if (insert == true) {//if successfully insert to database, message and jump to login
-                                Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Register.this, Profile.class);
-                                Toast.makeText(getApplicationContext(), "Please create your user profile", Toast.LENGTH_SHORT).show();
+                            if (insert) {//if successfully insert to database, message and jump to login
+                                Toast.makeText(getApplicationContext(), "Registered Successfully!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Register.this, Login.class);
+                                intent.putExtra("email",EmailValue);
                                 startActivity(intent);
                             }
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
+                        } else Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
+                    }else Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
                 }
             }
-
-            ;
         });
 
         Back.setOnClickListener(new View.OnClickListener() {
