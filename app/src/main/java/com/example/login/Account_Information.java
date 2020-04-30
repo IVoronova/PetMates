@@ -18,14 +18,15 @@ public class Account_Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account__information);
 
+        //Initialize all values
         Email = (EditText)findViewById(R.id.etAccount_email);
         Password = (EditText)findViewById(R.id.etAccount_Password);
         Comfirm_Password = (EditText)findViewById(R.id.etAccount_comfirm);
         Phone_Number = (EditText)findViewById(R.id.etAccount_phone);
-
         Save = (Button)findViewById(R.id.btnAccount_save);
         Back = (Button)findViewById(R.id.btnAccount_back);
 
+        //Goes back to Profile settings
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
