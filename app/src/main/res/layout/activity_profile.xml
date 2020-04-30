@@ -56,15 +56,6 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/etPrefrences"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Preferences"
-                android:layout_gravity="center"
-                android:inputType="textPersonName" />
-
-            <EditText
                 android:id="@+id/etPet_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,6 +99,15 @@
                 android:backgroundTint="#ADC1FC"
                 android:textColor="#9C7DA5"
                 android:text="Save" />
+
+            <Button
+                android:id="@+id/btnProfile_preferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#ADC1FC"
+                android:textColor="#9C7DA5"
+                android:text="Edit Preferences" />
 
             <Button
                 android:id="@+id/btnedit_account"

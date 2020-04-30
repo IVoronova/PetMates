@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Account_Information"></activity>
+        <activity android:name=".Preferences" />
         <activity android:name=".Application_Support" />
         <activity android:name=".Forum" />
         <activity android:name=".Pairing" />
