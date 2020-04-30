@@ -159,17 +159,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM "+Table2+";",null);
         return cursor;
     }
-    ////////////////////////////////////////////////////////////////////////////////////
-    public Cursor pair_pre(String email){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM "+Table2+";",null);
-        return cursor;
-    }// need to fix///////////////////////////////////////////////////////////////////////
 
-    public Cursor pair_location(String email){
+    //randomly pick 1 mate by preferences
+    public Cursor pair_pre(String P_Pet_type, String P_Pet_breed, String P_Pet_gender){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM "+Table2+
-                " WHERE zip = (SELECT Zip FROM "+Table2+" WHERE Email =?)",new String[]{email});
+                " WHERE P_Pet_type =? AND P_Pet_breed=? AND P_Pet_gender=? ORDER BY RANDOM() LIMIT 1",new String[]{P_Pet_type,P_Pet_breed,P_Pet_gender});
+        return cursor;
+    }
+
+    //randomly pick 1 mate by location
+    public Cursor pair_location(String zip){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM "+Table2+
+                " WHERE zip = (SELECT Zip FROM "+Table2+" WHERE Email =? ORDER BY RANDOM() LIMIT 1)",new String[]{zip});
         return cursor;
     }
 

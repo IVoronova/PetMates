@@ -166,12 +166,12 @@
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:ems="10"
-                android:hint="Pet gender"
                 android:paddingLeft="15dp"
                 android:textColorHint="#9C7DA5"
+                android:background="@drawable/round_text"
+                android:ems="10"
+                android:layout_marginBottom="10dp"
+                android:hint="Pet gender"
                 android:inputType="textPersonName"
                 />
 
