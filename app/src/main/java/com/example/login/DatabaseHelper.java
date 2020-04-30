@@ -13,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table1 = "user";
     private static final String Table2 = "user_info";
     private static final String Table3 = "user_preferences";
+
     private static final int version = 1;
     private String id_value;
 
@@ -26,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE "+Table1+ " (Email varchar(50) PRIMARY KEY, Password varchar(50), Phone varchar(20))");
         db.execSQL("CREATE TABLE "+Table2+" (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
-        db.execSQL("CREATE TABLE " +Table3+"(Email TEXT PRIMARY KEY, Preference_type TEXT, Preference_Breed TEXT, Preference_gender TEXT, Other TEXT)");
+        db.execSQL("CREATE TABLE "+Table3+" (Email TEXT PRIMARY KEY, Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
     }
 
     @Override
@@ -69,25 +70,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (ins==-1) return false;
         else return true;
     }
-
-    //insert data for user_preference
-    public boolean insert_user_preference(String Email, String Type, String Breed, String Gender, String Other){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues user_preference = new ContentValues();
-
-        user_preference.put("Email", Email);
-        user_preference.put("Preference_Type", Type);
-        user_preference.put("Preference_Breed",Breed);
-        user_preference.put("Preference_Gender",Gender);
-        user_preference.put("Preference_Other",Other);
-
-        long ins = db.insert(Table2,null, user_preference);
-        if (ins==-1) return false;
-        else return true;
-    }
-
     //checking if email exist;
-    public  Boolean chkemail(String email){
+    public  Boolean email_Unique(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+Table1+ " WHERE Email = ?",new String[]{email});
         if(cursor.getCount()>0) return false;
@@ -101,10 +85,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return false;
     }
 
+    public void update_user(String Email,String Password, String Phone, String OldEmail ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Email",Email);
+        user.put("Password",Password);
+        user.put("Phone",Phone);
+        db.update(Table1,user,"Email=?",new String[]{String.valueOf(OldEmail)});
+    }
+    //after update primary key email,we have to update other table's data
+    public void update_info_email(String Email,String OldEmail ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Email",Email);
+        db.update(Table2,user,"Email=?",new String[]{String.valueOf(OldEmail)});
+    }
+    public void update_preferences_email(String Email,String OldEmail ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Email",Email);
+        db.update(Table3,user,"Email=?",new String[]{String.valueOf(OldEmail)});
+    }
+
     //check the user profile exist or not
     public  Boolean chkprofile_exist(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+Table2+ " WHERE Email = ?",new String[]{email});
+        if(cursor.getCount()>0) return false;
+        else return true;
+    }
+    public  Boolean chkPreferences_exist(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+Table3+ " WHERE Email = ?",new String[]{email});
         if(cursor.getCount()>0) return false;
         else return true;
     }
