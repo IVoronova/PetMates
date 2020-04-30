@@ -16,7 +16,6 @@ public class Login extends AppCompatActivity {
     public TextView registerNew;
     private int counter = 3;
     DatabaseHelper db;
-    String emailValue,passwordValue;
 
     //Testing
 
@@ -36,8 +35,8 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                emailValue = email.getText().toString();
-                passwordValue = password.getText().toString();
+                String emailValue = email.getText().toString();
+                String passwordValue = password.getText().toString();
                 Boolean Chkemailpassword = db.emailpassword(emailValue,passwordValue);
                 //if input is correct, user login successfully and jump to main meun
                 if(Chkemailpassword==true){
