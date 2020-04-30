@@ -7,24 +7,23 @@
     tools:context=".Register">
 
     <ImageView
-    android:id="@+id/imageView1"
-    android:layout_width="450dp"
-    android:layout_height="300dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.444"
-    app:layout_constraintStart_toStartOf="parent"
-    app:srcCompat="@drawable/pet"
-    tools:layout_editor_absoluteY="0bp"
-    tools:ignore="MissingConstraints"
-    />
+        android:id="@+id/imageView1"
+        android:layout_width="450dp"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/pet2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0bp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
-        android:text="Create new account"
+        android:layout_marginBottom="100dp"
+        android:text="Register New Account"
         android:textColor="#9C7DA5"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/etEmail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,102 +31,116 @@
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_text"
         android:ems="10"
-        android:hint="Enter email"
+        android:hint="Email"
         android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
         android:textColorHint="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView1"
-        app:layout_constraintVertical_bias="0.376" />
+        app:layout_constraintVertical_bias="0.448" />
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_text"
         android:ems="10"
-        android:hint="Enter password"
-        android:textColorHint="#9C7DA5"
+        android:hint="Password"
         android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorHint="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etEmail"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <EditText
         android:id="@+id/etrePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_text"
         android:ems="10"
-        android:hint="Re-enter password"
-        android:textColorHint="#9C7DA5"
+        android:hint="Confirm Password"
         android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorHint="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etPassword"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.07" />
 
 
     <EditText
         android:id="@+id/etPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round_text"
         android:ems="10"
-        android:hint="Enter phone number"
-        android:textColorHint="#9C7DA5"
+        android:hint="Phone Number"
         android:inputType="textPhonetic"
+        android:paddingLeft="15dp"
+        android:textColorHint="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etrePassword"
-        app:layout_constraintVertical_bias="0.03"
+        app:layout_constraintVertical_bias="0.08"
         tools:ignore="TextFields" />
-
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I agree to term of servise"
+        android:text="I agree to term of service"
         android:textColor="#9C7DA5"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPhone"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintVertical_bias="0.158" />
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
         android:layout_marginTop="72dp"
+        android:background="@drawable/round_text"
         android:backgroundTint="#ADC1FC"
-        android:ems="10"
+        android:ems="13"
         android:text="Register"
         android:textColor="#9C7DA5"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPhone" />
 
-    <Button
-        android:id="@+id/btnback"
+    <TextView
+        android:id="@+id/btnBackR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:ems="3"
+        android:focusable="true"
         android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#A8A8A8"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 

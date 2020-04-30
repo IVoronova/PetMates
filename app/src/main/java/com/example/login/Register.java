@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -15,6 +16,7 @@ import android.widget.Toast;
 public class Register extends AppCompatActivity {
     Button _Register;
     EditText _Email,_Password,_Repassword,_Phone;
+    TextView Back;
     DatabaseHelper db;
 
 
@@ -25,11 +27,13 @@ public class Register extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
 
-        _Email = (EditText)findViewById(R.id.etEmail);
-        _Password = (EditText)findViewById(R.id.etPassword);
-        _Repassword = (EditText)findViewById(R.id.etrePassword);
-        _Phone = (EditText)findViewById(R.id.etPhone);
-        _Register = (Button)findViewById(R.id.btnRegister);
+        _Email = (EditText) findViewById(R.id.etEmail);
+        _Password = (EditText) findViewById(R.id.etPassword);
+        _Repassword = (EditText) findViewById(R.id.etrePassword);
+        _Phone = (EditText) findViewById(R.id.etPhone);
+        _Register = (Button) findViewById(R.id.btnRegister);
+        Back = findViewById(R.id.btnBackR);
+        //once user check register, check input
         _Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,27 +42,37 @@ public class Register extends AppCompatActivity {
                 String RepasswordValue = _Repassword.getText().toString();
                 String PhoneValue = _Phone.getText().toString();
 
-                if(EmailValue.equals("")||PasswordValue.equals("")||RepasswordValue.equals("")||PhoneValue.equals("")) {
+                //if one of inputs are empty, send alert
+                if (EmailValue.equals("") || PasswordValue.equals("") || RepasswordValue.equals("") || PhoneValue.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    if(PasswordValue.equals(RepasswordValue)){
+                } else {//check the email is unique
+                    if (PasswordValue.equals(RepasswordValue)) {
                         Boolean chkemail = db.chkemail(EmailValue);
-                        if(chkemail == true) {
-                            boolean insert = db.insert_user(EmailValue,PasswordValue,PhoneValue);
-                            if(insert == true){
-                                Toast.makeText(getApplicationContext(),"Registered Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Register.this, Login.class);
+                        if (chkemail == true) {//if email is unique, save data to database
+                            boolean insert = db.insert_user(EmailValue, PasswordValue, PhoneValue);
+                            if (insert == true) {//if successfully insert to database, message and jump to login
+                                Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Register.this, Profile.class);
+                                Toast.makeText(getApplicationContext(), "Please create your user profile", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                             }
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"Email already exists",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    Toast.makeText(getApplicationContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
                 }
-            };
+            }
+
+            ;
+        });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Register.this, Login.class);
+                startActivity(intent);
+            }
         });
     }
 }
