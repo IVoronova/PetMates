@@ -48,13 +48,13 @@ public class Preferences extends AppCompatActivity {
                 String GenderValue = Gender.getText().toString();
                 String OtherValue = Other.getText().toString();
 
-                //boolean insert = db.insert_user_preference(email,TypeValue,BreedValue,GenderValue,OtherValue);
-                //if(insert == true){
+                boolean insert = db.insert_user_preference(email,TypeValue,BreedValue,GenderValue,OtherValue);
+                if(insert == true){
                     //if insert successfully, message and jump to main menu
                     Toast.makeText(getApplicationContext(),"Updated Preferences Successfully", Toast.LENGTH_SHORT).show();
-                //} else {
-                  //  Toast.makeText(getApplicationContext(), "Something is wrong, please try again", Toast.LENGTH_SHORT).show();
-                //}
+                } else {
+                    Toast.makeText(getApplicationContext(), "Something is wrong, please try again", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

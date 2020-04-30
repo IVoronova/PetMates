@@ -25,48 +25,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     //create database
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+Table1+ " (Email varchar(50) PRIMARY KEY, Password varchar(50), Phone varchar(20))");
-        db.execSQL("CREATE TABLE "+Table2+" (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
-        db.execSQL("CREATE TABLE "+Table3+" (Email TEXT PRIMARY KEY, Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
+        db.execSQL("CREATE TABLE " + Table1 + " (Email varchar(50) PRIMARY KEY, Password varchar(50), Phone varchar(20))");
+        db.execSQL("CREATE TABLE " + Table2 + " (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
+        db.execSQL("CREATE TABLE " + Table3 + " (Email TEXT PRIMARY KEY, Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+Table1);
-        db.execSQL("DROP TABLE IF EXISTS "+Table2);
-        db.execSQL("DROP TABLE IF EXISTS "+Table3);
+        db.execSQL("DROP TABLE IF EXISTS " + Table1);
+        db.execSQL("DROP TABLE IF EXISTS " + Table2);
+        db.execSQL("DROP TABLE IF EXISTS " + Table3);
         onCreate(db);
     }
 
     //insert data to user
-    public boolean insert_user(String Email, String Password, String Phone){
+    public boolean insert_user(String Email, String Password, String Phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues user = new ContentValues();
 
-        user.put("email",Email);
-        user.put("password",Password);
-        user.put("phone",Phone);
-        long ins = db.insert(Table1,null, user);
-        if (ins==-1) return false;
+        user.put("email", Email);
+        user.put("password", Password);
+        user.put("phone", Phone);
+        long ins = db.insert(Table1, null, user);
+        if (ins == -1) return false;
         else return true;
     }
 
     //insert data to user_info
     public boolean insert_user_info(String Email, String Name, String Bio, String Pet_type,
-                          String Pet_breed, String Pet_gender, String Zip) {
+                                    String Pet_breed, String Pet_gender, String Zip) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user_info = new ContentValues();
+
+        user_info.put("Email", Email);
+        user_info.put("Name", Name);
+        user_info.put("Bio", Bio);
+        user_info.put("Pet_type", Pet_type);
+        user_info.put("Pet_Breed", Pet_breed);
+        user_info.put("Pet_gender", Pet_gender);
+        user_info.put("Zip", Zip);
+
+        long ins = db.insert(Table2, null, user_info);
+        if (ins == -1) return false;
+        else return true;
+    }
+
+
+    public boolean insert_user_preference(String Email,String Pet_type, String Pet_breed, String Pet_gender, String Zip) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues user_info = new ContentValues();
 
         user_info.put("Email",Email);
-        user_info.put("Name",Name);
-        user_info.put("Bio",Bio);
         user_info.put("Pet_type",Pet_type);
         user_info.put("Pet_Breed",Pet_breed);
         user_info.put("Pet_gender",Pet_gender);
         user_info.put("Zip",Zip);
 
-        long ins = db.insert(Table2,null, user_info);
+        long ins = db.insert(Table3,null, user_info);
         if (ins==-1) return false;
         else return true;
     }
