@@ -12,6 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Database_Name = "PetMates.db";
     private static final String Table1 = "user";
     private static final String Table2 = "user_info";
+    private static final String Table3 = "user_preferences";
     private static final int version = 1;
     private String id_value;
 
@@ -24,13 +25,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //create database
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE "+Table1+ " (Email varchar(50) PRIMARY KEY, Password varchar(50), Phone varchar(20))");
-        db.execSQL("CREATE TABLE "+Table2+" (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT, Preferences TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
+        db.execSQL("CREATE TABLE "+Table2+" (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT)");
+        db.execSQL("CREATE TABLE " +Table3+"(Email TEXT PRIMARY KEY, Preference_type TEXT, Preference_Breed TEXT, Preference_gender TEXT, Other TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+Table1);
         db.execSQL("DROP TABLE IF EXISTS "+Table2);
+        db.execSQL("DROP TABLE IF EXISTS "+Table3);
         onCreate(db);
     }
 
@@ -48,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //insert data to user_info
-    public boolean insert_user_info(String Email, String Name, String Bio, String Preferences, String Pet_type,
+    public boolean insert_user_info(String Email, String Name, String Bio, String Pet_type,
                           String Pet_breed, String Pet_gender, String Zip) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -57,7 +60,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user_info.put("Email",Email);
         user_info.put("Name",Name);
         user_info.put("Bio",Bio);
-        user_info.put("Preferences",Preferences);
         user_info.put("Pet_type",Pet_type);
         user_info.put("Pet_Breed",Pet_breed);
         user_info.put("Pet_gender",Pet_gender);
@@ -67,6 +69,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (ins==-1) return false;
         else return true;
     }
+
+    //insert data for user_preference
+    public boolean insert_user_preference(String Email, String Type, String Breed, String Gender, String Other){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user_preference = new ContentValues();
+
+        user_preference.put("Email", Email);
+        user_preference.put("Preference_Type", Type);
+        user_preference.put("Preference_Breed",Breed);
+        user_preference.put("Preference_Gender",Gender);
+        user_preference.put("Preference_Other",Other);
+
+        long ins = db.insert(Table2,null, user_preference);
+        if (ins==-1) return false;
+        else return true;
+    }
+
     //checking if email exist;
     public  Boolean chkemail(String email){
         SQLiteDatabase db = this.getReadableDatabase();
