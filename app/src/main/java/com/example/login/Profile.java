@@ -52,7 +52,7 @@ public class Profile extends AppCompatActivity {
                 String ZipValue = Zip.getText().toString();
                 //if one of user inputs are empty, give alert
                 if (NameValue.equals("") || BioValue.equals("") || PreferencesValue.equals("") || PetTypeValue.equals("") || PetBreedValue.equals("") || PetGenderValue.equals("") || ZipValue.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Some fields are empty, please answer all the questions", Toast.LENGTH_SHORT).show();
                 } else {
                     //else connect to database and insert data
                     boolean insert = db.insert_user_info(email, NameValue, BioValue, PreferencesValue, PetTypeValue, PetBreedValue, PetGenderValue, ZipValue);
