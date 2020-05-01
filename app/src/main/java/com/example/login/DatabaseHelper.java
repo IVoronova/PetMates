@@ -2,7 +2,6 @@ package com.example.login;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -105,7 +104,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0)return true;
         else return false;
     }
-
+//////////////////////////////////////////////////////////////////////////////////////////////
+    //for edit account information
     public void update_user(String Email,String Password, String Phone, String OldEmail ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues user = new ContentValues();
@@ -131,6 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.update(Table3, user, "Email=?", new String[]{String.valueOf(OldEmail)});
         }
     }*/
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     //check the user profile exist or not
     public  Boolean chkprofile_exist(String email){
@@ -146,10 +147,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }*/
 
+    public Cursor getAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+Table1,null);
+        return cursor;
+    }
     //get user name
     public Cursor getName(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+Table2+ " WHERE Name = ?",new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT * FROM "+Table2+ " WHERE Email = ?",new String[]{email});
+        return cursor;
+    }
+
+
+///////////////////////////////////////////////////////
+    //for pairing
+    //randomly pick 1 mate by preferences
+    public Cursor pair_pre(String email, String P_Pet_type, String P_Pet_breed, String P_Pet_gender){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM "+Table2+
+                " WHERE Pet_type =? AND Pet_breed=? AND Pet_gender=? AND Email !=? ORDER BY RANDOM() LIMIT 1",new String[]{P_Pet_type,P_Pet_breed,P_Pet_gender,email});
+        return cursor;
+    }
+
+    //randomly pick 1 mate by location
+    public Cursor pair_location(String email, String zip){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM "+Table2+
+                " WHERE zip = (SELECT Zip FROM "+Table2+" WHERE Email =? AND Email !=? ORDER BY RANDOM() LIMIT 1)",new String[]{zip,email});
         return cursor;
     }
 
@@ -160,20 +185,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    //randomly pick 1 mate by preferences
-    public Cursor pair_pre(String P_Pet_type, String P_Pet_breed, String P_Pet_gender){
+    //Retrieve user preferences from user_info
+    public Cursor getPreferences(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM "+Table2+
-                " WHERE P_Pet_type =? AND P_Pet_breed=? AND P_Pet_gender=? ORDER BY RANDOM() LIMIT 1",new String[]{P_Pet_type,P_Pet_breed,P_Pet_gender});
+        Cursor cursor = db.rawQuery("SELECT P_Pet_type, P_Pet_breed, P_Pet_gender FROM "+Table2+" WHERE Email =?;",new String[]{email});
         return cursor;
     }
 
-    //randomly pick 1 mate by location
-    public Cursor pair_location(String zip){
+    //Retrieve user zip from user_info
+    public Cursor getZip(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM "+Table2+
-                " WHERE zip = (SELECT Zip FROM "+Table2+" WHERE Email =? ORDER BY RANDOM() LIMIT 1)",new String[]{zip});
+        Cursor cursor = db.rawQuery("SELECT Zip FROM "+Table2+" WHERE Email =?;",new String[]{email});
         return cursor;
     }
-
 }

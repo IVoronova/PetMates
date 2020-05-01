@@ -14,7 +14,6 @@ public class Pairing extends AppCompatActivity {
 
     Button By_Preferences,By_location;
     TextView back;
-    private DatabaseHelper db;
 
 
     @Override
@@ -25,23 +24,30 @@ public class Pairing extends AppCompatActivity {
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
 
-        db = new DatabaseHelper(this);
         back = findViewById(R.id.btnBackP);
 
 
         By_Preferences = findViewById(R.id.btnPair_Preferences);
-        By_location = findViewById(R.id.btnPair_Location);
         By_Preferences.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor cursor = db.allData();
-                if(cursor.getCount()==0){
-                    Toast.makeText(getApplicationContext(),"No Data",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Pairing.this,Pairing_ByP_Result.class);
+                    intent.putExtra("email",email);
+                    startActivity(intent);
                 }
-                /////////////////////////////////////////////////////////////////
-
-            }
         });
+
+        By_location = findViewById(R.id.btnPair_Location);
+        By_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(Pairing.this,Pairing_ByL_Result.class);
+                    intent.putExtra("email",email);
+                    startActivity(intent);
+                }
+
+        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

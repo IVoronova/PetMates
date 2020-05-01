@@ -3,4 +3,7 @@
     <string name="Register">Register</string>
     <string name="textView">TextView</string>
     <string name="textView1">User Profile</string>
+    <string name="result1">result</string>
+    <string name="result2">result</string>
+    <string name="result3">result</string>
 </resources>
