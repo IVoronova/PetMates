@@ -198,4 +198,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT Zip FROM "+Table2+" WHERE Email =?;",new String[]{email});
         return cursor;
     }
+    //if couldn't find any pair mate, give a random mate
+    public Cursor getRandom(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM " + Table2 +
+                " WHERE Email !=? ORDER BY RANDOM() LIMIT 1", new String[]{email});
+        return cursor;
+    }
 }

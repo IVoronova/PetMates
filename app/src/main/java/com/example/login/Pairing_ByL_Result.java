@@ -15,7 +15,6 @@ public class Pairing_ByL_Result extends AppCompatActivity {
     DatabaseHelper db;
     TextView resultText,Back;
     Button Send_Friend_Request,Pairing_again;
-    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,34 +31,41 @@ public class Pairing_ByL_Result extends AppCompatActivity {
         Pairing_again = findViewById(R.id.btnPair_again1);
         Back = findViewById(R.id.btnBackBL);
 
-
         Cursor preferences = db.getZip(email);
-
-
-
         preferences.moveToFirst();
         zip = preferences.getString(0);
 
         Cursor pairingResult = db.pair_location(email,zip);
         if(pairingResult.getCount()>0) {
             pairingResult.moveToFirst();
-            result = ("We found a mate for you! \nName: " + pairingResult.getString(1) +
+            String result = ("We found a mate for you! " +
+                    "\nName: " + pairingResult.getString(1) +
                     "\nEmail: " + pairingResult.getString(0) +
                     "\nBio: " + pairingResult.getString(2) +
                     "\nPet Type: " + pairingResult.getString(3) +
                     "\nPet breed: " + pairingResult.getString(4) +
                     "\nPet gender: " + pairingResult.getString(5));
             resultText.setText(result);
-        }else{
-            Toast.makeText(getApplicationContext(),"Sorry, no match result for you!",Toast.LENGTH_SHORT).show();
-            Intent intent1 = new Intent(Pairing_ByL_Result.this, Pairing.class);
-            intent.putExtra("email", email);
-            startActivity(intent1);
-
+        }else {
+            Cursor randomPair = db.getRandom(email);
+            if (randomPair.getCount() > 0) {
+                randomPair.moveToFirst();
+                String result = ("Unfortunately! No result match your location.\nHowever, We find a random mate for you." +
+                        "\nName: " + randomPair.getString(1) +
+                        "\nEmail: " + randomPair.getString(0) +
+                        "\nBio: " + randomPair.getString(2) +
+                        "\nPet Type: " + randomPair.getString(3) +
+                        "\nPet breed: " + randomPair.getString(4) +
+                        "\nPet gender: " + randomPair.getString(5));
+                resultText.setText(result);
+            }
+                else{
+                Toast.makeText(getApplicationContext(), "Oops!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(Pairing_ByL_Result.this, Oops.class);
+                intent.putExtra("email", email);
+                startActivity(intent1);
+            }
         }
-
-
-
         Pairing_again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

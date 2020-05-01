@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Pairing_ByL_Result"></activity>
+        <activity android:name=".Oops"></activity>
+        <activity android:name=".Pairing_ByL_Result" />
         <activity android:name=".Pairing_ByP_Result" />
         <activity android:name=".Account_Information" />
         <activity android:name=".Preferences" />
