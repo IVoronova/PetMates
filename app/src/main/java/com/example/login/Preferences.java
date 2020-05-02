@@ -2,6 +2,7 @@ package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,23 +13,25 @@ import android.widget.Toast;
 
 public class Preferences extends AppCompatActivity {
     EditText Type, Breed, Gender, Other;
-    Button Save, Back;
+    Button Save;
     DatabaseHelper db;
-
-
+    TextView Back,test;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
-        db = new DatabaseHelper(this);
-
 
         Intent intent = new Intent();
-        final String email = intent.getStringExtra("email");
+        email = intent.getStringExtra("email");
 
-        TextView textView = findViewById(R.id.text);
-        textView.setText(email);
+        test = findViewById(R.id.tvPreferences);
+        String test1 = "Email: "+email;
+        test.setText(test1);
+
+
+        db = new DatabaseHelper(this);
 
         Type = (EditText)findViewById(R.id.etPreference_type);
         Breed = (EditText)findViewById(R.id.etPreference_breed);
@@ -36,7 +39,7 @@ public class Preferences extends AppCompatActivity {
         Other = (EditText)findViewById(R.id.etPreference_other);
 
         Save = (Button)findViewById(R.id.btnPreference_save);
-        Back = (Button)findViewById(R.id.btnPreference_back);
+        Back = findViewById(R.id.btnPreference_back);
 
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,11 +52,11 @@ public class Preferences extends AppCompatActivity {
                 if (TypeValue.equals("") || BreedValue.equals("")|| GenderValue.equals("") || OtherValue.equals("")){
                     Toast.makeText(getApplicationContext(), "Some fields are empty, please answer all the questions", Toast.LENGTH_SHORT).show();
                 } else {
-                //boolean insert = db.insert_user_preference(email,TypeValue,BreedValue,GenderValue,OtherValue);
-               // if(insert == true){
-                    //if insert successfully, message and jump to main menu
+                    db.update_preferences(email,TypeValue,BreedValue,GenderValue,OtherValue);
                     Toast.makeText(getApplicationContext(),"Updated Preferences Successfully", Toast.LENGTH_SHORT).show();
-                //} else Toast.makeText(getApplicationContext(), "Something is wrong, please try again", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Preferences.this, Main_menu.class);
+                    intent.putExtra("email",email);
+                    startActivity(intent);
                 }
             }
         });
@@ -62,11 +65,12 @@ public class Preferences extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Preferences.this, Profile.class);
-                intent.putExtra("email",email);
-                startActivity(intent);
+                Intent jump = new Intent(Preferences.this, Main_menu.class);
+                jump.putExtra("email",email);
+                startActivity(jump);
             }
         });
 
     }
 }
+

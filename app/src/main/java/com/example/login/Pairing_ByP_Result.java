@@ -56,9 +56,10 @@ public class Pairing_ByP_Result extends AppCompatActivity {
             resultText.setText(result);
         }else {
             Cursor randomPair = db.getRandom(email);
+            randomPair.moveToFirst();
             if (randomPair.getCount() > 0) {
-                randomPair.moveToFirst();
-                result = ("Unfortunately! No result match your preferences.\nHowever, We find a random mate for you. \nName: " + pairingResult.getString(1) +
+                result = ("Unfortunately! No result match your preferences.\nHowever, We find a random mate for you. " +
+                        "\nName: " + randomPair.getString(1) +
                         "\nEmail: " + randomPair.getString(0) +
                         "\nBio: " + randomPair.getString(2) +
                         "\nPet Type: " + randomPair.getString(3) +

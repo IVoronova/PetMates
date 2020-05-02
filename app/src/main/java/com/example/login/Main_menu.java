@@ -34,12 +34,20 @@ public class Main_menu extends AppCompatActivity {
         _Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main_menu.this,Profile.class);
-                //save email value to next activity
-                intent.putExtra("email",email);
-                startActivity(intent);
+                if(db.chkprofile_exist(email) == true){
+                    Intent intent = new Intent(Main_menu.this,Profile.class);
+                    intent.putExtra("email", email);
+                    Toast.makeText(getApplicationContext(), "Please create your user profile", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(Main_menu.this,View_prefile.class);
+                    //save email value to next activity
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                }
             }
         });
+
         _Friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

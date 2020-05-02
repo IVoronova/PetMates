@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.login">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/images"
@@ -9,11 +12,14 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Oops"></activity>
+        <activity android:name=".Admin_page"></activity>
+        <activity android:name=".View_prefile" />
+        <activity android:name=".Edit_profile" />
+        <activity android:name=".Preferences" />
+        <activity android:name=".Oops" />
         <activity android:name=".Pairing_ByL_Result" />
         <activity android:name=".Pairing_ByP_Result" />
         <activity android:name=".Account_Information" />
-        <activity android:name=".Preferences" />
         <activity android:name=".Application_Support" />
         <activity android:name=".Forum" />
         <activity android:name=".Pairing" />

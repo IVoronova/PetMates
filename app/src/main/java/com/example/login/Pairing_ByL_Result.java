@@ -48,8 +48,8 @@ public class Pairing_ByL_Result extends AppCompatActivity {
             resultText.setText(result);
         }else {
             Cursor randomPair = db.getRandom(email);
+            randomPair.moveToFirst();
             if (randomPair.getCount() > 0) {
-                randomPair.moveToFirst();
                 String result = ("Unfortunately! No result match your location.\nHowever, We find a random mate for you." +
                         "\nName: " + randomPair.getString(1) +
                         "\nEmail: " + randomPair.getString(0) +

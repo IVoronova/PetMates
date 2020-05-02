@@ -10,13 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="179dp">
+        tools:layout_editor_absoluteY="-70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -26,49 +28,28 @@
                 app:srcCompat="@drawable/pet" />
 
             <TextView
-                android:id="@+id/tvtext"
+                android:id="@+id/tvtext1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/email_test"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="User Information"
                 android:textColor="#9C7DA5"
-                android:textSize="25sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/user_image"
-                android:layout_width="215dp"
+                android:id="@+id/user_imageView"
+                android:layout_width="293dp"
                 android:layout_height="168dp"
                 android:layout_gravity="center"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-            <Button
-                android:id="@+id/btnInsert_image"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:textColor="#9C7DA5"
-                android:text="select Image"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                />
+                android:scaleType="centerCrop"
+                app:srcCompat="@android:drawable/ic_menu_gallery"
+                android:contentDescription="User image" />
 
-            <Button
-                android:id="@+id/btnUpload_image"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:textColor="#9C7DA5"
-                android:text="Upload image"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                />
-
-            <EditText
-                android:id="@+id/etName"
+            <TextView
+                android:id="@+id/etNameView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -78,10 +59,12 @@
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5" />
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etBio"
+            <TextView
+                android:id="@+id/etBioView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -91,10 +74,12 @@
                 android:hint="Bio"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5" />
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etPet_type"
+            <TextView
+                android:id="@+id/etPet_typeView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -104,10 +89,12 @@
                 android:hint="Pet type:"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5" />
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etPet_breed"
+            <TextView
+                android:id="@+id/etPet_breedView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -115,12 +102,13 @@
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Pet breed: "
-                android:inputType="textPersonName"
                 android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5" />
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etPet_gender"
+            <TextView
+                android:id="@+id/etPet_genderView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -128,37 +116,37 @@
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Pet gender:"
-                android:inputType="textPersonName"
                 android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5" />
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etzip"
+            <TextView
+                android:id="@+id/etzipView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="25dp"
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Zip code: "
-                android:inputType="textPersonName"
                 android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5" />
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"/>
 
             <TextView
-                android:id="@+id/tvPreferences"
+                android:id="@+id/tvPreferences1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="User Preferences"
                 android:layout_marginBottom="10dp"
+                android:text="User Preferences"
                 android:textColor="#9C7DA5"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                />
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etPreference_type"
+            <TextView
+                android:id="@+id/etPreference_typeView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -166,13 +154,14 @@
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Pet type"
-                android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5"
                 android:inputType="textPersonName"
-                 />
+                android:paddingLeft="15dp"
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etPreference_breed"
+            <TextView
+                android:id="@+id/etPreference_breedView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -180,53 +169,43 @@
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Pet breed"
-                android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5"
                 android:inputType="textPersonName"
-                 />
+                android:paddingLeft="15dp"
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etPreference_gender"
+            <TextView
+                android:id="@+id/etPreference_genderView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:paddingLeft="15dp"
-                android:textColorHint="#9C7DA5"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/round_text"
                 android:ems="10"
-                android:layout_marginBottom="10dp"
                 android:hint="Pet gender"
                 android:inputType="textPersonName"
-                />
+                android:paddingLeft="15dp"
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
-            <EditText
-                android:id="@+id/etPreference_other"
+            <TextView
+                android:id="@+id/etPreference_otherView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:paddingLeft="15dp"
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Other"
-
-                android:textColorHint="#9C7DA5"
-                android:inputType="textPersonName"
-                />
-
-            <Button
-                android:id="@+id/btnProfile_save"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:text="Save"
-                android:textColor="#9C7DA5" />
+                android:paddingLeft="15dp"
+                android:textColor="#9C7DA5"
+                android:textSize="20dp"
+                android:paddingTop="11dp"/>
 
             <Button
-                android:id="@+id/btnedit_preferences"
+                android:id="@+id/btnedit_preprofile"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -249,7 +228,6 @@
                 android:textColor="#9C7DA5" />
 
 
-
             <Button
                 android:id="@+id/btnProfile_logout"
                 android:layout_width="150dp"
@@ -262,7 +240,7 @@
                 android:textColor="#9C7DA5" />
 
             <TextView
-                android:id="@+id/btnBackA"
+                android:id="@+id/btnBackAA"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:clickable="true"

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Account_Information extends AppCompatActivity {
-    EditText NewEmail, NewPassword, Comfirm_NewPassword, NewPhone_Number;
+    EditText NewEmail, NewPassword, Confirm_NewPassword, NewPhone_Number;
     Button Save;
     DatabaseHelper db;
     String NewEmailValue;
@@ -29,7 +29,7 @@ public class Account_Information extends AppCompatActivity {
 
         NewEmail = (EditText)findViewById(R.id.etAccount_email);
         NewPassword = (EditText)findViewById(R.id.etAccount_Password);
-        Comfirm_NewPassword = (EditText)findViewById(R.id.etAccount_comfirm);
+        Confirm_NewPassword = (EditText)findViewById(R.id.etAccount_comfirm);
         NewPhone_Number = (EditText)findViewById(R.id.etAccount_phone);
 
         Save = (Button)findViewById(R.id.btnAccount_save);
@@ -41,16 +41,16 @@ public class Account_Information extends AppCompatActivity {
 
                 NewEmailValue = NewEmail.getText().toString();
                 String NewPasswordValue = NewPassword.getText().toString();
-                String NewComfirm_PasswordValue = Comfirm_NewPassword.getText().toString();
+                String NewConfirm_PasswordValue = Confirm_NewPassword.getText().toString();
                 String NewPhoneValue = NewPhone_Number.getText().toString();
-                if (NewEmailValue.equals("")||NewPasswordValue.equals("")||NewComfirm_PasswordValue.equals("")||NewPhoneValue.equals("")) {
+
+                if (NewEmailValue.equals("")||NewPasswordValue.equals("")||NewConfirm_PasswordValue.equals("")||NewPhoneValue.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
                 } else {//check the email is unique
-                    if (NewPasswordValue.equals(NewComfirm_PasswordValue)) {
+                    if (NewPasswordValue.equals(NewConfirm_PasswordValue)) {
                         if(db.email_Unique(NewEmailValue) == true) {
                             db.update_user(NewEmailValue, NewPasswordValue, NewPhoneValue, email);
                             db.update_info_email(NewEmailValue, email);
-                            //db.update_preferences_email(NewEmailValue,email);
                                 Toast.makeText(getApplicationContext(), "Account information edit successful!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Account_Information.this, Main_menu.class);
                                 intent.putExtra("email", NewEmailValue);

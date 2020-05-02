@@ -21,34 +21,44 @@
         android:id="@+id/tvPreferences"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preferences"
+        android:text="@string/test2"
         android:textColor="#9C7DA5"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintVertical_bias="0.324" />
 
     <EditText
         android:id="@+id/etPreference_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_text"
         android:ems="10"
         android:hint="Pet type"
         android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textColorHint="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPreferences"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintVertical_bias="0.102" />
 
     <EditText
         android:id="@+id/etPreference_breed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/round_text"
+        android:textColorHint="#9C7DA5"
         android:ems="10"
         android:hint="Pet breed"
         android:inputType="textPersonName"
@@ -60,8 +70,13 @@
 
     <EditText
         android:id="@+id/etPreference_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/round_text"
+        android:textColorHint="#9C7DA5"
         android:ems="10"
         android:hint="Pet gender"
         android:inputType="textPersonName"
@@ -73,8 +88,13 @@
 
     <EditText
         android:id="@+id/etPreference_other"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/round_text"
+        android:textColorHint="#9C7DA5"
         android:ems="10"
         android:hint="Other"
         android:inputType="textPersonName"
@@ -87,38 +107,32 @@
 
     <Button
         android:id="@+id/btnPreference_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="save"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_text"
         android:backgroundTint="#ADC1FC"
+        android:text="save"
         android:textColor="#9C7DA5"
-        app:layout_constraintBottom_toTopOf="@+id/btnPreference_back"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPreference_other" />
 
-    <Button
+    <TextView
         android:id="@+id/btnPreference_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#ADC1FC"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:ems="3"
+        android:focusable="true"
         android:text="Back"
-        android:textColor="#9C7DA5"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#A8A8A8"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPreference_other"
-        app:layout_constraintVertical_bias="0.768" />
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="128dp"
-        tools:ignore="MissingConstraints" />
-
+        app:layout_constraintTop_toBottomOf="@+id/btnPreference_save" />
 </androidx.constraintlayout.widget.ConstraintLayout>

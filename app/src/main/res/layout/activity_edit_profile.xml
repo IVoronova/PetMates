@@ -31,44 +31,20 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/email_test"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:textColor="#9C7DA5"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/user_image"
+                android:id="@+id/proImage"
                 android:layout_width="215dp"
                 android:layout_height="168dp"
                 android:layout_gravity="center"
                 app:srcCompat="@android:drawable/ic_menu_gallery" />
 
-            <Button
-                android:id="@+id/btnInsert_image"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:textColor="#9C7DA5"
-                android:text="select Image"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                />
-
-            <Button
-                android:id="@+id/btnUpload_image"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:textColor="#9C7DA5"
-                android:text="Upload image"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                />
-
             <EditText
-                android:id="@+id/etName"
+                android:id="@+id/etEName"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -81,7 +57,7 @@
                 android:textColorHint="#9C7DA5" />
 
             <EditText
-                android:id="@+id/etBio"
+                android:id="@+id/etEBio"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -94,7 +70,7 @@
                 android:textColorHint="#9C7DA5" />
 
             <EditText
-                android:id="@+id/etPet_type"
+                android:id="@+id/etEPet_type"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -107,7 +83,7 @@
                 android:textColorHint="#9C7DA5" />
 
             <EditText
-                android:id="@+id/etPet_breed"
+                android:id="@+id/etEPet_breed"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -120,7 +96,7 @@
                 android:textColorHint="#9C7DA5" />
 
             <EditText
-                android:id="@+id/etPet_gender"
+                android:id="@+id/etEPet_gender"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -133,7 +109,7 @@
                 android:textColorHint="#9C7DA5" />
 
             <EditText
-                android:id="@+id/etzip"
+                android:id="@+id/etEzip"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -146,7 +122,7 @@
                 android:textColorHint="#9C7DA5" />
 
             <TextView
-                android:id="@+id/tvPreferences"
+                android:id="@+id/tvEPreferences"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -158,7 +134,7 @@
                 />
 
             <EditText
-                android:id="@+id/etPreference_type"
+                android:id="@+id/etEPreference_type"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -169,10 +145,10 @@
                 android:paddingLeft="15dp"
                 android:textColorHint="#9C7DA5"
                 android:inputType="textPersonName"
-                 />
+                />
 
             <EditText
-                android:id="@+id/etPreference_breed"
+                android:id="@+id/etEPreference_breed"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -183,10 +159,10 @@
                 android:paddingLeft="15dp"
                 android:textColorHint="#9C7DA5"
                 android:inputType="textPersonName"
-                 />
+                />
 
             <EditText
-                android:id="@+id/etPreference_gender"
+                android:id="@+id/etEPreference_gender"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -200,7 +176,7 @@
                 />
 
             <EditText
-                android:id="@+id/etPreference_other"
+                android:id="@+id/etEPreference_other"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -215,7 +191,7 @@
                 />
 
             <Button
-                android:id="@+id/btnProfile_save"
+                android:id="@+id/btnEProfile_save"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -225,41 +201,7 @@
                 android:text="Save"
                 android:textColor="#9C7DA5" />
 
-            <Button
-                android:id="@+id/btnedit_preferences"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:text="Edit profile information"
-                android:textColor="#9C7DA5" />
 
-
-            <Button
-                android:id="@+id/btnedit_account"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:text="Edit Account Information"
-                android:textColor="#9C7DA5" />
-
-
-
-            <Button
-                android:id="@+id/btnProfile_logout"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:text="Log out"
-                android:textColor="#9C7DA5" />
 
             <TextView
                 android:id="@+id/btnBackA"

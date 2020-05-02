@@ -37,19 +37,24 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String emailValue = email.getText().toString();
                 String passwordValue = password.getText().toString();
-                Boolean Chkemailpassword = db.emailpassword(emailValue,passwordValue);
-                //if input is correct, user login successfully and jump to main meun
-                if(Chkemailpassword==true){
-                    Toast.makeText(getApplicationContext(),"Successfully Login",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this,Main_menu.class);
-                    //save emailValue to next activity
-                    intent.putExtra("email",emailValue);
+                if(emailValue.equals("admin") && passwordValue.equals("1")){
+                    Intent intent = new Intent(Login.this,Admin_page.class);
                     startActivity(intent);
-                }else {//else number of attempts minus 1
-                    counter--;
-                    Toast.makeText(getApplicationContext(), "Wrong email or password!\nNumber of attempts remaining:" + String.valueOf(counter), Toast.LENGTH_SHORT).show();
-                    if (counter == 0) {
-                        login.setEnabled(false); //disable log button after three times
+                }else {
+                    Boolean Chkemailpassword = db.emailpassword(emailValue, passwordValue);
+                    //if input is correct, user login successfully and jump to main meun
+                    if (Chkemailpassword == true) {
+                        Toast.makeText(getApplicationContext(), "Successfully Login", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Login.this, Main_menu.class);
+                        //save emailValue to next activity
+                        intent.putExtra("email", emailValue);
+                        startActivity(intent);
+                    } else {//else number of attempts minus 1
+                        counter--;
+                        Toast.makeText(getApplicationContext(), "Wrong email or password!\nNumber of attempts remaining:" + String.valueOf(counter), Toast.LENGTH_SHORT).show();
+                        if (counter == 0) {
+                            login.setEnabled(false); //disable log button after three times
+                        }
                     }
                 }
             }

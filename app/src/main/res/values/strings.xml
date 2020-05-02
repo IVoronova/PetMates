@@ -6,4 +6,10 @@
     <string name="result1">result</string>
     <string name="result2">result</string>
     <string name="result3">result</string>
+    <string name="email">EMAIL</string>
+    <string name="email_test">email_test</string>
+    <string name="test2">test2</string>
+    <string name="textview1">TextView1</string>
+    <string name="textview2">textview2</string>
+    <string name="textview3">textview3</string>
 </resources>
