@@ -186,9 +186,9 @@
                 android:hint="Pet gender"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
                 android:textColor="#9C7DA5"
-                android:textSize="20dp"
-                android:paddingTop="11dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/etPreference_otherView"
@@ -205,7 +205,7 @@
                 android:paddingTop="11dp"/>
 
             <Button
-                android:id="@+id/btnedit_preprofile"
+                android:id="@+id/btnedit_profile"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -217,14 +217,14 @@
 
 
             <Button
-                android:id="@+id/btnedit_account"
+                android:id="@+id/btnview_account"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
-                android:text="Edit Account Information"
+                android:text="View Account Information"
                 android:textColor="#9C7DA5" />
 
 

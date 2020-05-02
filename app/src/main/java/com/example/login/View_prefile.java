@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class View_prefile extends AppCompatActivity {
-    Button Edit_Account_Information, Edit_preferences,Log_out;
+    Button View_Account_Information, Edit_profile,Log_out;
     TextView Name,Bio,PetType,PetBreed,PetGender,Zip,P_PetType,P_PetBreed,P_PetGender,P_Other;
     TextView Back;
     ImageView userImage;
@@ -45,26 +45,26 @@ public class View_prefile extends AppCompatActivity {
 
         userImage = (ImageView)findViewById(R.id.user_imageView);
 
-        Edit_Account_Information = findViewById(R.id.btnedit_preprofile);
-        Edit_preferences = findViewById((R.id.btnedit_account));
+        View_Account_Information = findViewById(R.id.btnview_account);
+        Edit_profile = findViewById((R.id.btnedit_profile));
         Log_out = findViewById(R.id.btnProfile_logout);
         Back = findViewById(R.id.btnBackAA);
 
-        Edit_Account_Information.setOnClickListener(new View.OnClickListener() {
+        View_Account_Information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(View_prefile.this, Account_Information.class);
+                Intent intent = new Intent(View_prefile.this, View_account_information.class);
                 intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
-        Edit_preferences.setOnClickListener(new View.OnClickListener() {
+        Edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Edit preferences have a bug, the the user primary key couldn't pass to this page. That bug will cause our project crush. Still figuring the reason.", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(View_prefile.this, Preferences.class);
-                //intent.putExtra("email",email);
-                //startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Some bug exist,edit profile not working right now.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(View_prefile.this, Preferences.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
             }
         });
         Log_out.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +74,7 @@ public class View_prefile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
 
-    Button Save,Edit_information,Logout,Edit_Profile,Select_Image,Upload_Image;
+    Button Save,Logout,Select_Image,Upload_Image;
     EditText Name,Bio,PetType,PetBreed,PetGender,Zip,P_PetType,P_PetBreed,P_PetGender,P_Other;
     TextView Back;
     ImageView userImage;
@@ -37,11 +37,12 @@ public class Profile extends AppCompatActivity {
         //get email value from last activity
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
-
+        ///////////////////////////////////
         test = findViewById(R.id.tvtext);
         String test1 = "Email: " + email;
+        //after test,change test1 to "Enter User Profile"
+        ///////////////////////////////////
         test.setText(test1);
-
         Name = (EditText) findViewById(R.id.etName);
         Bio = (EditText) findViewById(R.id.etBio);
         PetType = (EditText) findViewById(R.id.etPet_type);
@@ -54,7 +55,6 @@ public class Profile extends AppCompatActivity {
         P_Other = (EditText) findViewById(R.id.etPreference_other);
         userImage = (ImageView)findViewById(R.id.user_image);
 
-        Edit_Profile = (Button) findViewById(R.id.btnedit_preferences);
 
         //insert image and get image preview
         Select_Image = (Button) findViewById(R.id.btnInsert_image);
@@ -86,11 +86,7 @@ public class Profile extends AppCompatActivity {
         });
 
 
-
-
         Save = (Button) findViewById(R.id.btnProfile_save);
-        //Edit_Preferences = (Button)findViewById(R.id.btnEdit_preferences);
-        Edit_information = (Button) findViewById(R.id.btnedit_account);
         Logout = (Button) findViewById(R.id.btnProfile_logout);
         Back = findViewById(R.id.btnBackA);
         //once check save, save the data to database
@@ -126,27 +122,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        Edit_Profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!db.chkprofile_exist(email)) {
-                    Intent intent = new Intent(Profile.this, Edit_profile.class);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
-                }else Toast.makeText(getApplicationContext(), "You don't have user profile to edit yet", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-        Edit_information.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, Account_Information.class);
-                intent.putExtra("email",email);
-                startActivity(intent);
-            }
-        });
 
         //while user check log out, jump to login page
         Logout.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +153,7 @@ public class Profile extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(),x,Toast.LENGTH_SHORT).show();
             if(db.insertImage(path,email)){
                 Toast.makeText(getApplicationContext(),"Successful!",Toast.LENGTH_SHORT).show();
-            }else Toast.makeText(getApplicationContext(),"Not Successful!",Toast.LENGTH_SHORT).show();
+            }else Toast.makeText(getApplicationContext(),"Please allow access file permissions in settings!",Toast.LENGTH_SHORT).show();
         }
     }
 

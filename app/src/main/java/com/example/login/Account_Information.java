@@ -44,27 +44,96 @@ public class Account_Information extends AppCompatActivity {
                 String NewConfirm_PasswordValue = Confirm_NewPassword.getText().toString();
                 String NewPhoneValue = NewPhone_Number.getText().toString();
 
-                if (NewEmailValue.equals("")||NewPasswordValue.equals("")||NewConfirm_PasswordValue.equals("")||NewPhoneValue.equals("")) {
+                //if all the box is not empty
+                //if(NewEmailValue.equals("")||NewPasswordValue.equals("")||NewConfirm_PasswordValue.equals("")||NewPhoneValue.equals("")) {
+                //    Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
+                //}
+                //else
+                /*
+                //if new email is not empty, update the email
+                //if new email is not unique, sent alert and stop rest function
+                if(!NewEmailValue.equals("")) {
+                    //check the email is unique
+                    if (db.email_Unique(NewEmailValue) == true) {
+                        db.update_user_Email(NewEmailValue, email);
+                        db.update_info_email(NewEmailValue, email);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Account_Information.this, Account_Information.class);
+                        finish();
+                        overridePendingTransition(0, 0);
+                        i.putExtra("email", email);
+                        startActivity(i);
+                        overridePendingTransition(0, 0);
+                    }
+                }
+                //if user want to change both email and password
+                else if(!NewEmailValue.equals("")&&!NewPasswordValue.equals("") && !NewConfirm_PasswordValue.equals("")){
+                    if (NewPasswordValue.equals(NewConfirm_PasswordValue)) {
+                            db.update_user_Password(NewPasswordValue, NewEmailValue);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Account_Information.this, Account_Information.class);
+                        finish();
+                        overridePendingTransition(0, 0);
+                        i.putExtra("email", email);
+                        startActivity(i);
+                        overridePendingTransition(0, 0);
+                    }
+                }
+                //if user only want to change the password
+                else if(!NewPasswordValue.equals("") && !NewConfirm_PasswordValue.equals("")){
+                    if (NewPasswordValue.equals(NewConfirm_PasswordValue)) {
+                        db.update_user_Password(NewPasswordValue, email);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Account_Information.this, Account_Information.class);
+                        finish();
+                        overridePendingTransition(0, 0);
+                        i.putExtra("email", email);
+                        startActivity(i);
+                        overridePendingTransition(0, 0);
+                    }
+                }
+                //if user want to change both email and phone
+                else if(!NewPhoneValue.equals("")&&!NewEmailValue.equals("")) {
+                    db.update_user_Phone(NewPhoneValue, NewEmailValue);
+                    email.replace(, 'T')
+                }
+                //if user only want to change phone
+                else if(!NewPhoneValue.equals("")) {
+                    db.update_user_Phone(NewPhoneValue, email);
+                }
+                Toast.makeText(getApplicationContext(), "Account information edit successful!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Account_Information.this, Main_menu.class);
+                intent.putExtra("email", NewEmailValue);
+                startActivity(intent);
+                }
+        });*/
+                if(NewEmailValue.equals("")||NewPasswordValue.equals("")||NewConfirm_PasswordValue.equals("")||NewPhoneValue.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty, check your input.", Toast.LENGTH_SHORT).show();
-                } else {//check the email is unique
+                }
+                else {//check the email is unique
                     if (NewPasswordValue.equals(NewConfirm_PasswordValue)) {
                         if(db.email_Unique(NewEmailValue) == true) {
                             db.update_user(NewEmailValue, NewPasswordValue, NewPhoneValue, email);
                             db.update_info_email(NewEmailValue, email);
-                                Toast.makeText(getApplicationContext(), "Account information edit successful!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Account_Information.this, Main_menu.class);
-                                intent.putExtra("email", NewEmailValue);
-                                startActivity(intent);
+                            db.update_image_email(NewEmailValue,email);
+                            Toast.makeText(getApplicationContext(), "Account information edit successful!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Account_Information.this, Main_menu.class);
+                            intent.putExtra("email", NewEmailValue);
+                            startActivity(intent);
                         }else Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
                     }else Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Account_Information.this, Profile.class);
+                Intent intent = new Intent(Account_Information.this, View_account_information.class);
                 intent.putExtra("email",NewEmailValue);
                 startActivity(intent);
             }

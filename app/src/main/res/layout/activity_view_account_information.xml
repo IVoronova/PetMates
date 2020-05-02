@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Account_Information">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002"
+        app:srcCompat="@drawable/pet2" />
+
+    <TextView
+        android:id="@+id/tvView_account_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Information"
+        android:textColor="#9C7DA5"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
+
+    <TextView
+        android:id="@+id/etViewAccount_email"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:paddingLeft="15dp"
+        android:textColor="#9C7DA5"
+        android:textSize="20dp"
+        android:paddingTop="11dp"
+        android:hint="email:"
+        android:textColorHint="#9C7DA5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvView_account_information"
+        app:layout_constraintVertical_bias="0.141" />
+
+    <TextView
+        android:id="@+id/etViewAccount_Password"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:paddingLeft="15dp"
+        android:textColor="#9C7DA5"
+        android:textSize="20dp"
+        android:paddingTop="11dp"
+        android:hint="password:"
+        android:textColorHint="#9C7DA5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etViewAccount_email"
+        app:layout_constraintVertical_bias="0.092" />
+
+    <TextView
+        android:id="@+id/etViewAccount_phone"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:textColor="#9C7DA5"
+        android:textSize="20dp"
+        android:paddingTop="11dp"
+        android:hint="phone:"
+        android:paddingLeft="15dp"
+        android:textColorHint="#9C7DA5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etViewAccount_Password" />
+
+    <Button
+        android:id="@+id/btnEdit_account_info"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/round_text"
+        android:backgroundTint="#ADC1FC"
+        android:ems="13"
+        android:text="Edit account information"
+        android:textColor="#9C7DA5"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAccount_phone"
+        app:layout_constraintVertical_bias="0.902" />
+
+    <TextView
+        android:id="@+id/btnAccount_info_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:clickable="true"
+        android:ems="3"
+        android:focusable="true"
+        android:text="Back"
+        android:textColor="#A8A8A8"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEdit_account_info" />
+</androidx.constraintlayout.widget.ConstraintLayout>

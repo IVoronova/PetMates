@@ -52,7 +52,7 @@ public class Main_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (db.chkprofile_exist(email) == true) {
-                    Toast.makeText(getApplicationContext(), "Please create user profile access Friends feature", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please create user profile before access Friends feature", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(Main_menu.this, Friends.class);
                     intent.putExtra("email",email);
@@ -64,7 +64,7 @@ public class Main_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(db.chkprofile_exist(email) == true){
-                    Toast.makeText(getApplicationContext(),"Please create user profile access Pairing feature",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Please create user profile before access Pairing feature",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Intent intent = new Intent(Main_menu.this, Pairing.class);

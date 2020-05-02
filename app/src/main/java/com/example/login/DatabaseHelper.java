@@ -124,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////update database////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
-
+    //update all user account information
     public void update_user(String Email, String Password, String Phone, String OldEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues user = new ContentValues();
@@ -133,14 +133,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.put("Phone", Phone);
         db.update(Table1, user, "Email=?", new String[]{String.valueOf(OldEmail)});
     }
+    //update user's account email
+    public void update_user_Email(String Email, String OldEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Email", Email);
+        db.update(Table1, user, "Email=?", new String[]{String.valueOf(OldEmail)});
+    }
+    //update user's account password
+    public void update_user_Password(String Password, String OldEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Password", Password);
+        db.update(Table1, user, "Email=?", new String[]{String.valueOf(OldEmail)});
+    }
+    //update user's account phone
+    public void update_user_Phone(String Phone, String OldEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Phone", Phone);
+        db.update(Table1, user, "Email=?", new String[]{String.valueOf(OldEmail)});
+    }
 
-    //after update primary key email,we have to update other table's data
+    //after update primary key email,we have to update other table's primary key at same time
     public void update_info_email(String Email, String OldEmail) {
         if (chkprofile_exist(Email)) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues user = new ContentValues();
             user.put("Email", Email);
             db.update(Table2, user, "Email=?", new String[]{String.valueOf(OldEmail)});
+        }
+    }
+
+    public void update_image_email(String Email, String OldEmail) {
+        if (chkprofile_exist(Email)) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues user = new ContentValues();
+            user.put("Email", Email);
+            db.update(Table3, user, "Email=?", new String[]{String.valueOf(OldEmail)});
         }
     }
 
@@ -217,7 +247,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + Table2+" WHERE Email=?",new String[]{Email});
         return cursor;
     }
-
 
     //get user name
     public Cursor getName(String email) {
@@ -310,4 +339,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return bt;
     }
     //////////////////////////////////////////////////////////////////////////////////////////
+
+
 }
