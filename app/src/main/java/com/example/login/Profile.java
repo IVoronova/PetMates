@@ -53,7 +53,6 @@ public class Profile extends AppCompatActivity {
         P_PetBreed = (EditText) findViewById(R.id.etPreference_breed);
         P_PetGender = (EditText) findViewById(R.id.etPreference_gender);
         P_Other = (EditText) findViewById(R.id.etPreference_other);
-        View_profile = findViewById(R.id.btnView_profile1);
 
 
 

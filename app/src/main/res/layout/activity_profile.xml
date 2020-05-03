@@ -39,7 +39,7 @@
 
 
             <Button
-                android:id="@+id/btnInsert_image"
+                android:id="@+id/btnEdit_image"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -201,17 +201,6 @@
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
                 android:text="Save"
-                android:textColor="#9C7DA5" />
-
-            <Button
-                android:id="@+id/btnView_profile1"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:text="View my profile"
                 android:textColor="#9C7DA5" />
 
 

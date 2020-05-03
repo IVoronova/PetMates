@@ -63,7 +63,7 @@ public class View_account_information extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(View_account_information.this, Main_menu.class);
+                Intent intent = new Intent(View_account_information.this, View_prefile.class);
                 intent.putExtra("email",email);
                 startActivity(intent);
             }

@@ -63,10 +63,10 @@ public class View_prefile extends AppCompatActivity {
         Edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Some bug exist,edit profile not working right now.", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(View_prefile.this, Preferences.class);
-                //intent.putExtra("email",email);
-                //startActivity(intent);
+                //Toast.makeText(getApplicationContext(), "Some bug exist,edit profile not working right now.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(View_prefile.this, Edit_profile.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
             }
         });
         Log_out.setOnClickListener(new View.OnClickListener() {

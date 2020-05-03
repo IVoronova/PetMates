@@ -2,13 +2,11 @@ package com.example.login;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Database_Name = "PetMates.db";
     private static final String Table1 = "user";
     private static final String Table2 = "user_info";
-    private static final String Table3 = "user_image";
+    //private static final String Table3 = "user_image";
 
     private static final int version = 1;
 
@@ -32,15 +30,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table1 + " (Email varchar(50) PRIMARY KEY, Password varchar(50), Phone varchar(20))");
         db.execSQL("CREATE TABLE " + Table2 + " (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT," +
                 "P_Pet_type TEXT, P_Pet_Breed TEXT, P_Pet_gender TEXT, P_Other TEXT, Image blob)");
-        db.execSQL("CREATE TABLE " + Table3 + " (Email TEXT PRIMARY KEY, Image blob NOT NULL)");
+        //db.execSQL("CREATE TABLE " + Table3 + " (Email TEXT PRIMARY KEY, Image blob NOT NULL)");
 
     }
+    //add trigger update before insert table2
+    //begin
+    //if insert image
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + Table1);
         db.execSQL("DROP TABLE IF EXISTS " + Table2);
-        db.execSQL("DROP TABLE IF EXISTS " + Table3);
+        //db.execSQL("DROP TABLE IF EXISTS " + Table3);
         onCreate(db);
     }
     //////////////////////////////////////////////////////////////////////
@@ -61,46 +62,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //insert data to user_info
-    public boolean insert_user_info(String Email, String Name, String Bio, String Pet_type,
-                                    String Pet_breed, String Pet_gender, String Zip, String P_Pet_type,
-                                    String P_Pet_breed, String P_Pet_gender, String P_Other) {
-
+    public Boolean insertImage(String Email, String Name, String Bio, String Pet_type,
+                               String Pet_breed, String Pet_gender, String Zip, String P_Pet_type,
+                               String P_Pet_breed, String P_Pet_gender, String P_Other, String ImagePath ){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues user_info = new ContentValues();
-
-        user_info.put("Email", Email);
-        user_info.put("Name", Name);
-        user_info.put("Bio", Bio);
-        user_info.put("Pet_type", Pet_type);
-        user_info.put("Pet_Breed", Pet_breed);
-        user_info.put("Pet_gender", Pet_gender);
-        user_info.put("Zip", Zip);
-        user_info.put("P_Pet_type", P_Pet_type);
-        user_info.put("P_Pet_breed", P_Pet_breed);
-        user_info.put("P_Pet_gender", P_Pet_gender);
-        user_info.put("P_Other", P_Other);
-
-        long ins = db.insert(Table2, null, user_info);
-        if (ins == -1) return false;
-        else return true;
+        try{
+            FileInputStream fs = new FileInputStream(ImagePath);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Email",Email);
+            contentValues.put("Name", Name);
+            contentValues.put("Bio", Bio);
+            contentValues.put("Pet_type", Pet_type);
+            contentValues.put("Pet_Breed", Pet_breed);
+            contentValues.put("Pet_gender", Pet_gender);
+            contentValues.put("Zip", Zip);
+            contentValues.put("P_Pet_type", P_Pet_type);
+            contentValues.put("P_Pet_breed", P_Pet_breed);
+            contentValues.put("P_Pet_gender", P_Pet_gender);
+            contentValues.put("P_Other", P_Other);
+            contentValues.put("Image", imgbyte);
+            db.insert(Table2,null,contentValues);
+            fs.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
-
-
-    /*public boolean insert_user_preference(String Email,String Pet_type, String Pet_breed, String Pet_gender, String Other) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues ser_preferences = new ContentValues();
-
-        ser_preferences.put("Email",Email);
-        ser_preferences.put("Pet_type",Pet_type);
-        ser_preferences.put("Pet_Breed",Pet_breed);
-        ser_preferences.put("Pet_gender",Pet_gender);
-        ser_preferences.put("Other",Other);
-
-        long ins = db.insert(Table3,null, ser_preferences);
-        if (ins==-1) return false;
-        else return true;
-        */
 
     //////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////check account or profile exist or not///////////////////////////
@@ -122,7 +115,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////update database////////////////////////////////////////////
+    ///////////////////////////////////update user database////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
     //update all user account information
     public void update_user(String Email, String Password, String Phone, String OldEmail) {
@@ -133,7 +126,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.put("Phone", Phone);
         db.update(Table1, user, "Email=?", new String[]{String.valueOf(OldEmail)});
     }
-    //update user's account email
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////update user account individually///////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
     public void update_user_Email(String Email, String OldEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues user = new ContentValues();
@@ -164,56 +159,102 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.update(Table2, user, "Email=?", new String[]{String.valueOf(OldEmail)});
         }
     }
-
-    public void update_image_email(String Email, String OldEmail) {
-        if (chkprofile_exist(Email)) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues user = new ContentValues();
-            user.put("Email", Email);
-            db.update(Table3, user, "Email=?", new String[]{String.valueOf(OldEmail)});
-        }
-    }
-
-    //update user preferences
-    public void update_preferences(String type, String breed, String gender, String other, String Email) {
-        //if (chkprofile_exist(Email)) {
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////update user profile individually///////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+    public Boolean update_info_image(String Email,String ImagePath ){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues preferences = new ContentValues();
-        preferences.put("P_Pet_type", type);
-        preferences.put("P_Pet_Breed", breed);
-        preferences.put("P_Pet_gender", gender);
-        preferences.put("P_Other", other);
-        db.update(Table2, preferences, "Email=?", new String[]{String.valueOf(Email)});
-        //}
+        try{
+            FileInputStream fs = new FileInputStream(ImagePath);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Email",Email);
+            contentValues.put("Image", imgbyte);
+            db.update(Table2, contentValues, "Email=?", new String[]{String.valueOf(Email)});
+            fs.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    public void update_whole_profile(String Name, String Bio, String Pet_type, String Pet_breed,
-                                     String Pet_gender, String Zip, String P_type, String P_breed, String P_gender, String other, String Email) {
-        if (chkprofile_exist(Email)) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues user = new ContentValues();
-            user.put("Name", Name);
-            user.put("Bio", Bio);
-            user.put("Pet_type", Pet_type);
-            user.put("Pet_Breed", Pet_breed);
-            user.put("Pet_gender", Pet_gender);
-            user.put("Zip", Zip);
-            user.put("P_Pet_type", P_type);
-            user.put("P_Pet_Breed", P_breed);
-            user.put("P_Pet_gender", P_gender);
-            user.put("P_Other", other);
-            db.update(Table2, user, "Email=?", new String[]{String.valueOf(Email)});
-        }
+    public void update_P_Other(String P_Other,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("P_Other", P_Other);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
     }
-    /*public void update_preferences_email(String Email,String OldEmail ){
-        if(chkPreferences_exist(Email) == true) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues user = new ContentValues();
-            user.put("Email", Email);
-            db.update(Table3, user, "Email=?", new String[]{String.valueOf(OldEmail)});
-        }
-    }*/
-    ////////////////////////////////////////////////////////////////////////////////////////
+
+    public void update_P_Pet_gender(String P_Pet_gender,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("P_Pet_gender", P_Pet_gender);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+    public void update_P_Pet_Breed(String P_Pet_Breed,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("P_Pet_Breed", P_Pet_Breed);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+    public void update_P_Pet_type(String P_Pet_type,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("P_Pet_type", P_Pet_type);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+    public void update_info_Zip(String Zip,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Zip", Zip);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+    public void update_info_Pet_gender(String Pet_gender,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Pet_gender", Pet_gender);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+    public void update_info_Pet_breed(String Pet_breed,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Pet_Breed", Pet_breed);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+
+    public void update_info_Pet_type(String Pet_type,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Pet_type", Pet_type);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+    public void update_info_Name(String name,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Name", name);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+
+    public void update_info_Bio(String Bio,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("Bio", Bio);
+        db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
+    }
+    //////////////////////////////////////////////////////////////////////////////////////
+
 
     //check the user profile exist or not
     public Boolean chkprofile_exist(String email) {
@@ -222,12 +263,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.getCount() > 0) return false;
         else return true;
     }
-    /*public  Boolean chkPreferences_exist(String email){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+Table3+ " WHERE Email = ?",new String[]{email});
-        if(cursor.getCount()>0) return false;
-        else return true;
-    }*/
+
 
    //get all data from a table
     public Cursor getAll_Data() {
@@ -305,40 +341,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //////////////////////////////////////////////////////////////
-    //////////////////////insert image////////////////////////////
+    //////////////////////get image////////////////////////////
     //////////////////////////////////////////////////////////////
-    public Boolean insertImage(String Email, String Name, String Bio, String Pet_type,
-                               String Pet_breed, String Pet_gender, String Zip, String P_Pet_type,
-                               String P_Pet_breed, String P_Pet_gender, String P_Other, String ImagePath ){
-        SQLiteDatabase db = this.getWritableDatabase();
-        try{
-            FileInputStream fs = new FileInputStream(ImagePath);
-            byte[] imgbyte = new byte[fs.available()];
-            fs.read(imgbyte);
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("Email",Email);
-            contentValues.put("Name", Name);
-            contentValues.put("Bio", Bio);
-            contentValues.put("Pet_type", Pet_type);
-            contentValues.put("Pet_Breed", Pet_breed);
-            contentValues.put("Pet_gender", Pet_gender);
-            contentValues.put("Zip", Zip);
-            contentValues.put("P_Pet_type", P_Pet_type);
-            contentValues.put("P_Pet_breed", P_Pet_breed);
-            contentValues.put("P_Pet_gender", P_Pet_gender);
-            contentValues.put("P_Other", P_Other);
-            contentValues.put("Image", imgbyte);
-            db.insert(Table2,null,contentValues);
-            fs.close();
-            return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+
     //retrieve image from database where email = given
     public Bitmap getimage(String email){
         SQLiteDatabase db = this.getWritableDatabase();

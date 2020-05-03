@@ -16,7 +16,6 @@
         <activity android:name=".Admin_page" />
         <activity android:name=".View_prefile" />
         <activity android:name=".Edit_profile" />
-        <activity android:name=".Preferences" />
         <activity android:name=".Oops" />
         <activity android:name=".Pairing_ByL_Result" />
         <activity android:name=".Pairing_ByP_Result" />
