@@ -7,14 +7,16 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Pairing_ByP_Result extends AppCompatActivity {
     DatabaseHelper db;
-    TextView resultText,Back;
+    TextView resultText,Back,name,bio,type,breed,gender;
     Button Send_Friend_Request,Pairing_again;
-    String result;
+    String result,nameResult,bioResult,typerResult,breedResult,genderResult,otherResult;
+    ImageView imageResult;
 
 
     @Override
@@ -22,15 +24,21 @@ public class Pairing_ByP_Result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pairing__by_p__result);
 
-        Send_Friend_Request = findViewById(R.id.btnsend_friend_request);
-        Pairing_again = findViewById(R.id.btnPair_again);
-        Back = findViewById(R.id.btnBackBP);
-
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
         db = new DatabaseHelper(this);
 
-        resultText = findViewById(R.id.bntP_result1);
+        resultText = findViewById(R.id.bntP_resultP);
+        Send_Friend_Request = findViewById(R.id.btnsend_friend_requestP);
+        Pairing_again = findViewById(R.id.btnPair_againP);
+        imageResult = findViewById(R.id.pairing_imageP);
+        name = findViewById(R.id.etNameResultP);
+        bio = findViewById(R.id.etBioResultP);
+        type = findViewById(R.id.etPet_typeResultP);
+        breed = findViewById(R.id.etPet_breedResultP);
+        gender = findViewById(R.id.etPet_genderResultP);
+        Back = findViewById(R.id.btnBackBP);
+
 
         //get the user preferences
         Cursor preferences = db.getPreferences(email);
@@ -45,27 +53,54 @@ public class Pairing_ByP_Result extends AppCompatActivity {
         //find the match result base on the user preferences we got
         Cursor pairingResult = db.pair_pre(email,Preferences1, Preferences2, Preferences3);
         pairingResult.moveToFirst();
+
         if(pairingResult.getCount()>0) {
-            result = ("We found a mate for you! \nName: " + pairingResult.getString(1) +
-                    "\nEmail: " + pairingResult.getString(0) +
-                    "\nBio: " + pairingResult.getString(2) +
-                    "\nPet Type: " + pairingResult.getString(3) +
-                    "\nPet breed: " + pairingResult.getString(4) +
-                    "\nPet gender: " + pairingResult.getString(5));
-            //put the string result on the textview
+            result = "We found a mate for you!";
             resultText.setText(result);
+
+            imageResult.setImageBitmap(db.getimage(pairingResult.getString(0)));
+
+            nameResult = "Name: " + pairingResult.getString(1);
+            name.setText(nameResult);
+
+            bioResult = "Bio: " + pairingResult.getString(2);
+            bio.setText(bioResult);
+
+            typerResult = "Pet Type: " + pairingResult.getString(3);
+            type.setText(typerResult);
+
+            breedResult = "Pet breed: " + pairingResult.getString(4);
+            breed.setText(breedResult);
+
+            genderResult = "Pet gender: " + pairingResult.getString(5);
+            gender.setText(genderResult);
+
+
         }else {
             Cursor randomPair = db.getRandom(email);
             randomPair.moveToFirst();
             if (randomPair.getCount() > 0) {
-                result = ("Unfortunately! No result match your preferences.\nHowever, We find a random mate for you. " +
-                        "\nName: " + randomPair.getString(1) +
-                        "\nEmail: " + randomPair.getString(0) +
-                        "\nBio: " + randomPair.getString(2) +
-                        "\nPet Type: " + randomPair.getString(3) +
-                        "\nPet breed: " + randomPair.getString(4) +
-                        "\nPet gender: " + randomPair.getString(5));
+
+                result = "Unfortunately!\nNo result match your Preferences.\nHowever, We find a random mate for you.";
                 resultText.setText(result);
+
+                imageResult.setImageBitmap(db.getimage(randomPair.getString(0)));
+
+                nameResult = "Name: " + randomPair.getString(1);
+                name.setText(nameResult);
+
+                bioResult = "Bio: " + randomPair.getString(2);
+                bio.setText(bioResult);
+
+                typerResult = "Pet Type: " + randomPair.getString(3);
+                type.setText(typerResult);
+
+                breedResult = "Pet breed: " + randomPair.getString(4);
+                breed.setText(breedResult);
+
+                genderResult = "Pet gender: " + randomPair.getString(5);
+                gender.setText(genderResult);
+
             }
             else{
                 Toast.makeText(getApplicationContext(), "Oops!!!!!!!!!!!", Toast.LENGTH_SHORT).show();

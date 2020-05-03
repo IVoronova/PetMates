@@ -118,7 +118,6 @@ public class Account_Information extends AppCompatActivity {
                         if(db.email_Unique(NewEmailValue) == true) {
                             db.update_user(NewEmailValue, NewPasswordValue, NewPhoneValue, email);
                             db.update_info_email(NewEmailValue, email);
-                            db.update_image_email(NewEmailValue,email);
                             Toast.makeText(getApplicationContext(), "Account information edit successful!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Account_Information.this, Main_menu.class);
                             intent.putExtra("email", NewEmailValue);

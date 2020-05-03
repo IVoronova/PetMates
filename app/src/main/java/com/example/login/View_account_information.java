@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 public class View_account_information extends AppCompatActivity {
 
-    TextView Email,Password,Phone,Back;;
+    TextView Email,Password,Phone,Back,title;
     Button Edit_information;
-    String email;
+    String email,titleValue;
     DatabaseHelper db;
 
     @Override
@@ -26,12 +26,18 @@ public class View_account_information extends AppCompatActivity {
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
 
+        title = findViewById(R.id.tvView_account_information);
+
         Email = findViewById(R.id.etViewAccount_email);
         Password = findViewById(R.id.etViewAccount_Password);
         Phone = findViewById(R.id.etViewAccount_phone);
 
         Edit_information = findViewById(R.id.btnEdit_account_info);
         Back = findViewById(R.id.btnAccount_info_back);
+        Cursor get_name = db.getName(email);
+        get_name.moveToFirst();
+        titleValue = get_name.getString(0)+"\' Account Information";
+        title.setText(titleValue);
 
         Cursor get_profile = db.getAll_User(email);
         get_profile.moveToFirst();

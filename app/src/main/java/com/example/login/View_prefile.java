@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 public class View_prefile extends AppCompatActivity {
     Button View_Account_Information, Edit_profile,Log_out;
-    TextView Name,Bio,PetType,PetBreed,PetGender,Zip,P_PetType,P_PetBreed,P_PetGender,P_Other;
+    TextView Name,Bio,PetType,PetBreed,PetGender,Zip,P_PetType,P_PetBreed,P_PetGender,P_Other,title;
     TextView Back;
     ImageView userImage;
-    String email,NameValue,BioValue,PetTypeValue,PetBreedValue,PetGenderValue,ZipValue,P_PetTypeValue,P_PetBreedValue,P_PetGenderValue,P_OtherValue;
+    String email,NameValue,BioValue,PetTypeValue,PetBreedValue,PetGenderValue,ZipValue,P_PetTypeValue,P_PetBreedValue,P_PetGenderValue,P_OtherValue,TitleValue;
 
     DatabaseHelper db;
 
@@ -49,6 +49,8 @@ public class View_prefile extends AppCompatActivity {
         Edit_profile = findViewById((R.id.btnedit_profile));
         Log_out = findViewById(R.id.btnProfile_logout);
         Back = findViewById(R.id.btnBackAA);
+        title = findViewById(R.id.user_information_title);
+
 
         View_Account_Information.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +64,9 @@ public class View_prefile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Some bug exist,edit profile not working right now.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(View_prefile.this, Preferences.class);
-                intent.putExtra("email",email);
-                startActivity(intent);
+                //Intent intent = new Intent(View_prefile.this, Preferences.class);
+                //intent.putExtra("email",email);
+                //startActivity(intent);
             }
         });
         Log_out.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +89,8 @@ public class View_prefile extends AppCompatActivity {
 
         Cursor get_profile = db.getAll_User_info(email);
         get_profile.moveToFirst();
+            TitleValue = get_profile.getString(1)+"\' User Profile";
+            title.setText(TitleValue);
 
             NameValue = "Name: "+ get_profile.getString(1);
             Name.setText(NameValue);

@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + Table1 + " (Email varchar(50) PRIMARY KEY, Password varchar(50), Phone varchar(20))");
         db.execSQL("CREATE TABLE " + Table2 + " (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT," +
-                "P_Pet_type TEXT, P_Pet_Breed TEXT, P_Pet_gender TEXT, P_Other TEXT)");
+                "P_Pet_type TEXT, P_Pet_Breed TEXT, P_Pet_gender TEXT, P_Other TEXT, Image blob)");
         db.execSQL("CREATE TABLE " + Table3 + " (Email TEXT PRIMARY KEY, Image blob NOT NULL)");
 
     }
@@ -307,7 +307,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //////////////////////////////////////////////////////////////
     //////////////////////insert image////////////////////////////
     //////////////////////////////////////////////////////////////
-    public Boolean insertImage(String ImagePath, String Email){
+    public Boolean insertImage(String Email, String Name, String Bio, String Pet_type,
+                               String Pet_breed, String Pet_gender, String Zip, String P_Pet_type,
+                               String P_Pet_breed, String P_Pet_gender, String P_Other, String ImagePath ){
         SQLiteDatabase db = this.getWritableDatabase();
         try{
             FileInputStream fs = new FileInputStream(ImagePath);
@@ -315,8 +317,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             fs.read(imgbyte);
             ContentValues contentValues = new ContentValues();
             contentValues.put("Email",Email);
-            contentValues.put("Image",imgbyte);
-            db.insert(Table3,null,contentValues);
+            contentValues.put("Name", Name);
+            contentValues.put("Bio", Bio);
+            contentValues.put("Pet_type", Pet_type);
+            contentValues.put("Pet_Breed", Pet_breed);
+            contentValues.put("Pet_gender", Pet_gender);
+            contentValues.put("Zip", Zip);
+            contentValues.put("P_Pet_type", P_Pet_type);
+            contentValues.put("P_Pet_breed", P_Pet_breed);
+            contentValues.put("P_Pet_gender", P_Pet_gender);
+            contentValues.put("P_Other", P_Other);
+            contentValues.put("Image", imgbyte);
+            db.insert(Table2,null,contentValues);
             fs.close();
             return true;
         } catch (FileNotFoundException e) {
@@ -331,9 +343,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Bitmap getimage(String email){
         SQLiteDatabase db = this.getWritableDatabase();
         Bitmap bt = null;
-        Cursor cursor = db.rawQuery("SELECT * from "+Table3+" WHERE email=?",new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT * from "+Table2+" WHERE email=?",new String[]{email});
         if(cursor.moveToNext()){
-            byte[] Image = cursor.getBlob(1);
+            byte[] Image = cursor.getBlob(11);
             bt = BitmapFactory.decodeByteArray(Image,0,Image.length);
         }
         return bt;

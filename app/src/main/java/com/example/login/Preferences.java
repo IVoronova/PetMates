@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +16,8 @@ public class Preferences extends AppCompatActivity {
     EditText Type, Breed, Gender, Other;
     Button Save;
     DatabaseHelper db;
-    TextView Back,test;
-    String email;
+    TextView Back,test,title;
+    String email,titleValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,12 @@ public class Preferences extends AppCompatActivity {
 
         Save = (Button)findViewById(R.id.btnPreference_save);
         Back = findViewById(R.id.btnPreference_back);
+        title = findViewById(R.id.tvPreferences1);
+
+        Cursor get_name = db.getName(email);
+        get_name.moveToFirst();
+        titleValue = "Edit "+get_name.getString(0)+"\' Preferences";
+        title.setText(titleValue);
 
         Save.setOnClickListener(new View.OnClickListener() {
             @Override

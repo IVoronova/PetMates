@@ -31,40 +31,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
-                android:text="@string/email_test"
+                android:layout_marginBottom="30dp"
+                android:text="Complete User Profile"
                 android:textColor="#9C7DA5"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/user_image"
-                android:layout_width="215dp"
-                android:layout_height="168dp"
-                android:layout_gravity="center"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
 
             <Button
                 android:id="@+id/btnInsert_image"
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
-                android:text="select Image"
+                android:text="Select a profile image"
                 android:textColor="#9C7DA5" />
 
-            <Button
-                android:id="@+id/btnUpload_image"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:text="Upload image"
-                android:textColor="#9C7DA5" />
 
             <EditText
                 android:id="@+id/etName"
@@ -217,6 +201,17 @@
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
                 android:text="Save"
+                android:textColor="#9C7DA5" />
+
+            <Button
+                android:id="@+id/btnView_profile1"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/round_text"
+                android:backgroundTint="#ADC1FC"
+                android:text="View my profile"
                 android:textColor="#9C7DA5" />
 
 

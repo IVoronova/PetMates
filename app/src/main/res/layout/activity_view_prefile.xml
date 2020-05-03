@@ -28,14 +28,14 @@
                 app:srcCompat="@drawable/pet" />
 
             <TextView
-                android:id="@+id/tvtext1"
+                android:id="@+id/user_information_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
-                android:text="User Information"
+                android:text="@string/user_information"
                 android:textColor="#9C7DA5"
-                android:textSize="28sp"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -195,7 +195,7 @@
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Other"
@@ -206,25 +206,25 @@
 
             <Button
                 android:id="@+id/btnedit_profile"
-                android:layout_width="230dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
-                android:text="Edit profile information"
+                android:text="Edit My profile information"
                 android:textColor="#9C7DA5" />
 
 
             <Button
                 android:id="@+id/btnview_account"
-                android:layout_width="230dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
-                android:text="View Account Information"
+                android:text="View My Account Information"
                 android:textColor="#9C7DA5" />
 
 

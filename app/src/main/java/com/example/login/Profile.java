@@ -16,13 +16,13 @@ import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
 
-    Button Save,Logout,Select_Image,Upload_Image;
+    Button Save,Logout,Select_Image,View_profile;
     EditText Name,Bio,PetType,PetBreed,PetGender,Zip,P_PetType,P_PetBreed,P_PetGender,P_Other;
     TextView Back;
-    ImageView userImage;
+
 
     DatabaseHelper db;
-    String email;
+    String email,imagepath;
 
     TextView test;
 
@@ -53,7 +53,8 @@ public class Profile extends AppCompatActivity {
         P_PetBreed = (EditText) findViewById(R.id.etPreference_breed);
         P_PetGender = (EditText) findViewById(R.id.etPreference_gender);
         P_Other = (EditText) findViewById(R.id.etPreference_other);
-        userImage = (ImageView)findViewById(R.id.user_image);
+        View_profile = findViewById(R.id.btnView_profile1);
+
 
 
         //insert image and get image preview
@@ -67,23 +68,6 @@ public class Profile extends AppCompatActivity {
                 }
         });
 
-        Upload_Image = findViewById(R.id.btnUpload_image);
-        Upload_Image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userImage.setImageBitmap(db.getimage(email));
-                /**
-                 *
-
-                Intent i = new Intent(Profile.this, Profile.class);
-                finish();
-                overridePendingTransition(0, 0);
-                i.putExtra("email", email);
-                startActivity(i);
-                overridePendingTransition(0, 0);
-                 */
-            }
-        });
 
 
         Save = (Button) findViewById(R.id.btnProfile_save);
@@ -107,18 +91,26 @@ public class Profile extends AppCompatActivity {
 
                 //if one of user inputs are empty, give alert
                 if (NameValue.equals("") || BioValue.equals("")|| PetTypeValue.equals("") || PetBreedValue.equals("") || PetGenderValue.equals("") || ZipValue.equals("")||
-                        P_PetTypeValue.equals("") ||P_PetBreedValue.equals("") ||P_PetGenderValue.equals("") ||P_OtherValue.equals("")) {
+                        P_PetTypeValue.equals("") ||P_PetBreedValue.equals("") ||P_PetGenderValue.equals("") ||P_OtherValue.equals("")||imagepath.equals("")) {
                     Toast.makeText(getApplicationContext(), "Some fields are empty, please answer all the questions", Toast.LENGTH_SHORT).show();
                 } else {
                     //else connect to database and insert data
-                    boolean insert = db.insert_user_info(email, NameValue, BioValue, PetTypeValue, PetBreedValue, PetGenderValue, ZipValue,
-                            P_PetTypeValue, P_PetBreedValue, P_PetGenderValue, P_OtherValue);
+                    boolean insert = db.insertImage(email, NameValue, BioValue, PetTypeValue, PetBreedValue, PetGenderValue, ZipValue,
+                            P_PetTypeValue, P_PetBreedValue, P_PetGenderValue, P_OtherValue,imagepath);
                     if (insert) {
                         //if insert successfully, message and jump to main menu
                         Toast.makeText(getApplicationContext(), "User profile complete!", Toast.LENGTH_SHORT).show();
-                    } else Toast.makeText(getApplicationContext(), "You already entered your user profile\nIf you want to change your user profile," +
-                            "please check \"Edit User Profile\" button!", Toast.LENGTH_SHORT).show();
+                    } else Toast.makeText(getApplicationContext(), "Upload image failed! Please allow access file permissions in settings!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        View_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this,View_prefile.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
             }
         });
 
@@ -149,11 +141,11 @@ public class Profile extends AppCompatActivity {
         super.onActivityResult(requestCode,requestCode,data);
         if(resultCode==RESULT_OK && requestCode==PICK_IMAGE){
             Uri uri = data.getData();
-            String path = getPath(uri);
+            imagepath = getPath(uri);
             //Toast.makeText(getApplicationContext(),x,Toast.LENGTH_SHORT).show();
-            if(db.insertImage(path,email)){
-                Toast.makeText(getApplicationContext(),"Successful!",Toast.LENGTH_SHORT).show();
-            }else Toast.makeText(getApplicationContext(),"Please allow access file permissions in settings!",Toast.LENGTH_SHORT).show();
+            //if(db.insertImage(imagepath,email)){
+            //    Toast.makeText(getApplicationContext(),"Successful!",Toast.LENGTH_SHORT).show();
+            //}else Toast.makeText(getApplicationContext(),"Please allow access file permissions in settings!",Toast.LENGTH_SHORT).show();
         }
     }
 

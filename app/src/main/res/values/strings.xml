@@ -12,4 +12,7 @@
     <string name="textview1">TextView1</string>
     <string name="textview2">textview2</string>
     <string name="textview3">textview3</string>
+    <string name="user_information">User Information</string>
+    <string name="account_information">Account Information</string>
+    <string name="pairing_result">Pairing Result</string>
 </resources>
