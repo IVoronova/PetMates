@@ -188,7 +188,6 @@
                 android:ems="10"
                 android:hint="Other"
                 android:inputType="textPersonName"
-
                 android:paddingLeft="15dp"
                 android:textColorHint="#9C7DA5" />
 
