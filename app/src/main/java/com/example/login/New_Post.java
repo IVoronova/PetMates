@@ -24,21 +24,27 @@ public class New_Post extends AppCompatActivity {
         Intent intent = getIntent();
         BackActivity = intent.getStringExtra("Back Activity");
 
-
         Title = (EditText) findViewById(R.id.etNewPost_Title);
         Description = (EditText) findViewById(R.id.etNewPost_Description);
         Back = (TextView) findViewById(R.id.tvPetNews_Back);
         Post = (TextView) findViewById(R.id.tvPetNews_Post);
+        Picture = (ImageButton) findViewById(R.id.btnNewPost_AddPic);
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //goes to which activity last directed
                 if(BackActivity == "Pet_News"){
                     Intent intent = new Intent(New_Post.this, Pet_News.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        Post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

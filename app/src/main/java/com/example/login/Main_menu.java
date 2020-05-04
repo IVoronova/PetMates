@@ -23,8 +23,6 @@ public class Main_menu extends AppCompatActivity {
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
 
-
-
         _Profile = (Button)findViewById(R.id.btnProfile);
         _Friends = (Button)findViewById(R.id.btnFriends);
         _Pairing = (Button)findViewById(R.id.btnPairing);
@@ -36,8 +34,8 @@ public class Main_menu extends AppCompatActivity {
             public void onClick(View v) {
                 if(db.chkprofile_exist(email) == true){
                     Intent intent = new Intent(Main_menu.this,Profile.class);
-                    intent.putExtra("email", email);
                     Toast.makeText(getApplicationContext(), "Please create your user profile", Toast.LENGTH_SHORT).show();
+                    intent.putExtra("email", email);
                     startActivity(intent);
                 }else {
                     Intent intent = new Intent(Main_menu.this,View_prefile.class);

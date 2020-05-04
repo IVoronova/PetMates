@@ -25,7 +25,48 @@ public class Forum extends AppCompatActivity {
         Pet_News = (Button) findViewById(R.id.btnPet_News);
         Gallery = (Button) findViewById(R.id.btnGalleries);
         Lost_and_Found = (Button) findViewById(R.id.btnLost_Found);
-        Pet_News = (Button) findViewById(R.id.btnPet_Jobs);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Pet_Jobs = (Button) findViewById(R.id.btnPet_Jobs);
         Report = (Button) findViewById(R.id.btnReport);
 
         Pet_News.setOnClickListener(new View.OnClickListener() {
