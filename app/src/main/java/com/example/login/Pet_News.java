@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class Pet_News extends AppCompatActivity {
     int num_news = 0;
     TextView Back, Next, New;
+    String backActivity = "Pet_News";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,9 @@ public class Pet_News extends AppCompatActivity {
         New.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent intent = new Intent(Pet_News.this, New_Post.class);
+                intent.putExtra("Back Activity", backActivity);
+                startActivity(intent);
             }
         });
     }
