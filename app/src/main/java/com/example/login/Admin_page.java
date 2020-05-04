@@ -2,11 +2,13 @@ package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,11 +17,10 @@ import java.util.ArrayList;
 
 public class Admin_page extends AppCompatActivity {
 
-    ArrayList<String> listUser;
-    ArrayAdapter adapter;
     DatabaseHelper db;
+    Button view_question,view_suggestion,view_report;
+    TextView logout;
 
-    ListView userlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,33 +28,44 @@ public class Admin_page extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
 
         db = new DatabaseHelper(this);
+        view_question = findViewById(R.id.viewQuestion1);
+        view_suggestion = findViewById(R.id.Viewsuggest);
+        view_report = findViewById(R.id.viewreport);
+        logout = findViewById(R.id.adlogout);
 
-        listUser = new ArrayList<>();
-
-        userlist = findViewById(R.id.ReportResult);
-
-        viewData();
-
-        userlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        view_question.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String text = userlist.getItemAtPosition(position).toString();
-                Toast.makeText(Admin_page.this,""+text,Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin_page.this, Admin_view_question.class);
+                startActivity(intent);
+            }
+        });
+
+        view_suggestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin_page.this, Admin_view_suggestion.class);
+                startActivity(intent);
+            }
+        });
+
+        view_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin_page.this, Admin_view_report.class);
+                startActivity(intent);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin_page.this, Login.class);
+                startActivity(intent);
             }
         });
     }
 
-    private void viewData(){
-        Cursor cursor = db.allData();
 
-        if(cursor.getCount()==0) {
-            Toast.makeText(this,"No data to show", Toast.LENGTH_SHORT).show();
-        }else{
-            while(cursor.moveToNext()){
-                listUser.add(cursor.getString(0));
-            }
-            adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listUser);
-            userlist.setAdapter(adapter);
-        }
-    }
+
 }

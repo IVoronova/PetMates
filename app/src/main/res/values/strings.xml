@@ -15,4 +15,7 @@
     <string name="user_information">User Information</string>
     <string name="account_information">Account Information</string>
     <string name="pairing_result">Pairing Result</string>
+    <string name="q1">q1</string>
+    <string name="q2">q2</string>
+    <string name="q3">q3</string>
 </resources>

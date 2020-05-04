@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/email_test"
+                android:text="Edit user profile information"
                 android:layout_marginBottom="10dp"
                 android:textColor="#9C7DA5"
                 android:textSize="25sp"

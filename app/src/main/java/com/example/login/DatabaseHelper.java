@@ -16,7 +16,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Database_Name = "PetMates.db";
     private static final String Table1 = "user";
     private static final String Table2 = "user_info";
-    //private static final String Table3 = "user_image";
+    private static final String Table3 = "question";
+    private static final String Table4 = "suggestion";
+    private static final String Table5 = "report";
+    private static final String Table6 = "block";
+
 
     private static final int version = 1;
 
@@ -30,7 +34,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table1 + " (Email varchar(50) PRIMARY KEY, Password varchar(50), Phone varchar(20))");
         db.execSQL("CREATE TABLE " + Table2 + " (Email TEXT PRIMARY KEY, Name TEXT, Bio TEXT,Pet_type TEXT, Pet_Breed TEXT, Pet_gender TEXT, Zip TEXT," +
                 "P_Pet_type TEXT, P_Pet_Breed TEXT, P_Pet_gender TEXT, P_Other TEXT, Image blob)");
-        //db.execSQL("CREATE TABLE " + Table3 + " (Email TEXT PRIMARY KEY, Image blob NOT NULL)");
+        db.execSQL("CREATE TABLE " + Table3 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, questionTitle TEXT, questionContent TEXT, answer TEXT)");
+        db.execSQL("CREATE TABLE " + Table4 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, suggestionTitle TEXT, suggestionContext TEXT)");
+        db.execSQL("CREATE TABLE " + Table5 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, reportedEmail TEXT, reportedReason TEXT, who TEXT)");
+        db.execSQL("CREATE TABLE " + Table6 + " (Email TEXT PRIMARY KEY, isBlock TEXT,reason TEXT)");
+
+
 
     }
     //add trigger update before insert table2
@@ -41,12 +50,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + Table1);
         db.execSQL("DROP TABLE IF EXISTS " + Table2);
-        //db.execSQL("DROP TABLE IF EXISTS " + Table3);
+        db.execSQL("DROP TABLE IF EXISTS " + Table3);
+        db.execSQL("DROP TABLE IF EXISTS " + Table4);
+        db.execSQL("DROP TABLE IF EXISTS " + Table5);
+        db.execSQL("DROP TABLE IF EXISTS " + Table6);
         onCreate(db);
     }
     //////////////////////////////////////////////////////////////////////
     /////////////////////insert data to database//////////////////////////
-    /////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
     //insert data to user
     public boolean insert_user(String Email, String Password, String Phone) {
@@ -94,6 +106,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
+
 
     //////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////check account or profile exist or not///////////////////////////
@@ -254,8 +269,125 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(Table2, user, "Email=?", new String[]{String.valueOf(email)});
     }
     //////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////application support//////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
+    //insert data to question
+    public boolean insert_question(String title, String content) {
+        String a = "0";
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues question = new ContentValues();
+        question.put("questionTitle", title);
+        question.put("questionContent", content);
+        question.put("answer",a);
+        long ins = db.insert(Table3, null, question);
+        if (ins == -1) return false;
+        else return true;
+    }
+
+    //insert data to question
+    public boolean insert_suggestion(String title, String content) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues suggest = new ContentValues();
+        suggest.put("suggestionTitle", title);
+        suggest.put("suggestionContext", content);
+        long ins = db.insert(Table4, null, suggest);
+        if (ins == -1) return false;
+        else return true;
+    }
+    //search question
+    //return array, [0]= id, [1]= title, [2] = content,[3] = answer
+    public Cursor search_question(String key) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table3+" WHERE questionTitle LIKE ? OR questionTitle LIKE ?" +
+                        " OR questionTitle LIKE ? OR questionContent LIKE ?"
+                ,new String[]{key,"%"+key,key+"%","%"+key+"%"});
+        return cursor;
+    }
+
+    //search key word by answered question title
+    public Cursor search_answered_question(String key){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT questionTitle, questionContent FROM " + Table3+
+                " WHERE answer != ? ORDER BY RANDOM()LIMIT THREE",new String[]{key});
+        return cursor;
+    }
+    ///////////////////////////////////////////////////////////////////////////
+    ////////////////////////for admin view/////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+    //admin can view all suggest
+    public Cursor getAll_suggest() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table4+
+                " ORDER BY ID ASC",null);
+        return cursor;
+    }
+    //get all unanswered question
+    public Cursor getAll_question() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID, questionTitle, questionContent FROM " + Table3+
+                " WHERE answer = ? ORDER BY ID ASC",new String[]{"0"});
+        return cursor;
+    }
+    //admin answer question by id
+    public void  answer_question(int ID, String answer){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues user = new ContentValues();
+        user.put("answer", answer);
+        db.update(Table3, user, "ID=?", new String[]{String.valueOf(ID)});
+
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////report///////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //insert report
+    public boolean insert_report(String targetEmail, String reason, String who) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues question = new ContentValues();
+        question.put("reportedEmail", targetEmail);
+        question.put("reportedReason", reason);
+        question.put("who",who);
+        long ins = db.insert(Table5, null, question);
+        if (ins == -1) return false;
+        else return true;
+    }
+    //read reported information
+    public Cursor getReported_information() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID, reportedEmail, reportedReason, who FROM " + Table5+
+                " ORDER BY ID ASC",null);
+        return cursor;
+    }
+
+    // block user
+    public boolean insert_block(String Email, String reason) {
+        String i = "YES";
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues question = new ContentValues();
+        question.put("Email", Email);
+        question.put("isBlock", i);
+        question.put("reason", reason);
+        long ins = db.insert(Table6, null, question);
+        if (ins == -1) return false;
+        else return true;
+    }
+    //check the user been block or not
+    public Boolean isBlock(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table6 + " WHERE Email = ?", new String[]{email});
+        if (cursor.getCount() > 0) return false;
+        else return true;
+    }
+
+    //tell the user the reason he been reported
+    public Cursor getReason(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table6+
+                " WHERE Email =?",new String[]{email});
+        return cursor;
+    }
 
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     //check the user profile exist or not
     public Boolean chkprofile_exist(String email) {
         SQLiteDatabase db = this.getWritableDatabase();

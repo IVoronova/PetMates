@@ -20,7 +20,7 @@ public class Edit_profile extends AppCompatActivity {
     TextView Back;
     DatabaseHelper db;
     String email;
-    String imagepath;
+    String imagepath = "";
 
 
     private static final int PICK_IMAGE = 100;
@@ -72,10 +72,10 @@ public class Edit_profile extends AppCompatActivity {
                 String NPetBreedValue = NewPetBreed.getText().toString();
                 String NPetGenderValue = NewPetGender.getText().toString();
                 String NZipValue = NewZip.getText().toString();
-                String NP_PetTypeValue = NewZip.getText().toString();
-                String NP_PetBreedValue = NewZip.getText().toString();
-                String NP_PetGenderValue = NewZip.getText().toString();
-                String NP_OtherValue = NewZip.getText().toString();
+                String NP_PetTypeValue = NewP_PetType.getText().toString();
+                String NP_PetBreedValue = NewP_PetBreed.getText().toString();
+                String NP_PetGenderValue = NewP_PetGender.getText().toString();
+                String NP_OtherValue = NewP_Other.getText().toString();
 
 
                 if(!imagepath.equals("")) {
@@ -145,7 +145,7 @@ public class Edit_profile extends AppCompatActivity {
         super.onActivityResult(requestCode,requestCode,data);
         if(resultCode==RESULT_OK && requestCode==PICK_IMAGE){
             Uri uri = data.getData();
-            imagepath = getPath(uri);
+            imagepath += getPath(uri);
             //Toast.makeText(getApplicationContext(),x,Toast.LENGTH_SHORT).show();
             //if(db.insertImage(imagepath,email)){
             //    Toast.makeText(getApplicationContext(),"Successful!",Toast.LENGTH_SHORT).show();

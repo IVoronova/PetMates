@@ -1,6 +1,8 @@
 package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ public class Login extends AppCompatActivity {
     public TextView registerNew;
     private int counter = 3;
     DatabaseHelper db;
+    String reasonValue;
 
     //Testing
 
@@ -37,9 +40,19 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String emailValue = email.getText().toString();
                 String passwordValue = password.getText().toString();
-                if(emailValue.equals("admin") && passwordValue.equals("1")){
-                    Intent intent = new Intent(Login.this,Admin_page.class);
+
+                if(emailValue.equals("") && passwordValue.equals("")){
+                    Toast.makeText(getApplicationContext(), "Email or Password can not be empty!", Toast.LENGTH_SHORT).show();
+                }
+                else if(emailValue.equals("admin") && passwordValue.equals("1")) {
+                    Intent intent = new Intent(Login.this, Admin_page.class);
                     startActivity(intent);
+                }
+                else if(!db.isBlock(emailValue)){
+                    Cursor reason = db.getReason(emailValue);
+                    reason.moveToFirst();
+                    reasonValue = reason.getString(2);
+                    Toast.makeText(getApplicationContext(), "Your account has been suspended for "+reasonValue+ ".",Toast.LENGTH_SHORT).show();
                 }else {
                     Boolean Chkemailpassword = db.emailpassword(emailValue, passwordValue);
                     //if input is correct, user login successfully and jump to main meun

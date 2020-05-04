@@ -23,23 +23,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="104dp"
-        android:text="F&amp;Q"
+        android:text="Application Support"
         android:textColor="#9C7DA5"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btnQ1"
+        app:layout_constraintBottom_toBottomOf="@+id/btnask_question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnQ1"
+        android:id="@+id/btnask_question"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/round_text"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
-        android:text="question:"
+        android:text="Ask question"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -47,55 +47,41 @@
         app:layout_constraintTop_toBottomOf="@id/imageView1" />
 
     <Button
-        android:id="@+id/btnQ2"
+        android:id="@+id/suggest"
         android:layout_width="250dp"
         android:layout_height="55dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/round_text"
-        android:layout_marginTop="20dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
-        android:text="Question:"
+        android:text="Giving suggestion"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnQ1" />
+        app:layout_constraintTop_toBottomOf="@id/btnask_question" />
 
     <Button
-        android:id="@+id/btnQ3"
+        android:id="@+id/FandQ"
         android:layout_width="250dp"
         android:layout_height="55dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/round_text"
-        android:layout_marginTop="16dp"
         android:backgroundTint="#ADC1FC"
         android:ems="15"
-        android:text="Question:"
+        android:text="F&amp;Q"
         android:textColor="#9C7DA5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnQ2" />
+        app:layout_constraintTop_toBottomOf="@id/suggest" />
 
-    <Button
-        android:id="@+id/btnQ4"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:background="@drawable/round_text"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#ADC1FC"
-        android:ems="15"
-        android:text="Question:"
-        android:textColor="#9C7DA5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnQ3" />
 
     <TextView
         android:id="@+id/btnBackA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="96dp"
         android:clickable="true"
         android:ems="3"
         android:focusable="true"
@@ -105,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnQ4" />
+        app:layout_constraintTop_toBottomOf="@+id/FandQ" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
