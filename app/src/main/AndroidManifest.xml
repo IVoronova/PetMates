@@ -34,7 +34,7 @@
         <activity android:name=".Forum" />
         <activity android:name=".Pairing" />
         <activity android:name=".Friends" />
-        <activity android:name=".Profile" />
+        <activity android:name=".Create_Profile" />
         <activity android:name=".Main_menu" />
         <activity android:name=".Register" />
         <activity android:name=".Login">

@@ -10,11 +10,10 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Profile extends AppCompatActivity {
+public class Create_Profile extends AppCompatActivity {
 
     Button Save,Select_Image;
     EditText Name,Bio,PetType,PetBreed,PetGender,Zip,P_PetType,P_PetBreed,P_PetGender,P_Other;
@@ -29,7 +28,7 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_Create_profile);
         db = new DatabaseHelper(this);
 
         //get email value from last activity
@@ -100,7 +99,7 @@ public class Profile extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this,Main_menu.class);
+                Intent intent = new Intent(Create_Profile.this,Main_menu.class);
                 intent.putExtra("email",email);
                 startActivity(intent);
             }

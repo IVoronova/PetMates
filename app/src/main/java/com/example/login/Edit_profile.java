@@ -81,7 +81,7 @@ public class Edit_profile extends AppCompatActivity {
                 if(!imagepath.equals("")) {
                     boolean success = db.update_info_image(email,imagepath);
                     if(success){
-                        Toast.makeText(getApplicationContext(),"Profile image update success",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Create_Profile image update success",Toast.LENGTH_SHORT).show();
                     }else Toast.makeText(getApplicationContext(),"Upload image failed! Please allow access file permissions in settings!",Toast.LENGTH_SHORT).show();
                 }
 
