@@ -23,7 +23,7 @@ public class New_Post extends AppCompatActivity {
         //gets the string of the last activity directed
         Intent intent = getIntent();
         BackActivity = intent.getStringExtra("Back Activity");
-        email = intent.getStringExtra("Email");
+        email = intent.getStringExtra("email");
 
         Title = (EditText) findViewById(R.id.etNewPost_Title);
         Description = (EditText) findViewById(R.id.etNewPost_Description);

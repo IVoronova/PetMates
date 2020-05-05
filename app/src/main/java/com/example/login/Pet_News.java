@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class Pet_News extends AppCompatActivity {
     int num_news = 0;
     TextView Back, Next, New;
-    String backActivity = "Pet_News";
+    String BackActivity = "Pet_News";
     String email;
 
     @Override
@@ -39,7 +39,7 @@ public class Pet_News extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Pet_News.this, New_Post.class);
                 intent.putExtra("email",email);
-                intent.putExtra("Back Activity", backActivity);
+                intent.putExtra("BackActivity", BackActivity);
                 startActivity(intent);
             }
         });
