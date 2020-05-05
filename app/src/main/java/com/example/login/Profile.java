@@ -24,8 +24,6 @@ public class Profile extends AppCompatActivity {
     DatabaseHelper db;
     String email,imagepath;
 
-    TextView test;
-
     private static final int PICK_IMAGE = 100;
 
     @Override
@@ -37,12 +35,7 @@ public class Profile extends AppCompatActivity {
         //get email value from last activity
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
-        ///////////////////////////////////
-        test = findViewById(R.id.tvtext);
-        String test1 = "Email: " + email;
-        //after test,change test1 to "Enter User Profile"
-        ///////////////////////////////////
-        test.setText(test1);
+
         Name = (EditText) findViewById(R.id.etName);
         Bio = (EditText) findViewById(R.id.etBio);
         PetType = (EditText) findViewById(R.id.etPet_type);

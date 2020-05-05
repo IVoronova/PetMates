@@ -90,5 +90,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:focusable="true"
+        android:text="Hint: Admin username: Admin\n                      Password:  1"
+        android:textColor="#8B8B8B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister_new" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
