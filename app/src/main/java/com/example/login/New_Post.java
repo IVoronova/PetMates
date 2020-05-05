@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class New_Post extends AppCompatActivity {
     TextView Back, Post;
     EditText Title, Description;
-    String BackActivity;
+    String BackActivity,email;
     ImageButton Picture;
 
     @Override
@@ -23,6 +23,7 @@ public class New_Post extends AppCompatActivity {
         //gets the string of the last activity directed
         Intent intent = getIntent();
         BackActivity = intent.getStringExtra("Back Activity");
+        email = intent.getStringExtra("Email");
 
         Title = (EditText) findViewById(R.id.etNewPost_Title);
         Description = (EditText) findViewById(R.id.etNewPost_Description);
@@ -34,8 +35,9 @@ public class New_Post extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //goes to which activity last directed
-                if(BackActivity == "Pet_News"){
+                if(BackActivity.equals("Pet_News")){
                     Intent intent = new Intent(New_Post.this, Pet_News.class);
+                    intent.putExtra("email",email);
                     startActivity(intent);
                 }
             }

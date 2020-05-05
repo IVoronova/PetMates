@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main_menu extends AppCompatActivity {
     Button _Profile,_Friends,_Pairing,_Forum,_Support;
     DatabaseHelper db;
+    TextView logout;
 
 
     @Override
@@ -28,6 +30,7 @@ public class Main_menu extends AppCompatActivity {
         _Pairing = (Button)findViewById(R.id.btnPairing);
         _Forum = (Button)findViewById(R.id.btnForum);
         _Support = (Button)findViewById(R.id.btnApplication_support);
+        logout = findViewById(R.id.menulogout);
 
         _Profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +87,14 @@ public class Main_menu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Main_menu.this,Application_Support.class);
                 intent.putExtra("email",email);
+                startActivity(intent);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Main_menu.this, Login.class);
                 startActivity(intent);
             }
         });

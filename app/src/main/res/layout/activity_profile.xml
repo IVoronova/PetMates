@@ -202,18 +202,6 @@
                 android:text="Save"
                 android:textColor="#9C7DA5" />
 
-
-            <Button
-                android:id="@+id/btnProfile_logout"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:text="Log out"
-                android:textColor="#9C7DA5" />
-
             <TextView
                 android:id="@+id/btnBackA"
                 android:layout_width="100dp"

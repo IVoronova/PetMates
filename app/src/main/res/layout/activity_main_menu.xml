@@ -100,5 +100,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnForum" />
 
+    <TextView
+        android:id="@+id/menulogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:ems="3"
+        android:focusable="true"
+        android:text="Log out"
+        android:textColor="#A8A8A8"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnApplication_support" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

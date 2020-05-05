@@ -11,11 +11,15 @@ public class Pet_News extends AppCompatActivity {
     int num_news = 0;
     TextView Back, Next, New;
     String backActivity = "Pet_News";
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_news);
+
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
 
         Back = (TextView) findViewById(R.id.tvPetNews_Back);
         Next = (TextView) findViewById(R.id.tvPetNews_Next);
@@ -25,6 +29,7 @@ public class Pet_News extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Pet_News.this, Forum.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -33,6 +38,7 @@ public class Pet_News extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Pet_News.this, New_Post.class);
+                intent.putExtra("email",email);
                 intent.putExtra("Back Activity", backActivity);
                 startActivity(intent);
             }
