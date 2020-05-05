@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
 
-    Button Save,Logout,Select_Image,View_profile;
+    Button Save,Select_Image;
     EditText Name,Bio,PetType,PetBreed,PetGender,Zip,P_PetType,P_PetBreed,P_PetGender,P_Other;
     TextView Back;
 
@@ -57,20 +57,19 @@ public class Profile extends AppCompatActivity {
 
 
         //insert image and get image preview
-        Select_Image = (Button) findViewById(R.id.btnInsert_image);
+        Select_Image = (Button) findViewById(R.id.btnEdit_image);
         Select_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, Uri.parse(
                         "content://media/internal/images/media"));
                 startActivityForResult(intent, PICK_IMAGE);
-                }
+            }
         });
 
 
 
         Save = (Button) findViewById(R.id.btnProfile_save);
-        Logout = (Button) findViewById(R.id.btnProfile_logout);
         Back = findViewById(R.id.btnBackA);
         //once check save, save the data to database
         Save.setOnClickListener(new View.OnClickListener() {
@@ -104,25 +103,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        View_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Profile.this,View_prefile.class);
-                intent.putExtra("email",email);
-                startActivity(intent);
-            }
-        });
-
-
-        //while user check log out, jump to login page
-        Logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Profile.this,Login.class);
-                Toast.makeText(getApplicationContext(),"Logout successfully",Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }
-        });
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
