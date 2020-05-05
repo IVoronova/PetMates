@@ -28,7 +28,7 @@ public class Create_Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_Create_profile);
+        setContentView(R.layout.activity_create_profile);
         db = new DatabaseHelper(this);
 
         //get email value from last activity
@@ -92,6 +92,10 @@ public class Create_Profile extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "User profile complete!", Toast.LENGTH_SHORT).show();
                     } else Toast.makeText(getApplicationContext(), "Upload image failed! Please allow access file permissions in settings!", Toast.LENGTH_SHORT).show();
                 }
+
+                Intent intent = new Intent(Create_Profile.this,View_prefile.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
             }
         });
 

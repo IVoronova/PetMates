@@ -20,6 +20,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table4 = "suggestion";
     private static final String Table5 = "report";
     private static final String Table6 = "block";
+    private static final String Table7 = "friendship";
+    private static final String Table8 = "friendrequest";
+    private static final String Table9 = "message";
 
 
     private static final int version = 1;
@@ -38,13 +41,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table4 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, suggestionTitle TEXT, suggestionContext TEXT)");
         db.execSQL("CREATE TABLE " + Table5 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, reportedEmail TEXT, reportedReason TEXT, who TEXT)");
         db.execSQL("CREATE TABLE " + Table6 + " (Email TEXT PRIMARY KEY, isBlock TEXT,reason TEXT)");
-
+        db.execSQL("CREATE TABLE " + Table7 + " (ownerEmail TEXT, friendEmail TEXT, PRIMARY KEY(ownerEmail,friendEmail))");
+        db.execSQL("CREATE TABLE " + Table8 + " (senderEmail TEXT, receiverEmail TEXT, PRIMARY KEY(senderEmail,receiverEmail))");
+        db.execSQL("CREATE TABLE " + Table9 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,senderEmail TEXT, receiverEmail TEXT, message TEXT)");
 
 
     }
-    //add trigger update before insert table2
-    //begin
-    //if insert image
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -54,10 +57,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Table4);
         db.execSQL("DROP TABLE IF EXISTS " + Table5);
         db.execSQL("DROP TABLE IF EXISTS " + Table6);
+        db.execSQL("DROP TABLE IF EXISTS " + Table7);
+        db.execSQL("DROP TABLE IF EXISTS " + Table8);
+        db.execSQL("DROP TABLE IF EXISTS " + Table9);
         onCreate(db);
     }
-    //////////////////////////////////////////////////////////////////////
-    /////////////////////insert data to database//////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////friends and message/////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+    //send friend request
+    public boolean send_Request(String sender, String receiver){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues request = new ContentValues();
+        request.put("senderEmail",sender);
+        request.put("receiverEmail",receiver);
+        long ins = db.insert(Table8, null,request);
+        if (ins == -1) return false;
+        else return true;
+    }
+    //get friend request(get 1)
+    public Cursor get_Friendrequest(String useremail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT senderEmail FROM " + Table8+ " WHERE receiverEmail=?",
+                new String[]{String.valueOf(useremail)});
+        return cursor;
+    }
+    //add friend
+    public boolean add_friend(String owner, String friend){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues request = new ContentValues();
+        request.put("ownerEmail",owner);
+        request.put("friendEmail",friend);
+        long ins = db.insert(Table7, null,request);
+        if (ins == -1) return false;
+        else return true;
+    }
+    //get friend list
+    public Cursor get_Friendlist(String useremail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT friendEmail FROM " + Table7+ " WHERE ownerEmail=?",
+                new String[]{useremail});
+        return cursor;
+    }
+    //send message
+    public boolean send_message(String owner, String friend, String message){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues request = new ContentValues();
+        request.put("senderEmail",owner);
+        request.put("receiverEmail",friend);
+        request.put("message",message);
+        long ins = db.insert(Table9, null,request);
+        if (ins == -1) return false;
+        else return true;
+    }
+    //get message
+    public Cursor get_message(String senderEmail, String receiverEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT message FROM " + Table9+
+                " WHERE senderEmail=? and receiverEmail=? ORDER BY ID ASC ",new String[]{senderEmail,receiverEmail});
+        return cursor;
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    /////////////////////registration and profile//////////////////////////
     //////////////////////////////////////////////////////////////////////
 
     //insert data to user

@@ -36,7 +36,7 @@ public class View_account_information extends AppCompatActivity {
         Back = findViewById(R.id.btnAccount_info_back);
         Cursor get_name = db.getName(email);
         get_name.moveToFirst();
-        titleValue = get_name.getString(0)+"\' Account Information";
+        titleValue = get_name.getString(1)+"\' Account Information";
         title.setText(titleValue);
 
         Cursor get_profile = db.getAll_User(email);

@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class Friends extends AppCompatActivity {
     TextView back;
+    ListView listView;
+    String[] friendlist;
+    String[] friendimage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

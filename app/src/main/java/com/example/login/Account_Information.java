@@ -63,10 +63,11 @@ public class Account_Information extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
                     } else if (isEmailChange) {
                         db.update_user_Password(NewPasswordValue, NewEmailValue);
+                        Toast.makeText(getApplicationContext(), "Password change successful", Toast.LENGTH_SHORT).show();
                     } else {
                         db.update_user_Password(NewPasswordValue, email);
+                        Toast.makeText(getApplicationContext(), "Password change successful", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(getApplicationContext(), "Password change successful", Toast.LENGTH_SHORT).show();
                 }
 
                 //change phone
@@ -79,15 +80,6 @@ public class Account_Information extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Phone change successful", Toast.LENGTH_SHORT).show();
                 }
 
-                if(isEmailChange){
-                    Intent intent = new Intent(Account_Information.this, View_account_information.class);
-                    intent.putExtra("email", NewEmailValue);
-                    startActivity(intent);
-                }else{
-                    Intent intent = new Intent(Account_Information.this, View_account_information.class);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
-                }
             }
         });
 
@@ -116,9 +108,15 @@ public class Account_Information extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Account_Information.this, View_account_information.class);
-                intent.putExtra("email", NewEmailValue);
-                startActivity(intent);
+                if(isEmailChange){
+                    Intent intent = new Intent(Account_Information.this, View_account_information.class);
+                    intent.putExtra("email", NewEmailValue);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(Account_Information.this, View_account_information.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                }
             }
         });
     }

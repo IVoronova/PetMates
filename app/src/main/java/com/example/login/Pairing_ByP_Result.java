@@ -14,9 +14,10 @@ import android.widget.Toast;
 public class Pairing_ByP_Result extends AppCompatActivity {
     DatabaseHelper db;
     TextView resultText,Back,name,bio,type,breed,gender;
-    Button Send_Friend_Request,Pairing_again;
-    String result,nameResult,bioResult,typerResult,breedResult,genderResult,otherResult;
+    Button Send_Friend_Request,Pairing_again,report;
+    String result,nameResult,bioResult,typerResult,breedResult,genderResult,pairedEmail;
     ImageView imageResult;
+    String depend = "R";
 
 
     @Override
@@ -38,6 +39,8 @@ public class Pairing_ByP_Result extends AppCompatActivity {
         breed = findViewById(R.id.etPet_breedResultP);
         gender = findViewById(R.id.etPet_genderResultP);
         Back = findViewById(R.id.btnBackBP);
+        report = findViewById(R.id.btnReportP);
+        Send_Friend_Request = findViewById(R.id.btnsend_friend_requestP);
 
 
         //get the user preferences
@@ -55,6 +58,10 @@ public class Pairing_ByP_Result extends AppCompatActivity {
         pairingResult.moveToFirst();
 
         if(pairingResult.getCount()>0) {
+
+            //save paired Email
+            pairedEmail = pairingResult.getString(0);
+
             result = "We found a mate for you!";
             resultText.setText(result);
 
@@ -80,6 +87,9 @@ public class Pairing_ByP_Result extends AppCompatActivity {
             Cursor randomPair = db.getRandom(email);
             randomPair.moveToFirst();
             if (randomPair.getCount() > 0) {
+
+                //save paired Email
+                pairedEmail = randomPair.getString(0);
 
                 result = "Unfortunately!\nNo result match your Preferences.\nHowever, We find a random mate for you.";
                 resultText.setText(result);
@@ -123,6 +133,27 @@ public class Pairing_ByP_Result extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Pairing_ByP_Result.this, Pairing.class);
                 intent.putExtra("email", email);
+                startActivity(intent);
+            }
+        });
+
+        Send_Friend_Request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean sent = db.send_Request(email,pairedEmail);
+                if(sent){
+                    Toast.makeText(getApplicationContext(), "Friend request sent!", Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(getApplicationContext(), "You have already sent request to this user!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Pairing_ByP_Result.this, Report_page.class);
+                intent.putExtra("email", email);
+                intent.putExtra("reportedEmail",pairedEmail);
+                intent.putExtra("depend",depend);
                 startActivity(intent);
             }
         });

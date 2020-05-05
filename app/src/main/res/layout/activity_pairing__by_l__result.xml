@@ -12,7 +12,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-70dp">
+        tools:layout_editor_absoluteY="-45dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,9 +59,9 @@
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
                 android:textColor="#9C7DA5"
-                android:textSize="20dp"
-                android:paddingTop="11dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/etBioResult"
@@ -74,9 +74,9 @@
                 android:hint="Bio"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
                 android:textColor="#9C7DA5"
-                android:textSize="20dp"
-                android:paddingTop="11dp"/>
+                android:textSize="20dp" />
 
 
             <TextView
@@ -104,9 +104,9 @@
                 android:ems="10"
                 android:hint="Pet breed: "
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
                 android:textColor="#9C7DA5"
-                android:textSize="20dp"
-                android:paddingTop="11dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/etPet_genderResult"
@@ -118,13 +118,13 @@
                 android:ems="10"
                 android:hint="Pet gender:"
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
                 android:textColor="#9C7DA5"
-                android:textSize="20dp"
-                android:paddingTop="11dp"/>
+                android:textSize="20dp" />
 
 
             <Button
-                android:id="@+id/btnsend_friend_request"
+                android:id="@+id/btnsend_friend_requestL"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -144,6 +144,17 @@
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
                 android:text="Pair again"
+                android:textColor="#9C7DA5" />
+
+            <Button
+                android:id="@+id/btnReportL"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/round_text"
+                android:backgroundTint="#ADC1FC"
+                android:text="Report user"
                 android:textColor="#9C7DA5" />
 
 
