@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Lost_and_Found"></activity>
+        <activity android:name=".Report"></activity>
+        <activity android:name=".Pet_Jobs" />
+        <activity android:name=".Lost_and_Found" />
         <activity
             android:name=".ui.login.Lost_and_Found"
             android:label="@string/title_activity_lost_and__found" />

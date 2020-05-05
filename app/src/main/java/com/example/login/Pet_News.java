@@ -43,5 +43,6 @@ public class Pet_News extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

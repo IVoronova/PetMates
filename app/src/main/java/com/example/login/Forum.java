@@ -25,64 +25,59 @@ public class Forum extends AppCompatActivity {
         Pet_News = (Button) findViewById(R.id.btnPet_News);
         Gallery = (Button) findViewById(R.id.btnGalleries);
         Lost_and_Found = (Button) findViewById(R.id.btnLost_Found);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Pet_Jobs = (Button) findViewById(R.id.btnPet_Jobs);
         Report = (Button) findViewById(R.id.btnReport);
 
+        //directs to each activity
         Pet_News.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Forum.this, Pet_News.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
 
-        //back button
+        Gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Forum.this, Galleries.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
+            }
+        });
+
+        Lost_and_Found.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Forum.this, Lost_and_Found.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
+            }
+        });
+
+        Pet_Jobs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Forum.this, Pet_Jobs.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
+            }
+        });
+
+        Report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Forum.this, Report.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
+            }
+        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Forum.this,Main_menu.class);
-                intent.putExtra("email",email);
                 startActivity(intent);
 
             }

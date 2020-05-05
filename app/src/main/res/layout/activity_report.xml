@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Galleries">
+    tools:context=".Report">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="280dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,25 +16,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/pet2" />
+        app:srcCompat="@drawable/pet" />
 
     <TextView
-        android:id="@+id/tv_Galleries_title"
+        android:id="@+id/tvReport_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Galleries"
+        android:text="Reports"
         android:textColor="#9C7DA5"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.386" />
 
     <TextView
-        android:id="@+id/tvGalleries_Back"
+        android:id="@+id/tvReport_Back"
         android:layout_width="70dp"
         android:layout_height="35dp"
         android:text="Back"
@@ -48,7 +47,7 @@
         app:layout_constraintVertical_bias="0.998" />
 
     <TextView
-        android:id="@+id/tvGalleries_Next"
+        android:id="@+id/tvReport_Next"
         android:layout_width="136dp"
         android:layout_height="35dp"
         android:text="Next Page"
@@ -62,7 +61,7 @@
         app:layout_constraintVertical_bias="0.995" />
 
     <TextView
-        android:id="@+id/tvGalleries_Post"
+        android:id="@+id/tvReport_Post"
         android:layout_width="70dp"
         android:layout_height="35dp"
         android:text="Post"
@@ -74,4 +73,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.996" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
