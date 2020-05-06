@@ -6,30 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Create_Profile">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-70dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="450dp"
-                android:layout_height="300dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_gravity="center"
-                app:layout_constraintHorizontal_bias="0.444"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/image3"
-                tools:layout_editor_absoluteY="0bp"
-                tools:ignore="MissingConstraints"/>
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
 
             <TextView
@@ -45,13 +26,13 @@
                 android:textStyle="bold" />
 
 
-            <TextView
+            <ListView
                 android:id="@+id/etallSuggestion"
                 android:text="@string/q1"
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
+                android:layout_width="350dp"
+                android:layout_height="610dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/round_text"
                 android:backgroundTint="#FEF9E7  "
                 android:ems="10"
@@ -76,7 +57,5 @@
 
 
         </LinearLayout>
-    </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

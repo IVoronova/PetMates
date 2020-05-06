@@ -6,12 +6,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Admin_view_suggestion extends AppCompatActivity {
 
-    TextView allSuggestion,back;
-    String showSuggestion ="";
+    TextView back;
+    ListView allSuggestion;
     DatabaseHelper db;
 
     @Override
@@ -24,15 +30,22 @@ public class Admin_view_suggestion extends AppCompatActivity {
         allSuggestion = findViewById(R.id.etallSuggestion);
         back = findViewById(R.id.btnBackadS);
 
+        ArrayList<String> list = new ArrayList<>();
+
         Cursor suggestion = db.getAll_suggest();
-        while(suggestion.moveToNext()){
-            showSuggestion += "Suggestion number: "+suggestion.getString(0)+
-                    "\nSuggestion title: "+suggestion.getString(1)+
-                    "\nSuggestion content: "+suggestion.getString(2)+
-                    "\n\n\n";
+        if(suggestion.getCount()==0){
+            Toast.makeText(getApplicationContext(), "No suggestion!", Toast.LENGTH_SHORT).show();
+        }else {
+            while (suggestion.moveToNext()) {
+                list.add("\nSuggestion number: \n" + suggestion.getString(0) +
+                        "\nSuggestion title: \n" + suggestion.getString(1) +
+                        "\nSuggestion content: \n" + suggestion.getString(2) +
+                        "\n");
+                ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+                allSuggestion.setAdapter(listAdapter);
+            }
         }
 
-        allSuggestion.setText(showSuggestion);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

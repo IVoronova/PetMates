@@ -33,28 +33,11 @@
         app:layout_constraintVertical_bias="0.318" />
 
     <EditText
-        android:id="@+id/etAccount_email"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="@drawable/round_text"
-        android:ems="10"
-        android:hint="New Email"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="15dp"
-        android:textColorHint="#9C7DA5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAccount_Info"
-        app:layout_constraintVertical_bias="0.089" />
-
-    <EditText
         android:id="@+id/etAccount_Password"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="364dp"
         android:background="@drawable/round_text"
         android:ems="10"
         android:hint="New Password"
@@ -64,9 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAccount_email"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etAccount_comfirm"
@@ -85,7 +66,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAccount_Password"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintVertical_bias="0.455" />
 
     <EditText
         android:id="@+id/etAccount_phone"
@@ -103,7 +84,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAccount_comfirm"
-        app:layout_constraintVertical_bias="0.101" />
+        app:layout_constraintVertical_bias="0.148" />
 
     <Button
         android:id="@+id/btnAccount_save"

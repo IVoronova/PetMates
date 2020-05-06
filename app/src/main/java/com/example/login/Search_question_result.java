@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class Search_question_result extends AppCompatActivity {
 
-    TextView result1,back;
+    ListView result1;
+    TextView back;
     DatabaseHelper db;
-    String resultValue;
-    String finalValue="";
     String email,searchkey;
 
     @Override
@@ -31,20 +35,24 @@ public class Search_question_result extends AppCompatActivity {
         result1 = findViewById(R.id.etsearchResult1);
         back = findViewById(R.id.btnBackRS);
 
+        ArrayList<String> Result = new ArrayList<>();
+
         Cursor result = db.search_question(searchkey);
         while(result.moveToNext()){
-            resultValue = "Qusetion Title: "+ result.getString(1)+"\n"+
-                    "\nQuestion Content: "+result.getString(2)+"\n"+
-                    "\nAnswer: ";
             if(!result.getString(3).equals("0")){
-                finalValue += resultValue+result.getString(3)+"\n\n\n";
+                Result.add("\nQusetion Title:\n"+ result.getString(1)+"\n"+
+                        "\nQuestion Content: \n"+result.getString(2)+"\n"+
+                        "\nAnswer: \n"+ result.getString(3)+"\n");
             }else{
-                finalValue += resultValue + "No answer yet, we will answer it soon!\n\n\n";
+                Result.add("\nQusetion Title: \n"+ result.getString(1)+"\n"+
+                        "\nQuestion Content: \n"+result.getString(2)+"\n"+
+                        "\nAnswer: \nNo answer yet, we will answer it soon!\n");
             }
-
+            ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Result);
+            result1.setAdapter(listAdapter);
         }
 
-        result1.setText(finalValue);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Accept_friend_request"></activity>
+        <activity android:name=".Message" />
+        <activity android:name=".Friend_request" />
         <activity android:name=".Report_page" />
         <activity android:name=".Report" />
         <activity android:name=".Pet_Jobs" />

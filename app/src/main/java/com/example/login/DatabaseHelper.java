@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -74,15 +75,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         request.put("senderEmail",sender);
         request.put("receiverEmail",receiver);
         long ins = db.insert(Table8, null,request);
-        if (ins == -1) return false;
-        else return true;
+        return ins != -1;
     }
-    //get friend request(get 1)
+    //get friend request(get 0)
     public Cursor get_Friendrequest(String useremail) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT senderEmail FROM " + Table8+ " WHERE receiverEmail=?",
+        return db.rawQuery("SELECT senderEmail FROM " + Table8+ " WHERE receiverEmail=?",
                 new String[]{String.valueOf(useremail)});
-        return cursor;
+    }
+    // delete friend request after accept or decline
+    public void deleterequest(String useremail, String requestemail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + Table8+ " WHERE receiverEmail=? AND senderEmail =?",new String[]{useremail,requestemail});
+        db.close();
+    }
+    //check have friend or not
+    public boolean have_friend(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT ownerEmail FROM " + Table7 + " WHERE ownerEmail = ?", new String[]{email});
+        if (cursor.getCount() > 0) return true;
+        else return false;
     }
     //add friend
     public boolean add_friend(String owner, String friend){
@@ -94,12 +106,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (ins == -1) return false;
         else return true;
     }
+    //add friend inverse
+    public boolean add_friend_inverse(String owner, String friend){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues request = new ContentValues();
+        request.put("ownerEmail",friend);
+        request.put("friendEmail",owner);
+        long ins = db.insert(Table7, null,request);
+        if (ins == -1) return false;
+        else return true;
+    }
     //get friend list
     public Cursor get_Friendlist(String useremail) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT friendEmail FROM " + Table7+ " WHERE ownerEmail=?",
-                new String[]{useremail});
-        return cursor;
+        return db.rawQuery("SELECT friendEmail FROM " + Table7+ " WHERE ownerEmail=?", new String[]{useremail});
     }
     //send message
     public boolean send_message(String owner, String friend, String message){
@@ -115,9 +135,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //get message
     public Cursor get_message(String senderEmail, String receiverEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT message FROM " + Table9+
+        return db.rawQuery("SELECT message FROM " + Table9+
                 " WHERE senderEmail=? and receiverEmail=? ORDER BY ID ASC ",new String[]{senderEmail,receiverEmail});
-        return cursor;
     }
 
     ///////////////////////////////////////////////////////////////////////

@@ -30,4 +30,6 @@
     <string name="name" />
     <string name="friendname">Name</string>
     <string name="friendemail">friendEmail</string>
+    <string name="usernamefriend">usernamefriend</string>
+    <string name="acceptrequest">acceptRequest</string>
 </resources>

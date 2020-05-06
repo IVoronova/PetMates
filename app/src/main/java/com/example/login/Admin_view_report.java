@@ -6,15 +6,21 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Admin_view_report extends AppCompatActivity {
 
     EditText email,reason;
-    TextView allReport,back;
+    TextView back;
+    ListView allReport;
     Button submit;
     DatabaseHelper db;
     String showReport ="";
@@ -32,16 +38,23 @@ public class Admin_view_report extends AppCompatActivity {
         allReport = findViewById(R.id.etallQuestion);
         back = findViewById(R.id.btnBackadR);
 
+        ArrayList<String>list = new ArrayList<>();
+
         Cursor report = db.getReported_information();
-        while(report.moveToNext()){
-            showReport += "Report number: "+report.getString(0)+
-                    "\nuser received report: "+report.getString(1)+
-                    "\nReason: "+report.getString(2)+
-                    "\nuser send report"+report.getString(3)+
-                    "\n\n\n";
+        if(report.getCount()==0){
+            Toast.makeText(getApplicationContext(), "No report!", Toast.LENGTH_SHORT).show();
+        }else {
+            while (report.moveToNext()) {
+                list.add("Report number: \n" + report.getString(0) +
+                        "\nuser received report: \n" + report.getString(1) +
+                        "\nreport user: \n" + report.getString(3) +
+                        "\nreason\n" + report.getString(2) +
+                        "\n");
+                ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+                allReport.setAdapter(listAdapter);
+            }
         }
 
-        allReport.setText(showReport);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

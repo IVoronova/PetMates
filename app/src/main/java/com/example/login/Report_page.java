@@ -28,6 +28,7 @@ public class Report_page extends AppCompatActivity {
     String email,reportedEmail,depend;
     DatabaseHelper db;
     boolean isSubmit;
+    String condition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,11 @@ public class Report_page extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(depend.equals("P")){
+                if(condition == "1"){
+                    Intent intent = new Intent(Report_page.this, Friend_request.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                } else if(depend.equals("P")){
                     Intent intent = new Intent(Report_page.this, Pairing_ByP_Result.class);
                     intent.putExtra("email", email);
                     startActivity(intent);

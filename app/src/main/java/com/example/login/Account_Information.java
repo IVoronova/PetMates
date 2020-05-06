@@ -16,7 +16,7 @@ public class Account_Information extends AppCompatActivity {
     DatabaseHelper db;
     String NewEmailValue;
     TextView Back;
-    boolean isEmailChange;
+    boolean isEmailChange = false;
 
 
     @Override
@@ -28,7 +28,7 @@ public class Account_Information extends AppCompatActivity {
         Intent intent = getIntent();
         final String email = intent.getStringExtra("email");
 
-        NewEmail = (EditText) findViewById(R.id.etAccount_email);
+        //NewEmail = (EditText) findViewById(R.id.etAccount_email);
         NewPassword = (EditText) findViewById(R.id.etAccount_Password);
         Confirm_NewPassword = (EditText) findViewById(R.id.etAccount_comfirm);
         NewPhone_Number = (EditText) findViewById(R.id.etAccount_phone);
@@ -40,12 +40,12 @@ public class Account_Information extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                NewEmailValue = NewEmail.getText().toString();
+                //NewEmailValue = NewEmail.getText().toString();
                 String NewPasswordValue = NewPassword.getText().toString();
                 String NewConfirm_PasswordValue = Confirm_NewPassword.getText().toString();
                 String NewPhoneValue = NewPhone_Number.getText().toString();
 
-                //change email
+                /*//change email
                 if (!NewEmailValue.equals("")) {
                     if (db.email_Unique(NewEmailValue)) {
                         db.update_user_Email(NewEmailValue, email);
@@ -55,7 +55,7 @@ public class Account_Information extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext(), "Email already exists", Toast.LENGTH_SHORT).show();
                     }
-                }
+                }*/
 
                 //change password
                 if (!NewPasswordValue.equals("") || !NewConfirm_PasswordValue.equals("")) {

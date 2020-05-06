@@ -19,9 +19,10 @@
         app:srcCompat="@drawable/pet2" />
 
     <TextView
-        android:id="@+id/friendtitle"
+        android:id="@+id/friendtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_alignBottom="@+id/imageView3"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -37,7 +38,7 @@
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="420dp"
         android:layout_centerHorizontal="true"
@@ -52,7 +53,7 @@
         app:layout_constraintVertical_bias="0.059" />
 
     <TextView
-        android:id="@+id/btnBackF"
+        android:id="@+id/btnBackFR"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -74,12 +75,10 @@
         android:id="@+id/btnviewRequest"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="176dp"
         android:layout_marginLeft="176dp"
-        android:layout_marginEnd="-4dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="13dp"
         android:clickable="true"
         android:ems="3"
         android:focusable="true"
@@ -87,9 +86,7 @@
         android:textColor="#9C7DA5"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="-4dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </RelativeLayout>

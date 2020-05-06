@@ -10,9 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main_menu extends AppCompatActivity {
-    Button _Profile,_Friends,_Pairing,_Forum,_Support;
+    Button _Profile,Friends,_Pairing,_Forum,_Support;
     DatabaseHelper db;
     TextView logout;
+    String email;
 
 
     @Override
@@ -23,10 +24,10 @@ public class Main_menu extends AppCompatActivity {
 
         //get email value from last activity
         Intent intent = getIntent();
-        final String email = intent.getStringExtra("email");
+        email = intent.getStringExtra("email");
 
         _Profile = (Button)findViewById(R.id.btnProfile);
-        _Friends = (Button)findViewById(R.id.btnFriends);
+        Friends = (Button)findViewById(R.id.btnFriends);
         _Pairing = (Button)findViewById(R.id.btnPairing);
         _Forum = (Button)findViewById(R.id.btnForum);
         _Support = (Button)findViewById(R.id.btnApplication_support);
@@ -49,12 +50,12 @@ public class Main_menu extends AppCompatActivity {
             }
         });
 
-        _Friends.setOnClickListener(new View.OnClickListener() {
+        Friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (db.chkprofile_exist(email) == true) {
+                if (db.chkprofile_exist(email)) {
                     Toast.makeText(getApplicationContext(), "Please create user profile before access Friends feature", Toast.LENGTH_SHORT).show();
-                } else {
+                } else{
                     Intent intent = new Intent(Main_menu.this, Friends.class);
                     intent.putExtra("email",email);
                     startActivity(intent);
@@ -64,7 +65,7 @@ public class Main_menu extends AppCompatActivity {
         _Pairing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(db.chkprofile_exist(email) == true){
+                if(db.chkprofile_exist(email)){
                     Toast.makeText(getApplicationContext(),"Please create user profile before access Pairing feature",Toast.LENGTH_SHORT).show();
                 }
                 else {
