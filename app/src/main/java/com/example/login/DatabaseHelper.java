@@ -23,6 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table7 = "friendship";
     private static final String Table8 = "friendrequest";
     private static final String Table9 = "message";
+    private static  final String Table10 = "pet_news";
 
 
     private static final int version = 1;
@@ -44,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table7 + " (ownerEmail TEXT, friendEmail TEXT, PRIMARY KEY(ownerEmail,friendEmail))");
         db.execSQL("CREATE TABLE " + Table8 + " (senderEmail TEXT, receiverEmail TEXT, PRIMARY KEY(senderEmail,receiverEmail))");
         db.execSQL("CREATE TABLE " + Table9 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,senderEmail TEXT, receiverEmail TEXT, message TEXT)");
-
+        db.execSQL("CREATE TABLE " + Table10 + " (Title varchar(10) PRIMARY KEY, Description varchar(100), Image blob)");
 
     }
 
@@ -60,6 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Table7);
         db.execSQL("DROP TABLE IF EXISTS " + Table8);
         db.execSQL("DROP TABLE IF EXISTS " + Table9);
+        db.execSQL("DROP TABLE IF EXISTS " + Table10);
         onCreate(db);
     }
     ///////////////////////////////////////////////////////////////////////
@@ -167,6 +169,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////Forum functions////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    //inserting data for the news
+    public boolean insert_news(String Title, String Description, String Imagepath){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            FileInputStream fs = new FileInputStream(Imagepath);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Title", Title);
+            contentValues.put("Description", Description);
+            contentValues.put("Image", imgbyte);
+            db.insert(Table10, null, contentValues);
+            fs.close();
+            return true;
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Cursor news_data(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10, null);
+        return cursor;
+    }
+
+    public Bitmap news_image(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Bitmap bt = null;
+        Cursor cursor = db.rawQuery("SELECT * from "+Table10+"", null);
+        if(cursor.moveToNext()){
+            byte[] Image = cursor.getBlob(2);
+            bt = BitmapFactory.decodeByteArray(Image,0,Image.length);
+        }
+        return bt;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -547,6 +593,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return bt;
     }
     //////////////////////////////////////////////////////////////////////////////////////////
-
 
 }
