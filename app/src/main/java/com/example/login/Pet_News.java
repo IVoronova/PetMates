@@ -54,9 +54,9 @@ public class Pet_News extends AppCompatActivity {
         });
 
         Cursor cursor = db.news_data();
-        if(cursor.moveToNext()){
+        while(cursor.moveToNext()){
             Title.setText(cursor.getString(0));
-            Description.setText(cursor.getString(1));
+            //Description.setText(cursor.getString(1));
         }
         //Picture.setImageBitmap(db.news_image());
 

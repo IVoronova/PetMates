@@ -45,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table7 + " (ownerEmail TEXT, friendEmail TEXT, PRIMARY KEY(ownerEmail,friendEmail))");
         db.execSQL("CREATE TABLE " + Table8 + " (senderEmail TEXT, receiverEmail TEXT, PRIMARY KEY(senderEmail,receiverEmail))");
         db.execSQL("CREATE TABLE " + Table9 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,senderEmail TEXT, receiverEmail TEXT, message TEXT)");
-        db.execSQL("CREATE TABLE " + Table10 + " (Title varchar(10) PRIMARY KEY, Description varchar(100), Image blob)");
+        db.execSQL("CREATE TABLE " + Table10 + " (Title TEXT PRIMARY KEY, Description TEXT, Image blob)");
 
     }
 
