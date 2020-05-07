@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table7 = "friendship";
     private static final String Table8 = "friendrequest";
     private static final String Table9 = "message";
-    private static  final String Table10 = "pet_news";
+    private static final String Table10 = "forum";
 
 
     private static final int version = 1;
@@ -46,8 +46,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table7 + " (ownerEmail TEXT, friendEmail TEXT, PRIMARY KEY(ownerEmail,friendEmail))");
         db.execSQL("CREATE TABLE " + Table8 + " (senderEmail TEXT, receiverEmail TEXT, PRIMARY KEY(senderEmail,receiverEmail))");
         db.execSQL("CREATE TABLE " + Table9 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,senderEmail TEXT, receiverEmail TEXT, message TEXT)");
-        db.execSQL("CREATE TABLE " + Table10 + " (Title TEXT PRIMARY KEY, Description TEXT, Image blob)");
-
+        //type 1 is pet_news, type 2 is galleries, type 3 is lost and found
+        db.execSQL("CREATE TABLE " + Table10 + " (NUM INTEGER PRIMARY KEY AUTOINCREMENT, Type INTEGER, Title TEXT, Description TEXT, Image blob)");
     }
 
 
@@ -202,6 +202,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             byte[] imgbyte = new byte[fs.available()];
             fs.read(imgbyte);
             ContentValues contentValues = new ContentValues();
+            contentValues.put("Type", 1);
             contentValues.put("Title", Title);
             contentValues.put("Description", Description);
             contentValues.put("Image", imgbyte);
@@ -217,22 +218,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor news_data(){
+    public boolean insert_galleries(String name, String Imagepath){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10, null);
+        try{
+            FileInputStream fs = new FileInputStream(Imagepath);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Type", 2);
+            contentValues.put("Title", name);
+            contentValues.put("Description", "null");
+            contentValues.put("Image", imgbyte);
+            db.insert(Table10, null, contentValues);
+            fs.close();
+            return true;
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean insert_lostandfounddata(String name, String description, String Imagepath){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            FileInputStream fs = new FileInputStream(Imagepath);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Type", 3);
+            contentValues.put("Title", name);
+            contentValues.put("Description", description);
+            contentValues.put("Image", imgbyte);
+            db.insert(Table10, null, contentValues);
+            fs.close();
+            return true;
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Cursor all_data(int type){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE Type = ?", new String[]{String.valueOf(type)});
         return cursor;
     }
 
-    public Bitmap news_image(){
+    public Cursor newsarticle_data(int index){
         SQLiteDatabase db = this.getWritableDatabase();
-        Bitmap bt = null;
-        Cursor cursor = db.rawQuery("SELECT * from "+Table10+"", null);
-        if(cursor.moveToNext()){
-            byte[] Image = cursor.getBlob(2);
-            bt = BitmapFactory.decodeByteArray(Image,0,Image.length);
-        }
-        return bt;
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE NUM = ? AND Type = 1", new String[]{String.valueOf(index)});
+        return cursor;
     }
+    public Cursor lostandfound_data(int index){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE NUM = ? AND Type = 3", new String[]{String.valueOf(index)});
+        return cursor;
+    }
+
 
     //////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////check account or profile exist or not///////////////////////////

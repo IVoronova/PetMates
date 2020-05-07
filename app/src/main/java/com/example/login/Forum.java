@@ -78,6 +78,7 @@ public class Forum extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Forum.this,Main_menu.class);
+                intent.putExtra("email", email);
                 startActivity(intent);
 
             }

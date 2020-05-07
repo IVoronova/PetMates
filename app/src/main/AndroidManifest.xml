@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Accept_friend_request"></activity>
+        <activity android:name=".Read_ForumData"></activity>
+        <activity android:name=".Accept_friend_request" />
         <activity android:name=".Message" />
         <activity android:name=".Friend_request" />
         <activity android:name=".Report_page" />
