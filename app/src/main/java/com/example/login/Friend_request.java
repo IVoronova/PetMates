@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Friend_request extends AppCompatActivity {
 
-    TextView back,title;
+    TextView back,title,searchFriend;
     DatabaseHelper db;
     String email,friendEmail;
     ListView friendList;
@@ -36,13 +36,13 @@ public class Friend_request extends AppCompatActivity {
         email = intent.getStringExtra("email");
 
         friendList = findViewById(R.id.listView1);
+        searchFriend = findViewById(R.id.btnsearchfriend);
 
         title = findViewById(R.id.friendtitle1);
         Cursor titleValue= db.getName(email);
         titleValue.moveToFirst();
         String string = titleValue.getString(1)+"\'s Friend Request";
         title.setText(string);
-
 
 
 
@@ -72,7 +72,7 @@ public class Friend_request extends AppCompatActivity {
             }
         }
 
-        friendlist_adapter myAdapter = new friendlist_adapter(this,friendbio,friendname,friendimage);
+        friendrequest_adapter myAdapter = new friendrequest_adapter(this,friendbio,friendname,friendimage);
         friendList.setAdapter(myAdapter);
         friendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -80,6 +80,15 @@ public class Friend_request extends AppCompatActivity {
                 Intent intent = new Intent(Friend_request.this, Accept_friend_request.class);
                 intent.putExtra("email",email);
                 intent.putExtra("friendEmail",friendemail.get(position));
+                startActivity(intent);
+            }
+        });
+
+        searchFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Friend_request.this,Search_friend.class);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    tools:context=".Friend_request">
+
+
+    <ImageView
+        android:id="@+id/friendicon1"
+        android:layout_width="68dp"
+        android:layout_height="51dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/friendName1"
+            android:layout_width="240dp"
+            android:layout_height="25dp"
+            android:layout_margin="1dp"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="20dp"
+            android:text="@string/friendname"
+            android:textColor="#9C7DA5"
+
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/friendEmail1"
+            android:layout_width="240dp"
+            android:layout_height="20dp"
+            android:layout_margin="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:paddingLeft="20dp"
+            android:text="@string/friendemail"
+            android:textColor="#a9a9a9"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="1dp"
+        android:text="VIEW"
+        android:paddingTop="14dp"
+        android:textColor="#9C7DA5"
+        android:textStyle="italic"
+        android:textSize="18dp"
+        />
+
+
+</LinearLayout>

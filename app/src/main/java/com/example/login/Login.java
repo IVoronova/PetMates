@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
                     Boolean Chkemailpassword = db.emailpassword(emailValue, passwordValue);
                     //if input is correct, user login successfully and jump to main meun
                     if (Chkemailpassword == true) {
-                        Toast.makeText(getApplicationContext(), "Successfully Login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Login Successfully ", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, Main_menu.class);
                         //save emailValue to next activity
                         intent.putExtra("email", emailValue);

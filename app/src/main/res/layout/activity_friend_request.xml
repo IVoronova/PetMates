@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.login.Friends">
+    tools:context="com.example.login.Friend_request">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -62,12 +62,33 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="15dp"
         android:clickable="true"
         android:ems="3"
         android:focusable="true"
         android:text="Back"
         android:textColor="#A8A8A8"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/btnsearchfriend"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginEnd="-16dp"
+        android:layout_marginRight="-16dp"
+        android:layout_marginBottom="13dp"
+        android:clickable="true"
+        android:ems="3"
+        android:focusable="true"
+        android:text="Search Friend"
+        android:textColor="#9C7DA5"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

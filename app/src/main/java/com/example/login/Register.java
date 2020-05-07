@@ -48,7 +48,7 @@ public class Register extends AppCompatActivity {
                 } else {//check the email is unique
                     if (PasswordValue.equals(RepasswordValue)) {
                         Boolean chkemail = db.email_Unique(EmailValue);
-                        if (chkemail == true) {//if email is unique, save data to database
+                        if (chkemail) {//if email is unique, save data to database
                             boolean insert = db.insert_user(EmailValue, PasswordValue, PhoneValue);
                             if (insert) {//if successfully insert to database, message and jump to login
                                 Toast.makeText(getApplicationContext(), "Registered Successfully!", Toast.LENGTH_SHORT).show();
