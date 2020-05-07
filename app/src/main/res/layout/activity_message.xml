@@ -27,54 +27,93 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="151dp"
-        android:layout_marginLeft="151dp"
-        android:layout_marginTop="202dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginStart="162dp"
+        android:layout_marginLeft="162dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginBottom="181dp"
         android:text="@string/usernamefriend"
         android:textColor="#9C7DA5"
         android:textSize="25sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/friendbioo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="162dp"
+        android:layout_marginLeft="162dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="135dp"
+        android:text="@string/friendbio"
+        android:textColor="#9C7DA5"
+        android:textSize="18sp"
+        />
 
     <ImageView
         android:id="@+id/friendimage"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="164dp"
-        app:srcCompat="@android:drawable/ic_menu_gallery"
-        android:layout_alignParentLeft="true" />
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="57dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <ListView
         android:id="@+id/listViewmessage"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_centerHorizontal="true"
+        android:layout_height="450dp"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="164dp"
         android:background="@drawable/round_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.059"
+        android:divider="#0000"/>
+
+    <Button
+        android:id="@+id/btnSend_message"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="57dp"
+        android:background="@drawable/round_text"
+        android:backgroundTint="#ADC1FC"
+        android:ems="13"
+        android:text="Send"
+        android:textColor="#9C7DA5"
+        android:textSize="15dp" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/typehere"
+        android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/round_text"
-        android:hint="Type Here"
-        android:paddingRight="30dp"
-        android:drawableRight="@android:drawable/sym_action_chat"
-        android:paddingLeft="20dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginBottom="74dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="3dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="58dp"
+        android:background="@drawable/round_text"
+        android:drawableRight="@drawable/chat"
+        android:hint="Type Here"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp" />
 
     <TextView
         android:id="@+id/btnBackmessage"
@@ -92,6 +131,28 @@
         android:text="Back"
         android:textColor="#A8A8A8"
         android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/btndeletefriend"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="13dp"
+        android:clickable="true"
+        android:ems="3"
+        android:focusable="true"
+        android:text="Delete Friend"
+        android:textColor="#9C7DA5"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -39,6 +39,7 @@ public class Report_page extends AppCompatActivity {
         email = intent.getStringExtra("email");
         reportedEmail = intent.getStringExtra("reportedEmail");
         depend = intent.getStringExtra("depend");
+        condition = intent.getStringExtra("condition");
         db = new DatabaseHelper(this);
 
         reason = findViewById(R.id.spinner);
@@ -105,11 +106,13 @@ public class Report_page extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(condition == "1"){
+                String condition1 = ""+condition;
+                String depend1 =""+depend;
+                if(condition1.equals("1")){
                     Intent intent = new Intent(Report_page.this, Friend_request.class);
                     intent.putExtra("email", email);
                     startActivity(intent);
-                } else if(depend.equals("P")){
+                } else if(depend1.equals("P")){
                     Intent intent = new Intent(Report_page.this, Pairing_ByP_Result.class);
                     intent.putExtra("email", email);
                     startActivity(intent);

@@ -46,8 +46,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table7 + " (ownerEmail TEXT, friendEmail TEXT, PRIMARY KEY(ownerEmail,friendEmail))");
         db.execSQL("CREATE TABLE " + Table8 + " (senderEmail TEXT, receiverEmail TEXT, PRIMARY KEY(senderEmail,receiverEmail))");
         db.execSQL("CREATE TABLE " + Table9 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,senderEmail TEXT, receiverEmail TEXT, message TEXT)");
+
         //type 1 is pet_news, type 2 is galleries, type 3 is lost and found
         db.execSQL("CREATE TABLE " + Table10 + " (NUM INTEGER PRIMARY KEY AUTOINCREMENT, Type INTEGER, Title TEXT, Description TEXT, Image blob)");
+
+
     }
 
 
@@ -77,6 +80,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long ins = db.insert(Table8, null,request);
         return ins != -1;
     }
+    //check is friend or not
+    public boolean checkfriend(String sender,String receiver){
+        SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + Table7 + " WHERE ownerEmail = ? AND friendEmail =?",
+                new String[]{sender,receiver});
+        if (cursor.getCount() > 0) return true;
+        else return false;
+    }
+    //check friend request sent or not
+    public boolean checkfriendrequest(String sender,String receiver){
+        SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + Table8 + " WHERE senderEmail = ? AND receiverEmail =?",
+                new String[]{sender,receiver});
+        if (cursor.getCount() > 0) return true;
+        else return false;
+    }
+
+
     //get friend request(get 0)
     public Cursor get_Friendrequest(String useremail) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -87,6 +108,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleterequest(String useremail, String requestemail) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + Table8+ " WHERE receiverEmail=? AND senderEmail =?",new String[]{useremail,requestemail});
+        db.close();
+    }
+
+    public void deletefriend(String useremail, String requestemail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + Table7+ " WHERE ownerEmail=? AND friendEmail =?",new String[]{useremail,requestemail});
+        db.execSQL("DELETE FROM " + Table7+ " WHERE friendEmail=? AND ownerEmail =?",new String[]{useremail,requestemail});
         db.close();
     }
     //check have friend or not
@@ -122,21 +150,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT friendEmail FROM " + Table7+ " WHERE ownerEmail=?", new String[]{useremail});
     }
     //send message
-    public boolean send_message(String owner, String friend, String message){
+    public void send_message(String owner, String friend, String message){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues request = new ContentValues();
         request.put("senderEmail",owner);
         request.put("receiverEmail",friend);
         request.put("message",message);
-        long ins = db.insert(Table9, null,request);
-        if (ins == -1) return false;
-        else return true;
+        db.insert(Table9, null,request);
+        //if (ins == -1) return false;
+        //else return true;
     }
     //get message
     public Cursor get_message(String senderEmail, String receiverEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT message FROM " + Table9+
-                " WHERE senderEmail=? and receiverEmail=? ORDER BY ID ASC ",new String[]{senderEmail,receiverEmail});
+        return db.rawQuery("SELECT message, senderEmail FROM " + Table9+
+                " WHERE (senderEmail=? and receiverEmail=?) OR (receiverEmail=? and senderEmail=?)ORDER BY ID ASC ",
+                new String[]{senderEmail,receiverEmail,senderEmail,receiverEmail});
     }
 
     ///////////////////////////////////////////////////////////////////////

@@ -115,10 +115,15 @@ public class Pairing_ByL_Result extends AppCompatActivity {
         Send_Friend_Request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean sent = db.send_Request(email,pairedEmail);
-                if(sent){
-                    Toast.makeText(getApplicationContext(), "Friend request sent!", Toast.LENGTH_SHORT).show();
-                }else Toast.makeText(getApplicationContext(), "You have already sent request to this user!", Toast.LENGTH_SHORT).show();
+                if (db.checkfriend(email, pairedEmail)) {
+                    Toast.makeText(getApplicationContext(), "You are already friends!", Toast.LENGTH_SHORT).show();
+                } else {
+                    boolean sent = db.send_Request(email, pairedEmail);
+                    if (sent) {
+                        Toast.makeText(getApplicationContext(), "Friend request sent!", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(getApplicationContext(), "You have already sent request to this user!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -32,4 +32,8 @@
     <string name="friendemail">friendEmail</string>
     <string name="usernamefriend">usernamefriend</string>
     <string name="acceptrequest">acceptRequest</string>
+    <string name="friendbio">friendbio</string>
+    <string name="left">left</string>
+    <string name="right">right</string>
+    <string name="makesure">makesure</string>
 </resources>
