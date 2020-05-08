@@ -50,7 +50,7 @@ public class Accept_friend_request extends AppCompatActivity {
 
         Cursor get_profile = db.getAll_User_info(requsetedemail);
         get_profile.moveToFirst();
-        titleValue = get_profile.getString(1)+"\' User Create_Profile";
+        titleValue = get_profile.getString(1)+"\' User Profile";
         title.setText(titleValue);
 
         NameValue = "Name: "+ get_profile.getString(1);
