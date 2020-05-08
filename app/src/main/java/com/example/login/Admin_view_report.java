@@ -21,9 +21,8 @@ public class Admin_view_report extends AppCompatActivity {
     EditText email,reason;
     TextView back;
     ListView allReport;
-    Button submit;
+    Button block,unblock;
     DatabaseHelper db;
-    String showReport ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +33,10 @@ public class Admin_view_report extends AppCompatActivity {
 
         email = findViewById(R.id.enterEmail);
         reason = findViewById(R.id.answerReason);
-        submit = findViewById(R.id.btnsubmitb);
+        block = findViewById(R.id.btnsubmitb);
         allReport = findViewById(R.id.etallQuestion);
         back = findViewById(R.id.btnBackadR);
+        unblock = findViewById(R.id.btunclock);
 
         ArrayList<String>list = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class Admin_view_report extends AppCompatActivity {
         }
 
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        block.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailValue = email.getText().toString();
@@ -65,7 +65,22 @@ public class Admin_view_report extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Email or reason can not be empty!",Toast.LENGTH_SHORT).show();
                 }else{
                     db.insert_block(emailValue,reasonValue);
-                    Toast.makeText(getApplicationContext(),"Block successful!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Block user successful!",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Admin_view_report.this, Admin_view_report.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        unblock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailValue = email.getText().toString();
+                if (emailValue.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Email can not be empty!", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.unblock(emailValue);
+                    Toast.makeText(getApplicationContext(), "User unblocked!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Admin_view_report.this, Admin_view_report.class);
                     startActivity(intent);
                 }
@@ -80,4 +95,6 @@ public class Admin_view_report extends AppCompatActivity {
         });
     }
 }
+
+
 

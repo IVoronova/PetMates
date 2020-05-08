@@ -569,6 +569,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (ins == -1) return false;
         else return true;
     }
+    //unblock user
+    public void unblock(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + Table6+ " WHERE Email=?",new String[]{email});
+        db.close();
+    }
     //check the user been block or not
     public Boolean isBlock(String email) {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -48,25 +48,43 @@
                 android:paddingBottom="60dp"
                 android:ems="10"
                 android:hint="Enter reason here:"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="14dp"
                 android:textColorHint="#9C7DA5" />
 
 
-            <Button
-                android:id="@+id/btnsubmitb"
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                tools:ignore="MissingConstraints">
+
+
+                <Button
+                    android:id="@+id/btnsubmitb"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_text"
+                    android:backgroundTint="#ADC1FC"
+                    android:ems="15"
+                    android:text="Block"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#9C7DA5"
+                    android:textSize="18dp" />
+
+                <Button
+                android:id="@+id/btunclock"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_gravity="center"
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
-                android:layout_marginBottom="20dp"
                 android:ems="15"
-                android:text="Submit"
+                android:text="unblock"
                 android:textColor="#9C7DA5"
-                android:textSize="18dp"
-                />
+                android:textSize="18dp" />
+            </LinearLayout>
 
             <ListView
                 android:id="@+id/etallQuestion"

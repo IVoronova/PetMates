@@ -89,7 +89,7 @@ public class View_prefile extends AppCompatActivity {
 
         Cursor get_profile = db.getAll_User_info(email);
         get_profile.moveToFirst();
-            TitleValue = get_profile.getString(1)+"\' User Create_Profile";
+            TitleValue = get_profile.getString(1)+"\' User Profile";
             title.setText(TitleValue);
 
             NameValue = "Name: "+ get_profile.getString(1);

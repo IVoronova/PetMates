@@ -55,9 +55,6 @@ public class Friends extends AppCompatActivity {
         String string = titleValue.getString(1)+"\'s Friend List";
         title.setText(string);
 
-
-
-
         Cursor data = db.get_Friendlist(email);
         if(data.getCount() == 0){
             Toast.makeText(getApplicationContext(), "You don't have any friend!", Toast.LENGTH_SHORT).show();
