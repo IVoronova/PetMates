@@ -96,6 +96,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.getCount() > 0) return true;
         else return false;
     }
+    //check is friend or not
+    //check is friend or not
+    public boolean checkfriend(String sender,String receiver){
+        SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + Table7 + " WHERE ownerEmail = ? AND friendEmail =?",
+                new String[]{sender,receiver});
+        if (cursor.getCount() > 0) return true;
+        else return false;
+    }
+    //check friend request sent or not
+    public boolean checkfriendrequest(String sender,String receiver){
+        SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + Table8 + " WHERE senderEmail = ? AND receiverEmail =?",
+                new String[]{sender,receiver});
+        if (cursor.getCount() > 0) return true;
+        else return false;
+    }
+
     //add friend
     public boolean add_friend(String owner, String friend){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -106,6 +124,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (ins == -1) return false;
         else return true;
     }
+    public void deletefriend(String useremail, String requestemail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + Table7+ " WHERE ownerEmail=? AND friendEmail =?",new String[]{useremail,requestemail});
+        db.execSQL("DELETE FROM " + Table7+ " WHERE friendEmail=? AND ownerEmail =?",new String[]{useremail,requestemail});
+        db.close();
+    }
+
     //add friend inverse
     public boolean add_friend_inverse(String owner, String friend){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -135,8 +160,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //get message
     public Cursor get_message(String senderEmail, String receiverEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT message FROM " + Table9+
-                " WHERE senderEmail=? and receiverEmail=? ORDER BY ID ASC ",new String[]{senderEmail,receiverEmail});
+        return db.rawQuery("SELECT message, senderEmail FROM " + Table9 +
+                        " WHERE (senderEmail=? and receiverEmail=?) OR (receiverEmail=? and senderEmail=?)ORDER BY ID ASC ",
+                new String[]{senderEmail, receiverEmail, senderEmail, receiverEmail});
     }
 
     ///////////////////////////////////////////////////////////////////////
@@ -593,6 +619,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long ins = db.insert(Table6, null, question);
         if (ins == -1) return false;
         else return true;
+    }
+    //unblock user
+    public void unblock(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + Table6+ " WHERE Email=?",new String[]{email});
+        db.close();
     }
     //check the user been block or not
     public Boolean isBlock(String email) {

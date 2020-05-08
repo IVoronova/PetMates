@@ -114,4 +114,3 @@ public class Message extends AppCompatActivity {
         });
     }
 }
-

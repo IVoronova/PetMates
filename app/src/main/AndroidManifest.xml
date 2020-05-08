@@ -17,7 +17,6 @@
         <activity android:name=".Message" />
         <activity android:name=".Friend_request" />
         <activity android:name=".Report_page" />
-        <activity android:name=".Report" />
         <activity android:name=".Pet_Jobs" />
         <activity android:name=".Lost_and_Found" />
         <activity android:name=".Galleries" />
@@ -45,6 +44,8 @@
         <activity android:name=".Create_Profile" />
         <activity android:name=".Main_menu" />
         <activity android:name=".Register" />
+        <activity android:name=".Search_friend" />
+        <activity android:name=".AcademicReport" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

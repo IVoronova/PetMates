@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
                 String emailValue = email.getText().toString();
                 String passwordValue = password.getText().toString();
 
-                if(emailValue.equals("") && passwordValue.equals("")){
+                if(emailValue.equals("") || passwordValue.equals("")){
                     Toast.makeText(getApplicationContext(), "Email or Password can not be empty!", Toast.LENGTH_SHORT).show();
                 }
                 else if(emailValue.equals("admin") && passwordValue.equals("1")) {
@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
                 }else {
                     Boolean Chkemailpassword = db.emailpassword(emailValue, passwordValue);
                     //if input is correct, user login successfully and jump to main meun
-                    if (Chkemailpassword == true) {
+                    if (Chkemailpassword) {
                         Toast.makeText(getApplicationContext(), "Login Successfully ", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, Main_menu.class);
                         //save emailValue to next activity
