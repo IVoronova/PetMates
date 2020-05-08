@@ -68,7 +68,7 @@ public class Forum extends AppCompatActivity {
         Report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Forum.this, Report.class);
+                Intent intent = new Intent(Forum.this, AcademicReport.class);
                 intent.putExtra("email",email);
                 startActivity(intent);
             }

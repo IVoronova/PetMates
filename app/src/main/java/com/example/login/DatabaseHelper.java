@@ -46,9 +46,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table7 + " (ownerEmail TEXT, friendEmail TEXT, PRIMARY KEY(ownerEmail,friendEmail))");
         db.execSQL("CREATE TABLE " + Table8 + " (senderEmail TEXT, receiverEmail TEXT, PRIMARY KEY(senderEmail,receiverEmail))");
         db.execSQL("CREATE TABLE " + Table9 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,senderEmail TEXT, receiverEmail TEXT, message TEXT)");
-        db.execSQL("CREATE TABLE " + Table10 + " (NUM INTEGER PRIMARY KEY AUTOINCREMENT, Type INTEGER, Title TEXT, Description TEXT, Image blob)");
-
-
+        //type 1 is pet_news, type 2 is galleries, type 3 is lost and found, type 4 is jet jobs, type 5 is report
+        db.execSQL("CREATE TABLE " + Table10 + " (NUM INTEGER PRIMARY KEY AUTOINCREMENT, Type INTEGER, Title TEXT, Description TEXT, Image blob, Contact TEXT)");
     }
 
 
@@ -78,24 +77,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long ins = db.insert(Table8, null,request);
         return ins != -1;
     }
-    //check is friend or not
-    public boolean checkfriend(String sender,String receiver){
-        SQLiteDatabase db = this.getReadableDatabase();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + Table7 + " WHERE ownerEmail = ? AND friendEmail =?",
-                new String[]{sender,receiver});
-        if (cursor.getCount() > 0) return true;
-        else return false;
-    }
-    //check friend request sent or not
-    public boolean checkfriendrequest(String sender,String receiver){
-        SQLiteDatabase db = this.getReadableDatabase();
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + Table8 + " WHERE senderEmail = ? AND receiverEmail =?",
-                new String[]{sender,receiver});
-        if (cursor.getCount() > 0) return true;
-        else return false;
-    }
-
-
     //get friend request(get 0)
     public Cursor get_Friendrequest(String useremail) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -106,13 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleterequest(String useremail, String requestemail) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + Table8+ " WHERE receiverEmail=? AND senderEmail =?",new String[]{useremail,requestemail});
-        db.close();
-    }
-
-    public void deletefriend(String useremail, String requestemail) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + Table7+ " WHERE ownerEmail=? AND friendEmail =?",new String[]{useremail,requestemail});
-        db.execSQL("DELETE FROM " + Table7+ " WHERE friendEmail=? AND ownerEmail =?",new String[]{useremail,requestemail});
         db.close();
     }
     //check have friend or not
@@ -148,22 +122,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT friendEmail FROM " + Table7+ " WHERE ownerEmail=?", new String[]{useremail});
     }
     //send message
-    public void send_message(String owner, String friend, String message){
+    public boolean send_message(String owner, String friend, String message){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues request = new ContentValues();
         request.put("senderEmail",owner);
         request.put("receiverEmail",friend);
         request.put("message",message);
-        db.insert(Table9, null,request);
-        //if (ins == -1) return false;
-        //else return true;
+        long ins = db.insert(Table9, null,request);
+        if (ins == -1) return false;
+        else return true;
     }
     //get message
     public Cursor get_message(String senderEmail, String receiverEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT message, senderEmail FROM " + Table9+
-                " WHERE (senderEmail=? and receiverEmail=?) OR (receiverEmail=? and senderEmail=?)ORDER BY ID ASC ",
-                new String[]{senderEmail,receiverEmail,senderEmail,receiverEmail});
+        return db.rawQuery("SELECT message FROM " + Table9+
+                " WHERE senderEmail=? and receiverEmail=? ORDER BY ID ASC ",new String[]{senderEmail,receiverEmail});
     }
 
     ///////////////////////////////////////////////////////////////////////
@@ -233,6 +206,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put("Title", Title);
             contentValues.put("Description", Description);
             contentValues.put("Image", imgbyte);
+            contentValues.put("Contact", "null");
             db.insert(Table10, null, contentValues);
             fs.close();
             return true;
@@ -256,6 +230,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put("Title", name);
             contentValues.put("Description", "null");
             contentValues.put("Image", imgbyte);
+            contentValues.put("Contact", "null");
             db.insert(Table10, null, contentValues);
             fs.close();
             return true;
@@ -268,7 +243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean insert_lostandfounddata(String name, String description, String Imagepath){
+    public boolean insert_lostandfounddata(String name, String description, String Imagepath, String contact){
         SQLiteDatabase db = this.getWritableDatabase();
         try{
             FileInputStream fs = new FileInputStream(Imagepath);
@@ -279,6 +254,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put("Title", name);
             contentValues.put("Description", description);
             contentValues.put("Image", imgbyte);
+            contentValues.put("Contact", contact);
             db.insert(Table10, null, contentValues);
             fs.close();
             return true;
@@ -290,6 +266,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public boolean insert_academicreportdata(String name, String description, String Imagepath){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            FileInputStream fs = new FileInputStream(Imagepath);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Type", 5);
+            contentValues.put("Title", name);
+            contentValues.put("Description", description);
+            contentValues.put("Image", imgbyte);
+            contentValues.put("Contact", "null");
+            db.insert(Table10, null, contentValues);
+            fs.close();
+            return true;
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean insert_jobdata(String contact, String payment, String description){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentvalues = new ContentValues();
+        contentvalues.put("Type", 4);
+        contentvalues.put("Title", payment);
+        contentvalues.put("Description", description);
+        contentvalues.put("Image", "null");
+        contentvalues.put("Contact", contact);
+        db.insert(Table10,null,contentvalues);
+        return true;
+    }
+
 
     public Cursor all_data(int type){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -305,6 +318,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor lostandfound_data(int index){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE NUM = ? AND Type = 3", new String[]{String.valueOf(index)});
+        return cursor;
+    }
+
+    public Cursor petjobs_data(int index){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE NUM = ? AND Type = 4", new String[]{String.valueOf(index)});
+        return cursor;
+    }
+
+    public Cursor academcreport_data(int index){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE NUM = ? AND Type = 5", new String[]{String.valueOf(index)});
         return cursor;
     }
 
@@ -568,12 +593,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long ins = db.insert(Table6, null, question);
         if (ins == -1) return false;
         else return true;
-    }
-    //unblock user
-    public void unblock(String email) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + Table6+ " WHERE Email=?",new String[]{email});
-        db.close();
     }
     //check the user been block or not
     public Boolean isBlock(String email) {

@@ -8,31 +8,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class Pet_Jobs extends AppCompatActivity {
-    TextView Job1, Job2, Job3, Job4, Back, Next, Post;
+public class AcademicReport extends AppCompatActivity {
+    TextView Report1, Report2, Report3, Report4, Back, Next, Post;
+    String email, BackRead = "AcademicReport";
     Cursor cursor;
-    String activity, email;
-    int art1num , art2num, art3num, art4num;
     DatabaseHelper db;
+    int art1num , art2num, art3num, art4num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet__jobs);
+        setContentView(R.layout.activity_academicreport);
+
+        db = new DatabaseHelper(this);
+        cursor = db.all_data(5);
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
 
-        db = new DatabaseHelper(this);
-        cursor = db.all_data(4);
-
-        Job1 = findViewById(R.id.tvPetJobs_Report1);
-        Job2 = findViewById(R.id.tvPetJobs_Report2);
-        Job3 = findViewById(R.id.tvPetJobs_Report3);
-        Job4 = findViewById(R.id.tvPetJobs_Report4);
-        Back = findViewById(R.id.tvPetJobs_Back);
-        Next = findViewById(R.id.tvPetJobs_Next);
-        Post = findViewById(R.id.tvPetJobs_Post);
+        Report1 = findViewById(R.id.tvAcademic_Report1);
+        Report2 = findViewById(R.id.tvAcademic_Report2);
+        Report3 = findViewById(R.id.tvAcademic_Report3);
+        Report4 = findViewById(R.id.tvAcademic_Report4);
+        Back = findViewById(R.id.tvReport_Back);
+        Next = findViewById(R.id.tvReport_Next);
+        Post = findViewById(R.id.tvReport_Post);
 
         update();
         refresh();
@@ -40,11 +40,9 @@ public class Pet_Jobs extends AppCompatActivity {
         Post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Pet_Jobs.this, PetJobs_Post.class);
+                Intent intent = new Intent(AcademicReport.this, New_Post.class);
                 intent.putExtra("email", email);
-                intent.putExtra("index", "null");
-                activity = "post";
-                intent.putExtra("activity", activity);
+                intent.putExtra("BackActivity", BackRead);
                 startActivity(intent);
             }
         });
@@ -52,7 +50,7 @@ public class Pet_Jobs extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Pet_Jobs.this, Forum.class);
+                Intent intent = new Intent(AcademicReport.this, Forum.class);
                 intent.putExtra("email", email);
                 startActivity(intent);
             }
@@ -70,66 +68,64 @@ public class Pet_Jobs extends AppCompatActivity {
 
     public void update(){
         if (cursor.moveToNext()) {
-            Job1.setText(cursor.getString(3));
+            Report1.setText(cursor.getString(2));
             art1num = cursor.getInt(0);
         }
         if (cursor.moveToNext()) {
-            Job2.setText(cursor.getString(3));
+            Report2.setText(cursor.getString(2));
             art2num = cursor.getInt(0);
         }
         if (cursor.moveToNext()) {
-            Job3.setText(cursor.getString(3));
+            Report3.setText(cursor.getString(2));
             art3num = cursor.getInt(0);
         }
         if (cursor.moveToNext()) {
-            Job4.setText(cursor.getString(3));
+            Report4.setText(cursor.getString(2));
             art4num = cursor.getInt(0);
         }
-
     }
 
     public void refresh(){
-        Job1.setOnClickListener(new View.OnClickListener() {
+        Report1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Pet_Jobs.this, PetJobs_Post.class);
+                Intent intent = new Intent(AcademicReport.this, Read_ForumData.class);
                 intent.putExtra("email", email);
-                intent.putExtra("index",art1num);
-                activity = "view";
-                intent.putExtra("activity", activity);
+                intent.putExtra("artnum", art1num);
+                intent.putExtra("BackRead", BackRead);
                 startActivity(intent);
             }
         });
-        Job2.setOnClickListener(new View.OnClickListener() {
+
+        Report2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Pet_Jobs.this, PetJobs_Post.class);
+                Intent intent = new Intent(AcademicReport.this, Read_ForumData.class);
                 intent.putExtra("email", email);
-                intent.putExtra("index",art2num);
-                activity = "view";
-                intent.putExtra("activity", activity);
+                intent.putExtra("artnum", art2num);
+                intent.putExtra("BackRead", BackRead);
                 startActivity(intent);
             }
         });
-        Job3.setOnClickListener(new View.OnClickListener() {
+
+        Report3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Pet_Jobs.this, PetJobs_Post.class);
+                Intent intent = new Intent(AcademicReport.this, Read_ForumData.class);
                 intent.putExtra("email", email);
-                intent.putExtra("index",art3num);
-                activity = "view";
-                intent.putExtra("activity", activity);
+                intent.putExtra("artnum", art3num);
+                intent.putExtra("BackRead", BackRead);
                 startActivity(intent);
             }
         });
-        Job4.setOnClickListener(new View.OnClickListener() {
+
+        Report4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Pet_Jobs.this, PetJobs_Post.class);
+                Intent intent = new Intent(AcademicReport.this, Read_ForumData.class);
                 intent.putExtra("email", email);
-                intent.putExtra("index",art4num);
-                activity = "view";
-                intent.putExtra("activity", activity);
+                intent.putExtra("artnum", art4num);
+                intent.putExtra("BackRead", BackRead);
                 startActivity(intent);
             }
         });

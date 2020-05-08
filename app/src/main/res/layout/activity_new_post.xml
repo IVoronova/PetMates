@@ -45,8 +45,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.463" />
 
     <ImageButton
         android:id="@+id/btnNewPost_AddPic"
@@ -54,10 +54,9 @@
         android:layout_height="147dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNewPost_Title"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.634"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <EditText
@@ -69,13 +68,14 @@
         android:ems="10"
         android:gravity="left"
         android:hint="  Description"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         android:textColorHint="#9C7DA5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNewPost_AddPic"
-        app:layout_constraintVertical_bias="0.196" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.887" />
 
     <TextView
         android:id="@+id/tvNewPost_Back"
@@ -104,5 +104,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.988" />
+
+    <EditText
+        android:id="@+id/etNewPost_contact"
+        android:layout_width="232dp"
+        android:layout_height="42dp"
+        android:background="@drawable/round_text"
+        android:ems="10"
+        android:hint="Contact Info:"
+        android:inputType="textPersonName"
+        android:textColorHint="#9C7DA5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.985" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class Pet_News extends AppCompatActivity {
     TextView Back, Next, New, Article1, Article2, Article3, Article4;
-    String BackActivity = "Pet_News" , BackRead = "Pet_News",email ;
+    String BackRead = "Pet_News",email ;
     DatabaseHelper db;
     int art1num , art2num, art3num, art4num;
     Cursor cursor;
@@ -50,7 +50,7 @@ public class Pet_News extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Pet_News.this, New_Post.class);
-                intent.putExtra("BackActivity", BackActivity);
+                intent.putExtra("BackActivity", BackRead);
                 intent.putExtra("email", email);
                 startActivity(intent);
             }

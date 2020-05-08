@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class New_Post extends AppCompatActivity {
     TextView Back, Post;
-    EditText Title, Description;
+    EditText Title, Description, Contact;
     String BackActivity, imagepath, email;
     ImageButton Picture;
     DatabaseHelper db;
@@ -36,10 +36,12 @@ public class New_Post extends AppCompatActivity {
 
         Title = (EditText) findViewById(R.id.etNewPost_Title);
         Description = (EditText) findViewById(R.id.etNewPost_Description);
+        Contact = findViewById(R.id.etNewPost_contact);
         Back = (TextView) findViewById(R.id.tvNewPost_Back);
         Post = (TextView) findViewById(R.id.tvNewPost_Post);
         Picture = (ImageButton) findViewById(R.id.btnNewPost_AddPic);
 
+        Contact.setVisibility(View.INVISIBLE);
         if(BackActivity.equals("Galleries")){
             Title.setHint("Name");
             Description.setHint("No Description Needed");
@@ -48,6 +50,7 @@ public class New_Post extends AppCompatActivity {
             Title.setHint("Name");
             Description.setHint("Please provide the following information: breed, location, age, " +
                     "distinct traits, and reward");
+            Contact.setVisibility(View.VISIBLE);
         }
 
         Picture.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +76,10 @@ public class New_Post extends AppCompatActivity {
                     startActivity(intent);
                 } else if(BackActivity.equals("Lost_and_Found")){
                     Intent intent = new Intent(New_Post.this, Lost_and_Found.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                } else if(BackActivity.equals("AcademicReport")){
+                    Intent intent = new Intent(New_Post.this, AcademicReport.class);
                     intent.putExtra("email", email);
                     startActivity(intent);
                 }
@@ -112,10 +119,11 @@ public class New_Post extends AppCompatActivity {
                     intent.putExtra("email", email);
                     startActivity(intent);
                 }else if(BackActivity.equals("Lost_and_Found")){
-                    if(newTitle.equals("") || newDescription.equals("") || imagepath.equals("")){
+                    String contact = Contact.getText().toString();
+                    if(newTitle.equals("") || newDescription.equals("") || imagepath.equals("") || contact.equals("")){
                         Toast.makeText(getApplicationContext(), "Some fields are empty, please answer all the questions", Toast.LENGTH_SHORT).show();
                     }else{
-                        boolean insert = db.insert_lostandfounddata(newTitle,newDescription,imagepath);
+                        boolean insert = db.insert_lostandfounddata(newTitle,newDescription,imagepath, contact);
                         if(insert)
                             Toast.makeText(getApplicationContext(), "Upload post successful", Toast.LENGTH_SHORT).show();
                         else
@@ -124,9 +132,20 @@ public class New_Post extends AppCompatActivity {
                     Intent intent = new Intent(New_Post.this, Lost_and_Found.class);
                     intent.putExtra("email", email);
                     startActivity(intent);
+                } else if(BackActivity.equals("AcademicReport")){
+                    if(newTitle.equals("") || newDescription.equals("") || imagepath.equals("")){
+                        Toast.makeText(getApplicationContext(), "Some fields are empty, please answer all the questions", Toast.LENGTH_SHORT).show();
+                    }else{
+                        boolean insert = db.insert_academicreportdata(newTitle,newDescription,imagepath);
+                        if(insert)
+                            Toast.makeText(getApplicationContext(), "Upload post successful", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(getApplicationContext(), "Upload failed, please check permission settings on your device", Toast.LENGTH_SHORT).show();
+                    }
+                    Intent intent = new Intent(New_Post.this, AcademicReport.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
                 }
-
-
             }
         });
 
