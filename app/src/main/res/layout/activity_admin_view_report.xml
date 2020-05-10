@@ -21,76 +21,18 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
-                android:text="Who would you like to block?"
+                android:gravity="center"
+                android:text="User Report Record"
                 android:textColor="#9C7DA5"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
 
-            <EditText
-                android:id="@+id/enterEmail"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/round_text"
-                android:ems="10"
-                android:hint="Enter the user email here: "
-                android:layout_marginBottom="10dp"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="14dp"
-                android:textColorHint="#9C7DA5" />
-            <EditText
-                android:id="@+id/answerReason"
-                android:layout_width="280dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:background="@drawable/round_text"
-                android:paddingBottom="60dp"
-                android:ems="10"
-                android:hint="Enter reason here:"
-                android:layout_marginBottom="5dp"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="14dp"
-                android:textColorHint="#9C7DA5" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                tools:ignore="MissingConstraints">
-
-
-                <Button
-                    android:id="@+id/btnsubmitb"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/round_text"
-                    android:backgroundTint="#ADC1FC"
-                    android:ems="15"
-                    android:text="Block"
-                    android:layout_marginRight="20dp"
-                    android:textColor="#9C7DA5"
-                    android:textSize="18dp" />
-
-                <Button
-                android:id="@+id/btunclock"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_text"
-                android:backgroundTint="#ADC1FC"
-                android:ems="15"
-                android:text="unblock"
-                android:textColor="#9C7DA5"
-                android:textSize="18dp" />
-            </LinearLayout>
-
             <ListView
                 android:id="@+id/etallQuestion"
                 android:text="@string/q1"
                 android:layout_width="350dp"
-                android:layout_height="400dp"
+                android:layout_height="630dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_text"

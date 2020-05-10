@@ -164,6 +164,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         " WHERE (senderEmail=? and receiverEmail=?) OR (receiverEmail=? and senderEmail=?)ORDER BY ID ASC ",
                 new String[]{senderEmail, receiverEmail, senderEmail, receiverEmail});
     }
+    // get single user's full message history
+    public Cursor get_message_history(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT message, receiverEmail FROM " + Table9 + " WHERE senderEmail=? ORDER BY ID ", new String[]{email});
+    }
+
 
     ///////////////////////////////////////////////////////////////////////
     /////////////////////registration and profile//////////////////////////

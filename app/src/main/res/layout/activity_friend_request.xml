@@ -21,6 +21,7 @@
     <TextView
         android:id="@+id/friendtitle1"
         android:layout_width="wrap_content"
+        android:gravity="center"
         android:layout_height="43dp"
         android:layout_alignBottom="@+id/imageView3"
         android:layout_alignParentStart="true"

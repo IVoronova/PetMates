@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Message extends AppCompatActivity {
 
-    TextView friendtitle,friendbio,back,delete;
+    TextView friendtitle,friendbio,back,delete,report;
     ImageView friendicon;
     String email,friendEmail,friendName,friendBio;
     DatabaseHelper db;
@@ -50,6 +50,7 @@ public class Message extends AppCompatActivity {
         inputText = findViewById(R.id.typehere);
         msgListView = findViewById(R.id.listViewmessage);
         delete = findViewById(R.id.btndeletefriend);
+        report = findViewById(R.id.reportuser);
 
         friendicon.setImageBitmap(db.getimage(friendEmail));
         friendtitle.setText(friendName);
@@ -98,6 +99,18 @@ public class Message extends AppCompatActivity {
                     inputText.setText("");
                     db.send_message(email,friendEmail,content);
                 }
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Message.this, message_report.class);
+                intent.putExtra("email",email);
+                intent.putExtra("friendEmail",friendEmail);
+                intent.putExtra("friendName",friendName);
+                intent.putExtra("friendBio",friendBio);
+                startActivity(intent);
             }
         });
 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="5dp"
+    android:orientation="vertical"
+
+    tools:context=".Admin_view_report">
+    <TextView
+        android:id="@+id/reportnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reportnum"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#9C7DA5"/>
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/reportemail"
+            android:layout_width="79dp"
+            android:layout_height="57dp"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <ImageView
+            android:layout_width="133dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="#9C7DA5"
+            app:srcCompat="@drawable/arrow" />
+
+    <ImageView
+        android:id="@+id/beenreport"
+        android:layout_width="79dp"
+        android:layout_height="57dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/senderemail"
+            android:layout_width="130dp"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="@string/reportuser" />
+        <TextView
+            android:id="@+id/receivedemail"
+            android:layout_width="130dp"
+            android:layout_marginLeft="90dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/userbeenreport" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report reason: "
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"
+        android:textColor="#9C7DA5"/>
+    <TextView
+        android:id="@+id/reportreason"
+        android:layout_width="350dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="@string/reportreason"
+        android:textColor="#9C7DA5"/>
+</LinearLayout>

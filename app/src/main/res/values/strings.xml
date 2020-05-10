@@ -36,4 +36,10 @@
     <string name="left">left</string>
     <string name="right">right</string>
     <string name="makesure">makesure</string>
+    <string name="reportuser">reportuser</string>
+    <string name="userbeenreport">userbeenreport</string>
+    <string name="reportreason">reportreason</string>
+    <string name="reportnum">reportnum</string>
+    <string name="reportid">reportID</string>
+    <string name="reportchathistory">reportchathistory:</string>
 </resources>

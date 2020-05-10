@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,11 +20,18 @@ import java.util.ArrayList;
 
 public class Admin_view_report extends AppCompatActivity {
 
-    EditText email,reason;
     TextView back;
     ListView allReport;
-    Button block,unblock;
     DatabaseHelper db;
+
+    ArrayList<String> Id = new ArrayList<>();
+    ArrayList<Bitmap> senderImage = new ArrayList<>();
+    ArrayList<Bitmap> reportImage = new ArrayList<>();
+    ArrayList<String> senderEmail = new ArrayList<>();
+    ArrayList<String> reportedEmail = new ArrayList<>();
+    ArrayList<String> reportReason = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,61 +40,40 @@ public class Admin_view_report extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
 
-        email = findViewById(R.id.enterEmail);
-        reason = findViewById(R.id.answerReason);
-        block = findViewById(R.id.btnsubmitb);
         allReport = findViewById(R.id.etallQuestion);
         back = findViewById(R.id.btnBackadR);
-        unblock = findViewById(R.id.btunclock);
-
-        ArrayList<String>list = new ArrayList<>();
 
         Cursor report = db.getReported_information();
         if(report.getCount()==0){
             Toast.makeText(getApplicationContext(), "No report!", Toast.LENGTH_SHORT).show();
         }else {
             while (report.moveToNext()) {
-                list.add("Report number: \n" + report.getString(0) +
-                        "\nuser received report: \n" + report.getString(1) +
-                        "\nreport user: \n" + report.getString(3) +
-                        "\nreason\n" + report.getString(2) +
-                        "\n");
-                ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-                allReport.setAdapter(listAdapter);
+
+                String emails = report.getString(3);
+                String emailr = report.getString(1);
+                Bitmap ImagepathS = db.getimage(emails);
+                Bitmap ImagepathR = db.getimage(emailr);
+
+                Id.add("Report ID:  " + report.getString(0));
+                senderImage.add(ImagepathS);
+                reportImage.add(ImagepathR);
+                senderEmail.add(emails);
+                reportedEmail.add(emailr);
+                reportReason.add(report.getString(2));
             }
         }
-
-
-        block.setOnClickListener(new View.OnClickListener() {
+        Admin_report_adapter myAdapter = new Admin_report_adapter(this,Id,senderImage,reportImage,senderEmail,reportedEmail,reportReason);
+        allReport.setAdapter(myAdapter);
+        allReport.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                String emailValue = email.getText().toString();
-                String reasonValue = reason.getText().toString();
-                if(emailValue.equals("")||reasonValue.equals("")){
-                    Toast.makeText(getApplicationContext(),"Email or reason can not be empty!",Toast.LENGTH_SHORT).show();
-                }else{
-                    db.insert_block(emailValue,reasonValue);
-                    Toast.makeText(getApplicationContext(),"Block user successful!",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Admin_view_report.this, Admin_view_report.class);
-                    startActivity(intent);
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Admin_view_report.this, report_detail.class);
+                intent.putExtra("reportedEmail",reportedEmail.get(position));
+                intent.putExtra("id",Id.get(position));
+                startActivity(intent);
             }
         });
 
-        unblock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String emailValue = email.getText().toString();
-                if (emailValue.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Email can not be empty!", Toast.LENGTH_SHORT).show();
-                } else {
-                    db.unblock(emailValue);
-                    Toast.makeText(getApplicationContext(), "User unblocked!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Admin_view_report.this, Admin_view_report.class);
-                    startActivity(intent);
-                }
-            }
-        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
