@@ -77,7 +77,7 @@
 
     <ImageView
         android:id="@+id/Galleries_Pic1"
-        android:layout_width="184dp"
+        android:layout_width="170dp"
         android:layout_height="137dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,7 @@
 
     <ImageView
         android:id="@+id/Galleries_Pic2"
-        android:layout_width="184dp"
+        android:layout_width="170dp"
         android:layout_height="137dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +101,7 @@
 
     <ImageView
         android:id="@+id/Galleries_Pic3"
-        android:layout_width="184dp"
+        android:layout_width="170dp"
         android:layout_height="137dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
 
     <ImageView
         android:id="@+id/Galleries_Pic4"
-        android:layout_width="184dp"
+        android:layout_width="170dp"
         android:layout_height="137dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

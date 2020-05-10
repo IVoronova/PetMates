@@ -6,20 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Register">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -30,13 +21,13 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
                 android:text="Forum"
                 android:textColor="#9C7DA5"
                 android:textSize="30dp"
+                android:layout_marginBottom="10dp"
                 android:textStyle="bold" />
 
             <Button
@@ -44,7 +35,7 @@
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/round_text"
                 android:backgroundTint="#ADC1FC"
                 android:ems="15"
@@ -108,15 +99,15 @@
                 android:id="@+id/btnBackF"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="5dp"
                 android:clickable="true"
                 android:ems="3"
+                android:layout_marginStart="15dp"
                 android:focusable="true"
                 android:text="Back"
                 android:textColor="#A8A8A8"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_marginLeft="5dp" />
         </LinearLayout>
-    </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
