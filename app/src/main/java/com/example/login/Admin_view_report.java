@@ -54,7 +54,7 @@ public class Admin_view_report extends AppCompatActivity {
                 Bitmap ImagepathS = db.getimage(emails);
                 Bitmap ImagepathR = db.getimage(emailr);
 
-                Id.add("Report ID:  " + report.getString(0));
+                Id.add(report.getString(0));
                 senderImage.add(ImagepathS);
                 reportImage.add(ImagepathR);
                 senderEmail.add(emails);
@@ -70,6 +70,8 @@ public class Admin_view_report extends AppCompatActivity {
                 Intent intent = new Intent(Admin_view_report.this, report_detail.class);
                 intent.putExtra("reportedEmail",reportedEmail.get(position));
                 intent.putExtra("id",Id.get(position));
+                intent.putExtra("senderEmail",senderEmail.get(position));
+
                 startActivity(intent);
             }
         });

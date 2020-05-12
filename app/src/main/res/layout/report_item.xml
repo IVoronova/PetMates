@@ -8,14 +8,30 @@
     android:orientation="vertical"
 
     tools:context=".Admin_view_report">
-    <TextView
-        android:id="@+id/reportnumber"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:text="@string/reportnum"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/reportnumber1"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:text="Report ID:"
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="#9C7DA5"/>
+    <TextView
+        android:id="@+id/reportnumber"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:text="id"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#9C7DA5"/>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"

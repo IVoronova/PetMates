@@ -15,11 +15,12 @@ import android.widget.Toast;
 
 public class report_detail extends AppCompatActivity {
 
-    String title,id,reportedEmail;
-    Button block,unblock,checkchathistory;
+    String title,id,reportedEmail,senderEmail;
+    Button block,unblock,checkchathistory,deleteReport;
     TextView back,name,bio,type,breed,gender,zip,Title;
     EditText reason;
     ImageView image;
+    int ID;
 
 
     DatabaseHelper db;
@@ -34,6 +35,9 @@ public class report_detail extends AppCompatActivity {
         Intent intent = getIntent();
         reportedEmail = intent.getStringExtra("reportedEmail");
         id = intent.getStringExtra("id");
+        assert id != null;
+        ID = Integer.parseInt(id);
+        senderEmail = intent.getStringExtra("senderEmail");
 
 
         Title = findViewById(R.id.titleReportinfo);
@@ -49,8 +53,9 @@ public class report_detail extends AppCompatActivity {
         checkchathistory = findViewById(R.id.checkchathistory);
         back = findViewById(R.id.btnBackreportt);
         image = findViewById(R.id.reportImageview);
+        deleteReport = findViewById(R.id.deletereport);
 
-        title = id;
+        title = "Report ID: "+id;
         Title.setText(title);
 
 
@@ -110,6 +115,16 @@ public class report_detail extends AppCompatActivity {
                     Intent intent = new Intent(report_detail.this, report_chat_history.class);
                     intent.putExtra("reportedEmail",reportedEmail);
                     intent.putExtra("id",id);
+                    startActivity(intent);
+                }
+            });
+
+            deleteReport.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(report_detail.this, Admin_view_report.class);
+                    db.deleteReport(ID);
+                    Toast.makeText(getApplicationContext(), "Report deleted!", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
             });

@@ -89,7 +89,7 @@ public class Report_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 descriptionValue = "\n"+discription.getText().toString();
-                reasonSelection += descriptionValue;
+                reasonSelection += "Additional description: "+descriptionValue;
 
                 if(reasonSelection.equals("")){
                     Toast.makeText(getApplicationContext(), "Reason selection can not be empty.", Toast.LENGTH_SHORT).show();

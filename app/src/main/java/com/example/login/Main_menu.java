@@ -36,7 +36,7 @@ public class Main_menu extends AppCompatActivity {
         _Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(db.chkprofile_exist(email) == true){
+                if(db.chkprofile_exist(email)){
                     Intent intent = new Intent(Main_menu.this, Create_Profile.class);
                     Toast.makeText(getApplicationContext(), "Please create your user profile", Toast.LENGTH_SHORT).show();
                     intent.putExtra("email", email);

@@ -575,8 +575,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor search_question(String key) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + Table3+" WHERE questionTitle LIKE ? OR questionTitle LIKE ?" +
-                        " OR questionTitle LIKE ? OR questionContent LIKE ?"
-                ,new String[]{key,"%"+key,key+"%","%"+key+"%"});
+                        " OR questionTitle LIKE ? OR questionTitle LIKE ? OR questionContent LIKE ? OR questionContent LIKE ? OR questionContent LIKE ? OR questionContent LIKE ?"
+                ,new String[]{key,"%"+key,key+"%","%"+key+"%",key,"%"+key,key+"%","%"+key+"%"});
         return cursor;
     }
 
@@ -666,6 +666,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + Table6+
                 " WHERE Email =?",new String[]{email});
         return cursor;
+    }
+
+    //delete report
+    public void deleteReport(Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + Table5+ " WHERE id=?",new Integer[]{id});
+        db.close();
     }
 
 
