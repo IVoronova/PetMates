@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".message_report"></activity>
+        <activity android:name=".General_chat"></activity>
+        <activity android:name=".message_report" />
         <activity android:name=".report_chat_history" />
         <activity android:name=".report_detail" />
         <activity android:name=".Read_ForumData" />
@@ -50,7 +51,7 @@
         <activity android:name=".Search_friend" />
         <activity android:name=".AcademicReport" />
         <activity android:name=".confirm_deletefriend" />
-        <activity android:name="PetJobs_Post"/>
+        <activity android:name=".PetJobs_Post" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

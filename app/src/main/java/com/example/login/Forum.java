@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class Forum extends AppCompatActivity {
 
     TextView back;
-    Button Pet_News, Gallery, Lost_and_Found, Pet_Jobs, Report;
+    Button Pet_News, Gallery, Lost_and_Found, Pet_Jobs, Report,general_chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class Forum extends AppCompatActivity {
         Lost_and_Found = (Button) findViewById(R.id.btnLost_Found);
         Pet_Jobs = (Button) findViewById(R.id.btnPet_Jobs);
         Report = (Button) findViewById(R.id.btnReport);
+        general_chat = findViewById(R.id.btngeneralchat);
 
         //directs to each activity
         Pet_News.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +74,16 @@ public class Forum extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        general_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Forum.this, General_chat.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
+            }
+        });
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

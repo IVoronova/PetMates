@@ -25,6 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table8 = "friendrequest";
     private static final String Table9 = "message";
     private static final String Table10 = "forum";
+    private static final String Table11 = "general_chat";
 
 
     private static final int version = 1;
@@ -48,6 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Table9 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,senderEmail TEXT, receiverEmail TEXT, message TEXT)");
         //type 1 is pet_news, type 2 is galleries, type 3 is lost and found, type 4 is jet jobs, type 5 is report
         db.execSQL("CREATE TABLE " + Table10 + " (NUM INTEGER PRIMARY KEY AUTOINCREMENT, Type INTEGER, Title TEXT, Description TEXT, Image blob, Contact TEXT)");
+        db.execSQL("CREATE TABLE " + Table11 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Email TEXT, message TEXT)");
     }
 
 
@@ -63,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Table8);
         db.execSQL("DROP TABLE IF EXISTS " + Table9);
         db.execSQL("DROP TABLE IF EXISTS " + Table10);
+        db.execSQL("DROP TABLE IF EXISTS " + Table11);
         onCreate(db);
     }
     ///////////////////////////////////////////////////////////////////////
@@ -168,6 +171,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor get_message_history(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT message, receiverEmail FROM " + Table9 + " WHERE senderEmail=? ORDER BY ID ", new String[]{email});
+    }
+
+    //sending message to general chat
+    public boolean send_generalchat(String email, String message){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues request = new ContentValues();
+        request.put("Email",email);
+        request.put("message",message);
+        long ins = db.insert(Table11, null,request);
+        if (ins == -1) return false;
+        else return true;
+    }
+
+    //get general chat
+    public Cursor get_generalchat() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT Email, message FROM " + Table11+ " ORDER BY ID",null);
     }
 
 
