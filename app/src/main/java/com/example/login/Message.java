@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Message extends AppCompatActivity {
 
-    TextView friendtitle,friendbio,back,delete,report;
+    TextView friendtitle,friendbio,back,viewprofile;
     ImageView friendicon;
     String email,friendEmail,friendName,friendBio;
     DatabaseHelper db;
@@ -49,8 +49,9 @@ public class Message extends AppCompatActivity {
         send = findViewById(R.id.btnSend_message);
         inputText = findViewById(R.id.typehere);
         msgListView = findViewById(R.id.listViewmessage);
-        delete = findViewById(R.id.btndeletefriend);
-        report = findViewById(R.id.reportuser);
+
+
+        viewprofile= findViewById(R.id.viewfriendsprofile);
 
         friendicon.setImageBitmap(db.getimage(friendEmail));
         friendtitle.setText(friendName);
@@ -102,22 +103,11 @@ public class Message extends AppCompatActivity {
             }
         });
 
-        report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Message.this, message_report.class);
-                intent.putExtra("email",email);
-                intent.putExtra("friendEmail",friendEmail);
-                intent.putExtra("friendName",friendName);
-                intent.putExtra("friendBio",friendBio);
-                startActivity(intent);
-            }
-        });
 
-        delete.setOnClickListener(new View.OnClickListener() {
+        viewprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Message.this, confirm_deletefriend.class);
+                Intent intent = new Intent(Message.this, View_friend_profile.class);
                 intent.putExtra("email",email);
                 intent.putExtra("friendEmail",friendEmail);
                 intent.putExtra("friendName",friendName);

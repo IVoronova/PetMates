@@ -47,7 +47,7 @@ public class Pairing_ByL_Result extends AppCompatActivity {
         preferences.moveToFirst();
         zip = preferences.getString(0);
 
-        Cursor pairingResult = db.pair_location(email,zip);
+        Cursor pairingResult = db.pair_location(email);
 
         if(pairingResult.getCount()>0) {
             pairingResult.moveToFirst();

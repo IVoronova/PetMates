@@ -40,7 +40,7 @@ public class confirm_deletefriend extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 db.deletefriend(email,friendEmail);
-                Toast.makeText(getApplicationContext(), "You and"+friendName+"now are no longer friend.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "You and "+friendName+" now are no longer friend.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(confirm_deletefriend.this, Friends.class);
                 intent.putExtra("email",email);
                 startActivity(intent);
@@ -50,7 +50,7 @@ public class confirm_deletefriend extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(confirm_deletefriend.this,Message.class);
+                Intent intent = new Intent(confirm_deletefriend.this,View_friend_profile.class);
                 intent.putExtra("email",email);
                 intent.putExtra("friendEmail",friendEmail);
                 intent.putExtra("friendName",friendName);

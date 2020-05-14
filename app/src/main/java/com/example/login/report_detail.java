@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 public class report_detail extends AppCompatActivity {
 
-    String title,id,reportedEmail,senderEmail;
+    String title,id,reportedEmail,senderEmail,reportReason;
     Button block,unblock,checkchathistory,deleteReport;
-    TextView back,name,bio,type,breed,gender,zip,Title;
+    TextView back,name,bio,type,breed,gender,zip,Title,reason1;
     EditText reason;
     ImageView image;
     int ID;
@@ -35,6 +35,7 @@ public class report_detail extends AppCompatActivity {
         Intent intent = getIntent();
         reportedEmail = intent.getStringExtra("reportedEmail");
         id = intent.getStringExtra("id");
+        reportReason = intent.getStringExtra("reportReason");
         assert id != null;
         ID = Integer.parseInt(id);
         senderEmail = intent.getStringExtra("senderEmail");
@@ -54,6 +55,7 @@ public class report_detail extends AppCompatActivity {
         back = findViewById(R.id.btnBackreportt);
         image = findViewById(R.id.reportImageview);
         deleteReport = findViewById(R.id.deletereport);
+        reason1 = findViewById(R.id.reasonshow);
 
         title = "Report ID: "+id;
         Title.setText(title);
@@ -82,6 +84,8 @@ public class report_detail extends AppCompatActivity {
             zip.setText(ZipValue);
 
             image.setImageBitmap(db.getimage(reportedEmail));
+        }
+
 
 
             block.setOnClickListener(new View.OnClickListener() {
@@ -137,5 +141,4 @@ public class report_detail extends AppCompatActivity {
                 }
             });
         }
-    }
 }

@@ -71,7 +71,7 @@ public class Admin_view_report extends AppCompatActivity {
                 intent.putExtra("reportedEmail",reportedEmail.get(position));
                 intent.putExtra("id",Id.get(position));
                 intent.putExtra("senderEmail",senderEmail.get(position));
-
+                intent.putExtra("reportReason",reportReason.get(position));
                 startActivity(intent);
             }
         });

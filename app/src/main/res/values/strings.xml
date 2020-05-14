@@ -42,4 +42,6 @@
     <string name="reportnum">reportnum</string>
     <string name="reportid">reportID</string>
     <string name="reportchathistory">reportchathistory:</string>
+    <string name="question">Question</string>
+    <string name="text1">text1</string>
 </resources>

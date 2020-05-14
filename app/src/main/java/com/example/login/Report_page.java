@@ -50,9 +50,9 @@ public class Report_page extends AppCompatActivity {
         //for spin section array
         final String selction = "Choose an report reason";
         final String reason1 = "Inappropriate profile/picture";
-        final String reason2 = "reason two";
-        final String reason3 = "reason three";
-        final String reason4 = "reason four";
+        final String reason2 = "Inappropriate message";
+        final String reason3 = "Spam";
+        final String reason4 = "UGLY";
 
         List<String> reasonValue = new ArrayList<>();
         reasonValue.add(0, selction);
@@ -88,8 +88,8 @@ public class Report_page extends AppCompatActivity {
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                descriptionValue = "\n"+discription.getText().toString();
-                reasonSelection += "Additional description: "+descriptionValue;
+                descriptionValue = discription.getText().toString();
+                reasonSelection += "\nAdditional description: "+descriptionValue;
 
                 if(reasonSelection.equals("")){
                     Toast.makeText(getApplicationContext(), "Reason selection can not be empty.", Toast.LENGTH_SHORT).show();

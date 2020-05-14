@@ -50,9 +50,9 @@ public class message_report extends AppCompatActivity {
         //for spin section array
         final String selction = "Choose an report reason";
         final String reason1 = "Inappropriate profile/picture";
-        final String reason2 = "reason two";
-        final String reason3 = "reason three";
-        final String reason4 = "reason four";
+        final String reason2 = "Inappropriate message";
+        final String reason3 = "Spam";
+        final String reason4 = "Scammer";
 
         List<String> reasonValue = new ArrayList<>();
         reasonValue.add(0, selction);
@@ -106,7 +106,7 @@ public class message_report extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(message_report.this, Message.class);
+                    Intent intent = new Intent(message_report.this, View_friend_profile.class);
                 intent.putExtra("email",email);
                 intent.putExtra("friendEmail",friendEmail);
                 intent.putExtra("friendName",friendName);

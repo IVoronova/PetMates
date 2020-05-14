@@ -725,10 +725,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //randomly pick 1 mate by location
-    public Cursor pair_location(String email, String zip) {
+    public Cursor pair_location(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT Email, Name, Bio, Pet_type, Pet_breed, Pet_gender FROM " + Table2 +
-                " WHERE zip = (SELECT Zip FROM " + Table2 + " WHERE Email =? AND Email !=? ORDER BY RANDOM() LIMIT 1)", new String[]{zip, email});
+                " WHERE zip = (SELECT Zip FROM " + Table2 + " WHERE Email =?) AND Email !=? ORDER BY RANDOM() LIMIT 1", new String[]{email,email});
         return cursor;
     }
 
