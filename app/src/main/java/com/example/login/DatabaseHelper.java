@@ -185,7 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //get general chat
-    public Cursor get_generalchat() {
+    Cursor get_generalchat() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT Email, message FROM " + Table11+ " ORDER BY ID",null);
     }
@@ -575,7 +575,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor search_question(String key) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + Table3+" WHERE questionTitle LIKE ? OR questionTitle LIKE ?" +
-                        " OR questionTitle LIKE ? OR questionTitle LIKE ? OR questionContent LIKE ? OR questionContent LIKE ? OR questionContent LIKE ? OR questionContent LIKE ?"
+                        " OR questionTitle LIKE ? OR questionTitle LIKE ? OR questionContent LIKE ? OR questionContent " +
+                        "LIKE ? OR questionContent LIKE ? OR questionContent LIKE ?"
                 ,new String[]{key,"%"+key,key+"%","%"+key+"%",key,"%"+key,key+"%","%"+key+"%"});
         return cursor;
     }

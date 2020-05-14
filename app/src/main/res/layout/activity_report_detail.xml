@@ -119,11 +119,12 @@
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/round_text"
                 android:ems="10"
                 android:hint="Zip code: "
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
                 android:textColor="#9C7DA5"
                 android:textSize="20dp" />
 
@@ -137,6 +138,8 @@
                 android:ems="10"
                 android:hint="reason: "
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
                 android:textColor="#9C7DA5"
                 android:textSize="20dp" />
 

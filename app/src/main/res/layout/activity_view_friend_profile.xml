@@ -132,6 +132,7 @@
                 android:ems="10"
                 android:hint="Zip code: "
                 android:paddingLeft="15dp"
+                android:paddingTop="11dp"
                 android:textColor="#9C7DA5"
                 android:textSize="20dp"/>
 

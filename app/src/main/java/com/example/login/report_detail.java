@@ -59,6 +59,7 @@ public class report_detail extends AppCompatActivity {
 
         title = "Report ID: "+id;
         Title.setText(title);
+        reason1.setText(reportReason);
 
 
         Cursor get_profile = db.getAll_User_info(reportedEmail);
