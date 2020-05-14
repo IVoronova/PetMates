@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="5dp"
+    android:orientation="vertical"
+
+    tools:context=".Admin_view_report">
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/forumid"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Post ID:"
+            android:layout_marginStart="40dp"
+            android:textColor="#9C7DA5"
+            android:textStyle="bold"
+            android:layout_marginLeft="40dp" />
+
+        <TextView
+            android:id="@+id/postid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/postid"
+            android:textColor="#9C7DA5"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/reportnumber2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="40dp"
+            android:text="Forum section:"
+            android:textColor="#9C7DA5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/forumsection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/section"
+            android:textColor="#9C7DA5"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/reporttitle2"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="40dp"
+            android:text="Title: "
+            android:textColor="#9C7DA5"
+            android:textStyle="bold"
+            android:layout_marginLeft="40dp" />
+
+        <TextView
+            android:id="@+id/forumstitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/title"
+            android:textColor="#9C7DA5"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/forumcontent"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="#9C7DA5"
+            android:paddingLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/forumimage"
+            android:layout_width="79dp"
+            android:layout_height="57dp"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report reason: "
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"
+        android:textColor="#9C7DA5"/>
+    <TextView
+        android:id="@+id/reportreason1"
+        android:layout_width="350dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="@string/reportreason"
+        android:textColor="#9C7DA5"/>
+</LinearLayout>

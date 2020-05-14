@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".View_forum_report"></activity>
         <activity android:name=".View_friend_profile" />
         <activity android:name=".Sample_question" />
         <activity android:name=".General_chat" />

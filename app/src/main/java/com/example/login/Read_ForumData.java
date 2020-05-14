@@ -10,15 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Read_ForumData extends AppCompatActivity {
-    TextView Title, Description, Contact, Back;
+    TextView Title, Description, Contact, Back,report;
     ImageView Picture;
     DatabaseHelper db;
-    String email, BackRead;
+    String email, BackRead,n;
     Bitmap bt = null;
     Cursor cursor;
-    int index;
+    int index,id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class Read_ForumData extends AppCompatActivity {
         Back = findViewById(R.id.tvReadPetNews_Back);
         Contact = findViewById(R.id.tvReadForum_contact);
         Picture = findViewById(R.id.ReadNews_Pic);
+        report = findViewById(R.id.ffreport);
+        n ="1";
 
         if(BackRead.equals("Pet_News"))
             cursor = db.newsarticle_data(index);
@@ -48,6 +51,7 @@ public class Read_ForumData extends AppCompatActivity {
             cursor = db.academcreport_data(index);
 
         if(cursor.moveToNext()) {
+            id = cursor.getInt(0);
             byte[] Image = cursor.getBlob(4);
             bt = BitmapFactory.decodeByteArray(Image,0,Image.length);
             Title.setText(cursor.getString(2));
@@ -69,6 +73,22 @@ public class Read_ForumData extends AppCompatActivity {
                     intent = new Intent(Read_ForumData.this, AcademicReport.class);
                 intent.putExtra("email", email);
                 startActivity(intent);
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(index != 0) {
+                    Intent intent = new Intent(Read_ForumData.this, message_report.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("n", n);
+                    String ID = Integer.toString(id);
+                    intent.putExtra("ID", ID);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Can not report empty post!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

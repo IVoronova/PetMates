@@ -44,4 +44,8 @@
     <string name="reportchathistory">reportchathistory:</string>
     <string name="question">Question</string>
     <string name="text1">text1</string>
+    <string name="section">section</string>
+    <string name="forumuser">forumuser</string>
+    <string name="postid">postid</string>
+    <string name="title">title</string>
 </resources>

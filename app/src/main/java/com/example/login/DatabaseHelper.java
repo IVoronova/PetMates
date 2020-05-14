@@ -26,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table9 = "message";
     private static final String Table10 = "forum";
     private static final String Table11 = "general_chat";
+    private static final String Table12 = "forum_report";
 
 
     private static final int version = 1;
@@ -50,6 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //type 1 is pet_news, type 2 is galleries, type 3 is lost and found, type 4 is jet jobs, type 5 is report
         db.execSQL("CREATE TABLE " + Table10 + " (NUM INTEGER PRIMARY KEY AUTOINCREMENT, Type INTEGER, Title TEXT, Description TEXT, Image blob, Contact TEXT)");
         db.execSQL("CREATE TABLE " + Table11 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Email TEXT, message TEXT)");
+        db.execSQL("CREATE TABLE " + Table12 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NUM INTEGER, reason TEXT)");
+
     }
 
 
@@ -66,6 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Table9);
         db.execSQL("DROP TABLE IF EXISTS " + Table10);
         db.execSQL("DROP TABLE IF EXISTS " + Table11);
+        db.execSQL("DROP TABLE IF EXISTS " + Table12);
         onCreate(db);
     }
     ///////////////////////////////////////////////////////////////////////
@@ -382,6 +386,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor academcreport_data(int index){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE NUM = ? AND Type = 5", new String[]{String.valueOf(index)});
+        return cursor;
+    }
+
+    //report a post
+    public boolean insert_reportpost(int id, String reason){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentvalues = new ContentValues();
+        contentvalues.put("NUM", id);
+        contentvalues.put("reason", reason);
+        db.insert(Table12,null,contentvalues);
+        return true;
+    }
+    //delete a post
+    public void delete_post(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + Table10+ " WHERE NUM=?",new Integer[]{id});
+        db.execSQL("DELETE FROM " + Table12+ " WHERE NUM=?",new Integer[]{id});
+        db.close();
+    }
+    public Cursor getAll_reported_forum() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table12+
+                " ORDER BY id ASC",null);
+        return cursor;
+    }
+    public Cursor all_data_id(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table10 + " WHERE NUM = ?", new String[]{String.valueOf(id)});
         return cursor;
     }
 
@@ -778,5 +810,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return bt;
     }
     //////////////////////////////////////////////////////////////////////////////////////////
+
+    public Bitmap getforumimage(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Bitmap bt = null;
+        Cursor cursor = db.rawQuery("SELECT Image from "+Table10+" WHERE NUM =?",new String[]{String.valueOf(id)});
+        if(cursor.moveToNext()){
+            byte[] Image = cursor.getBlob(0);
+            bt = BitmapFactory.decodeByteArray(Image,0,Image.length);
+        }
+        return bt;
+    }
 
 }

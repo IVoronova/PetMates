@@ -24,9 +24,10 @@ public class message_report extends AppCompatActivity {
     TextView back;
     String reasonSelection = "";
     String descriptionValue = "";
-    String email,friendEmail,friendName,friendBio;
+    String email,friendEmail,friendName,friendBio,n;
     DatabaseHelper db;
     boolean isSubmit;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class message_report extends AppCompatActivity {
         friendEmail = intent.getStringExtra("friendEmail");
         friendName = intent.getStringExtra("friendName");
         friendBio = intent.getStringExtra("friendBio");
-
+        n = intent.getStringExtra("n");
+        id = intent.getStringExtra("ID");
 
         db = new DatabaseHelper(this);
 
@@ -89,29 +91,38 @@ public class message_report extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 descriptionValue = "\n"+discription.getText().toString();
-                reasonSelection += "Additional description: "+descriptionValue;
+                reasonSelection = descriptionValue+"\n"+reasonSelection;
 
                 if(reasonSelection.equals("")){
                     Toast.makeText(getApplicationContext(), "Reason selection can not be empty.", Toast.LENGTH_SHORT).show();
-                }else{
-                    isSubmit = db.insert_report(friendEmail,reasonSelection,email);
+                }else if(!n.equals("1")) {
+                    isSubmit = db.insert_report(friendEmail, reasonSelection, email);
+                }else {
+                    int ID=Integer.parseInt(id);
+                    isSubmit = db.insert_reportpost(ID,reasonSelection);
+                }
                     if(isSubmit){
                         Toast.makeText(getApplicationContext(), "Report submit successful.", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getApplicationContext(), "Something wrong.", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
         });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!n.equals("1")) {
                     Intent intent = new Intent(message_report.this, View_friend_profile.class);
-                intent.putExtra("email",email);
-                intent.putExtra("friendEmail",friendEmail);
-                intent.putExtra("friendName",friendName);
-                intent.putExtra("friendBio",friendBio);
+                    intent.putExtra("email",email);
+                    intent.putExtra("friendEmail",friendEmail);
+                    intent.putExtra("friendName",friendName);
+                    intent.putExtra("friendBio",friendBio);
                     startActivity(intent);
+                }else {
+                    Intent intent = new Intent(message_report.this, Forum.class);
+                    intent.putExtra("email",email);
+                    startActivity(intent);
+                }
                 }
 
         });

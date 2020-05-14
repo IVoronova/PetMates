@@ -77,13 +77,27 @@
         android:layout_width="275dp"
         android:layout_height="46dp"
         android:gravity="center"
+        android:inputType="textMultiLine"
         android:textColor="#A8A8A8"
         android:textSize="20dp"
-        android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.973" />
+        app:layout_constraintVertical_bias="0.944" />
+
+    <TextView
+        android:id="@+id/ffreport"
+        android:layout_width="135dp"
+        android:layout_height="34dp"
+        android:text="Report Post"
+        android:textColor="#9C7DA5"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
 </androidx.constraintlayout.widget.ConstraintLayout>

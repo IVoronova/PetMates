@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class Admin_view_report extends AppCompatActivity {
 
-    TextView back;
+    TextView back,forumreport;
     ListView allReport;
     DatabaseHelper db;
 
@@ -42,6 +42,7 @@ public class Admin_view_report extends AppCompatActivity {
 
         allReport = findViewById(R.id.etallQuestion);
         back = findViewById(R.id.btnBackadR);
+        forumreport = findViewById(R.id.viewforumreport);
 
         Cursor report = db.getReported_information();
         if(report.getCount()==0){
@@ -80,6 +81,13 @@ public class Admin_view_report extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Admin_view_report.this, Admin_page.class);
+                startActivity(intent);
+            }
+        });
+        forumreport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin_view_report.this, View_forum_report.class);
                 startActivity(intent);
             }
         });
