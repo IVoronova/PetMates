@@ -39,7 +39,7 @@ public class message_report extends AppCompatActivity {
         friendEmail = intent.getStringExtra("friendEmail");
         friendName = intent.getStringExtra("friendName");
         friendBio = intent.getStringExtra("friendBio");
-        n = intent.getStringExtra("n");
+        n =""+ intent.getStringExtra("n");
         id = intent.getStringExtra("ID");
 
         db = new DatabaseHelper(this);

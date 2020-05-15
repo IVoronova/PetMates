@@ -68,7 +68,7 @@ public class Edit_profile extends AppCompatActivity {
             public void onClick(View v) {
                 String NNameValue = NewName.getText().toString();
                 String NBioValue = NewBio.getText().toString();
-                String NPetTypeValue = NewP_PetType.getText().toString();
+                String NPetTypeValue = NewPetType.getText().toString();
                 String NPetBreedValue = NewPetBreed.getText().toString();
                 String NPetGenderValue = NewPetGender.getText().toString();
                 String NZipValue = NewZip.getText().toString();
