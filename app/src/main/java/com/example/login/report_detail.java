@@ -105,13 +105,9 @@ public class report_detail extends AppCompatActivity {
             unblock.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //if (db.isBlock(reportedEmail)) {
                         db.unblock(reportedEmail);
                         Toast.makeText(getApplicationContext(), "User unblocked!", Toast.LENGTH_SHORT).show();
-                    //}else{
-                       // Toast.makeText(getApplicationContext(), "That user is not been blocked!", Toast.LENGTH_SHORT).show();
                     }
-              //  }
             });
 
             checkchathistory.setOnClickListener(new View.OnClickListener() {
